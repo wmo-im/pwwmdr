@@ -19,7 +19,7 @@ import logging
 
 import click
 
-from pywmdr.util import (get_cli_common_options, get_codelists,
+from pywmdr.util import (get_cli_common_options, get_codelists_from_rdf,
                          get_string_or_anchor_value, NAMESPACES,
                          nspath_eval, parse_wmdr, setup_logger,
                          urlopen_, validate_wmdr_xml)
@@ -73,7 +73,7 @@ class WMDRTestSuite:
         self.namespaces = self.exml.getroot().nsmap
 
         # generate dict of codelists
-        self.codelists = get_codelists()
+        self.codelists = get_codelists_from_rdf()
 
     def run_tests(self):
         """Convenience function to run all tests"""

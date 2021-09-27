@@ -16,6 +16,8 @@ import re
 from setuptools import Command, find_packages, setup
 import sys
 import zipfile
+import glob
+import shutil
 
 from lxml import etree
 
@@ -86,6 +88,19 @@ if not os.path.exists(USERDIR):
 
     with open(schema_filename, 'wb') as f:
         f.write(urlopen_(CODELIST_URL).read())
+
+    if not os.path.exists(f'{USERDIR}{os.sep}schema'):
+        os.mkdir(f'{USERDIR}{os.sep}schema')
+        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
+        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
+        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
+        script_dirname = os.path.dirname(__file__)
+        codelist_filenames = os.path.join(script_dirname, 'resources/Codelist/*.rdf')
+        for file in glob.glob(codelist_filenames):
+            shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
+        map_filenames = os.path.join(script_dirname, 'resources/maps/*.json')
+        for file in glob.glob(map_filenames):
+            shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
 
     # because some ISO instances ref both gmd and gmx, create a
     # stub xsd in order to validate

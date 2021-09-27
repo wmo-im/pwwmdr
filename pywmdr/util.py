@@ -17,6 +17,8 @@ from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 from urllib.error import URLError
 from urllib.request import urlopen
+from geopandas import read_file as gpd_read_file
+from shapely.geometry import Point
 
 from lxml import etree
 
@@ -27,7 +29,11 @@ NAMESPACES = {
     'gmd': 'http://www.isotc211.org/2005/gmd',
     'gml': 'http://www.opengis.net/gml/3.2',
     'gmx': 'http://www.isotc211.org/2005/gmx',
-    'xlink': 'http://www.w3.org/1999/xlink'
+    'xlink': 'http://www.w3.org/1999/xlink',
+    'skos': 'http://www.w3.org/2004/02/skos/core#',
+    'dct':   'http://purl.org/dc/terms/',
+    'rdfs': 'http://www.w3.org/2000/01/rdf-schema#',
+    'rdf': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
 }
 
 
@@ -47,13 +53,40 @@ def get_cli_common_options(function):
     return function
 
 
-def get_codelists():
+# def get_codelists():
+#     """
+#     Helper function to assemble dict of ISO and WMO codelists
+
+#     :param authority: code list authority (iso or wmo)
+
+#     :returns: `dict` of ISO and WMO codelists
+
+#     """
+
+#     codelists = {}
+#     userdir = get_userdir()
+
+#     codelist_files = {
+#         'iso': f'{userdir}/schema/resources/Codelist/gmxCodelists.xml',
+#         'wmo': f'{userdir}{os.sep}WMOCodeLists.xml'
+#     }
+
+#     for key, value in codelist_files.items():
+#         codelists[key] = {}
+#         xml = etree.parse(value)
+#         for cld in xml.xpath('gmx:codelistItem/gmx:CodeListDictionary', namespaces=NAMESPACES):
+#             identifier = cld.get(nspath_eval('gml:id'))
+#             codelists[key][identifier] = []
+#             for centry in cld.findall(nspath_eval('gmx:codeEntry/gmx:CodeDefinition/gml:identifier')):
+#                 codelists[key][identifier].append(centry.text)
+
+#     return codelists
+
+def get_codelists_from_rdf():
     """
-    Helper function to assemble dict of ISO and WMO codelists
+    Helper function to assemble dict of WMO codelists from RDF XML files
 
-    :param authority: code list authority (iso or wmo)
-
-    :returns: `dict` of ISO and WMO codelists
+    :returns: `dict` of WMO codelists
 
     """
 
@@ -61,19 +94,20 @@ def get_codelists():
     userdir = get_userdir()
 
     codelist_files = {
-        'iso': f'{userdir}/schema/resources/Codelist/gmxCodelists.xml',
-        'wmo': f'{userdir}{os.sep}WMOCodeLists.xml'
+        'WMORegion': f'{userdir}/schema/resources/Codelist/WMORegion.rdf',
     }
 
     for key, value in codelist_files.items():
-        codelists[key] = {}
+        codelists[key] = []
         xml = etree.parse(value)
-        for cld in xml.xpath('gmx:codelistItem/gmx:CodeListDictionary', namespaces=NAMESPACES):
-            identifier = cld.get(nspath_eval('gml:id'))
-            codelists[key][identifier] = []
-            for centry in cld.findall(nspath_eval('gmx:codeEntry/gmx:CodeDefinition/gml:identifier')):
-                codelists[key][identifier].append(centry.text)
+        container = xml.getroot()[0]
+        # for notation in container.findall(nspath_eval('skos:member/skos:Concept/skos:notation')):
+        #     codelists[key].append(notation.text)
+        for concept in container.findall(nspath_eval('skos:member/skos:Concept')):
+            codelists[key].append(concept.get(nspath_eval('rdf:about')))
+            codelists[key].append(concept.find(nspath_eval('skos:notation')).text)
 
+    print(codelists)
     return codelists
 
 
@@ -334,3 +368,29 @@ def parse_wmdr(content):
         raise RuntimeError('Does not look like a WMDR document!')
 
     return exml
+
+def get_region(lon,lat,getNotation=False):
+
+    userdir = get_userdir()
+    regions_geojson_file = f'{userdir}/schema/resources/maps/WMO_regions.json'
+    regions = gpd_read_file(regions_geojson_file)
+
+    st0 = Point(lon,lat)
+
+    region = None
+    st_bounds = st0.bounds
+    if st_bounds[1] < -60:
+        if getNotation:
+            region = "antarctica"
+        else:
+            region = "http://codes.wmo.int/wmdr/WMORegion/antarctica"
+    else:
+        for i in range(0,len(regions.geometry)):
+            if st0.within(regions.geometry[i]):
+                # print("is within region %s" % regions.notation[i])
+                if getNotation:
+                    region = regions.notation[i]
+                else:
+                    region = regions.code[i]
+    
+    return region

@@ -57,10 +57,10 @@ import click
 # from spellchecker import SpellChecker
 
 from pywmdr.ats import TestSuiteError, WMDRTestSuite
-from pywmdr.util import (get_cli_common_options, get_codelists, get_keyword_info,
+from pywmdr.util import (get_cli_common_options, get_keyword_info,
                          get_string_or_anchor_value, get_string_or_anchor_values,
                          nspath_eval, parse_time_position, parse_wmdr,
-                         setup_logger, urlopen_, check_url)
+                         setup_logger, urlopen_, check_url, get_codelists_from_rdf, get_region) # get_codelists, 
 
 LOGGER = logging.getLogger(__name__)
 
@@ -97,7 +97,7 @@ class WMDRKeyPerformanceIndicators:
             self.namespaces['gmx'] = 'http://www.isotc211.org/2005/gmx'
 
         # generate dict of codelists
-        self.codelists = get_codelists()
+        self.codelists = get_codelists_from_rdf()
 
     @property
     def identifier(self):
@@ -161,7 +161,7 @@ class WMDRKeyPerformanceIndicators:
 
         return set(links)
 
-    def kpi_1000(self) -> tuple:
+    def kpi_10(self) -> tuple:
         """
         Implements KPI-1-0-00: WMDR compliance
 
@@ -187,20 +187,40 @@ class WMDRKeyPerformanceIndicators:
 
         return name, total, score, comments
 
-    def kpi_2000(self) -> tuple:
+    def kpi_20(self) -> tuple:
         """
-        Implements KPI-2-0-00: Coordinates
+        Implements KPI-2-0: Station characteristics
 
         :returns: `tuple` of KPI name, achieved score, total score, and comments
         """
 
-        total = len(self.exml.xpath('/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation',namespaces=self.namespaces))*2
+        total = 0
         score = 0
         comments = []
-
-        name = 'KPI-2-0-00: Coordinates'
-
+        name = 'KPI-2-0: station characteristics'
         LOGGER.info(f'Running {name}')
+
+        # Rule 2-0-00: Coordinates
+        stotal, sscore, scomments = self.kpi_2000()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 2-0-00: wmoRegion
+        stotal, sscore, scomments = self.kpi_2001()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        return name, total, score, comments
+
+    def kpi_2000(self):
+        # Rule 2-0-00: Coordinates
+        # 2-0-00-a: A geopositioning method is specified and not "unknown".
+        total = 2 # len(self.exml.xpath('/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation',namespaces=self.namespaces))*2
+        # NOTE: only first matching observingFacility is evaluated
+        score = 0
+        comments = []
 
         xpath = '/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geopositioningMethod'
 
@@ -212,11 +232,11 @@ class WMDRKeyPerformanceIndicators:
             LOGGER.debug("geopositioningMethod not found")
             comments.append("geopositioningMethod not found")
         else:
-            for m in matches:
-                href = m.get('{http://www.w3.org/1999/xlink}href')
-                if href:
-                    LOGGER.debug('href attribute of geopositioningMethod is present')
-                    score += 1
+            m = matches[0]
+            href = m.get('{http://www.w3.org/1999/xlink}href')
+            if href:
+                LOGGER.debug('href attribute of geopositioningMethod is present')
+                score += 1
 
         LOGGER.debug(f'Rule: The begin position of valid period is specified.')
 
@@ -228,31 +248,83 @@ class WMDRKeyPerformanceIndicators:
             LOGGER.debug("beginPosition not found")
             comments.append("beginPosition not found")
         else:
-            for m in matches:
-                text = m.text
-                if text:
-                    LOGGER.debug('beginPosition is specified')
-                    score += 1
+            m = matches[0]
+            text = m.text
+            if text:
+                LOGGER.debug('beginPosition is specified')
+                score += 1
+        
+        return total, score, comments
+    
+    def kpi_2001(self):
+        # Rule 2-0-01: WMO Region
+        # A WMO region (code list: http://codes.wmo.int/wmdr/WMORegion) is specified and it matches the coordinates.
 
-
-
-        return name, total, score, comments
-
-    def kpi_2001(self) -> tuple:
-        """
-        Implements KPI-2-0-01: WMO Region
-
-        :returns: `tuple` of KPI name, achieved score, total score, and comments
-        """
-
-        name = "KPI-2-0-01 WMO Region"
         total = 1
         score = 0
         comments = []
 
-        # TODO
+        xpath = '/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:wmoRegion'
 
-        return name, total, score, comments
+        matches = self.exml.xpath(xpath, namespaces=self.namespaces)
+
+        if not len(matches):
+            LOGGER.debug("wmoRegion not found")
+            comments.append("wmoRegion not found")
+            return total, score, comments
+
+        m = matches[0]
+        if nspath_eval('xlink:href') in m.attrib and m.get(nspath_eval('xlink:href')) != "":
+            wmoregion = m.get(nspath_eval('xlink:href'))
+            getNotation = False
+        elif m.text == "":
+            LOGGER.debug("wmoRegion is empty")
+            comments.append("wmoRegion is empty")
+            return total, score, comments
+        else:
+            wmoregion = m.text
+            getNotation = True
+
+        print('found region %s' % wmoregion) # text}')
+
+        if wmoregion not in self.codelists['WMORegion']:
+            LOGGER.debug('wmoRegion not present in codelist')
+            comments.append('wmoRegion not present in codelist')
+            return total, score, comments
+
+        ## get the coordinates
+        xpath = '/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geoLocation/gml:Point/gml:pos'
+        match = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if not len(match):
+            xpath = '/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geoLocation/gml:Point/gml:coordinates'
+            match = self.exml.xpath(xpath,namespaces=self.namespaces)
+            if not len(match):
+                LOGGER.debug("Missing wmdr:geoLocation/gml:Point/gml:pos")
+                comments.append("Missing wmdr:geoLocation/gml:Point/gml:pos")
+            else:
+                LOGGER.debug("gml:coordinates is deprecated. Use gml:pos")
+                comments.append("gml:coordinates is deprecated. Use gml:pos")
+            return total, score, comments
+
+        coords = match[0].text.split(" ")
+        
+        if len(coords) < 2:
+            LOGGER.debug("gml:pos is missing values")
+            comments.append("gml:pos is missing values")
+            return total, score, comments
+
+        lon = float(coords[1])
+        lat = float(coords[0])
+
+        # check if region matches the coordinates
+        region_from_pos = get_region(lon,lat,getNotation)
+        print(coords,lon,lat,region_from_pos,wmoregion)
+        if region_from_pos != wmoregion:
+            LOGGER.debug("region doesnt match coordinates")
+            comments.append("region doesnt match coordinates")
+        else:
+            score += 1
+        return total, score, comments
 
     def evaluate(self, kpi: int = 0) -> dict:
         """
@@ -262,15 +334,14 @@ class WMDRKeyPerformanceIndicators:
         """
 
         known_kpis = [
-            # 'kpi_1000',
-            'kpi_2000',
-            'kpi_2001',           
+            # 'kpi_10',
+            'kpi_20',
         ]
 
         kpis_to_run = known_kpis
 
         if kpi != 0:
-            selected_kpi = f'kpi_{kpi:04}'
+            selected_kpi = f'kpi_{kpi:02}'
             if selected_kpi not in known_kpis:
                 msg = f'Invalid KPI number: {selected_kpi} is not in {known_kpis}'
                 LOGGER.error(msg)

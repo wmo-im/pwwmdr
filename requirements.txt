@@ -3,3 +3,4 @@ click
 lxml
 pyspellchecker
 python-dateutil
+geopandas
