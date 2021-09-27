@@ -19,6 +19,8 @@ from urllib.error import URLError
 from urllib.request import urlopen
 from geopandas import read_file as gpd_read_file
 from shapely.geometry import Point
+import glob
+import re
 
 from lxml import etree
 
@@ -93,9 +95,17 @@ def get_codelists_from_rdf():
     codelists = {}
     userdir = get_userdir()
 
-    codelist_files = {
-        'WMORegion': f'{userdir}/schema/resources/Codelist/WMORegion.rdf',
-    }
+    codelist_files = {}
+
+    listing = glob.glob(f'{userdir}/schema/resources/Codelist/*.rdf')
+    for file in listing:
+        key = re.sub('\.rdf$','',os.path.basename(file))
+        codelist_files[key] = file
+
+    # codelist_files = {
+    #     'WMORegion': f'{userdir}/schema/resources/Codelist/WMORegion.rdf',
+    #     'GeopositioningMethod': f'{userdir}/schema/resources/Codelist/GeopositioningMethod.rdf',
+    # }
 
     for key, value in codelist_files.items():
         codelists[key] = []

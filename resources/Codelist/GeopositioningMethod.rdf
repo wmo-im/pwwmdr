@@ -1,0 +1,121 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod">
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T08:57:24.075Z</dct:modified>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >3</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/loran">
+        <dct:description xml:lang="en">Location determined using the LORAN (LOng RAnge Navigation) hyperbolic radio system.</dct:description>
+        <rdfs:label>LORAN</rdfs:label>
+        <skos:notation>loran</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/argosDoppler">
+        <dct:description xml:lang="en">Location determined using the frequency shift of transmissions to the ARGOS communications satellite service. http://www.argos-system.org/web/en/333-why-choose-argos.php</dct:description>
+        <rdfs:label>ARGOS DOPPLER</rdfs:label>
+        <skos:notation>argosDoppler</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/argosKalman">
+        <dct:description xml:lang="en">Location determined using the Kalman filtering technique and the ARGOS communications satellite service. http://www.argos-system.org/web/en/393-faq-kalman.php.</dct:description>
+        <rdfs:label>ARGOS Kalman</rdfs:label>
+        <skos:notation>argosKalman</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/gps">
+        <dct:description xml:lang="en">Location determined using the Global Positioning System. http://www.gps.gov/</dct:description>
+        <rdfs:label>GPS</rdfs:label>
+        <skos:notation>gps</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/glonass">
+        <dct:description xml:lang="en">Location determined using the Russian GLONASS (Globalnaya Navigazionnaya Sputnikovaya Sistema) global navigation satellite system. https://www.glonass-iac.ru/en/</dct:description>
+        <rdfs:label>GLONASS</rdfs:label>
+        <skos:notation>glonass</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/map">
+        <dct:description xml:lang="en">Location extracted by locating the object on a map.</dct:description>
+        <rdfs:label>From map</rdfs:label>
+        <skos:notation>map</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Coordinates source/service</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/unknown">
+        <dct:description xml:lang="en">The coordinates source/service is unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/survey">
+        <dct:description xml:lang="en">Location determined using a geographic survey.</dct:description>
+        <rdfs:label>Survey</rdfs:label>
+        <skos:notation>survey</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <dct:description>Coordinates source/service</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/galileo">
+        <dct:description xml:lang="en">Location determined using the European GALILEO global navigation satellite system. http://galileognss.eu/</dct:description>
+        <rdfs:label>GALILEO</rdfs:label>
+        <skos:notation>galileo</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/GeopositioningMethod/iridiumDoppler">
+        <dct:description xml:lang="en">Location determined using the frequency shift of transmissions to the Iridium communications satellite constellation. https://www.iridium.com/</dct:description>
+        <rdfs:label>IRIDIUM DOPPLER</rdfs:label>
+        <skos:notation>iridiumDoppler</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </ldp:Container>
+</rdf:RDF>
