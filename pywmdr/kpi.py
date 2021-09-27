@@ -276,10 +276,22 @@ class WMDRKeyPerformanceIndicators:
         m = matches[0]
         if nspath_eval('xlink:href') in m.attrib and m.get(nspath_eval('xlink:href')) != "":
             wmoregion = m.get(nspath_eval('xlink:href'))
+            if wmoregion == "http://codes.wmo.int/wmdr/WMORegion/unknown":
+                LOGGER.debug("wmoRegion is unknown")
+                comments.append("wmoRegion is unknown")
+                return total, score, comments    
+            elif wmoregion == "http://codes.wmo.int/wmdr/WMORegion/inapplicable":
+                LOGGER.debug("wmoRegion is inapplicable")
+                comments.append("wmoRegion is inapplicable")
+                return total, score, comments    
             getNotation = False
         elif m.text == "":
             LOGGER.debug("wmoRegion is empty")
             comments.append("wmoRegion is empty")
+            return total, score, comments
+        elif m.text == "unknown" or m.text == "inapplicable":
+            LOGGER.debug("wmoRegion is unknown or inapplicable")
+            comments.append("wmoRegion is unknown or inapplicable")
             return total, score, comments
         else:
             wmoregion = m.text
