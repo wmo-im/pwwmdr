@@ -1,0 +1,107 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <reg:Register rdf:about="http://codes.wmo.int/wmdr/LocalTopography">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/flat">
+        <dct:description xml:lang="en">Slope less than 3 degrees and not a hilltop, ridge, valley bottom or depression.</dct:description>
+        <rdfs:label>A flat</rdfs:label>
+        <skos:notation>flat</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/saddle">
+        <dct:description xml:lang="en">A depression located along the axial trend of an anticline; an area confined on two sides by downward slopes and on two sides by upward slopes.</dct:description>
+        <rdfs:label>A saddle</rdfs:label>
+        <skos:notation>saddle</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable in the context of this particular station/platform.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/ridge">
+        <dct:description xml:lang="en">Higher than all or nearly all of the surrounding land, but elongated and extending beyond a 50 m radius.</dct:description>
+        <rdfs:label>A ridge</rdfs:label>
+        <skos:notation>ridge</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/unknown">
+        <dct:description xml:lang="en">Unknown local topography</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >3</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/valleyBottom">
+        <dct:description xml:lang="en">Lower than nearly all of surrounding land beyond a 50 m radius, but water can flow out.</dct:description>
+        <rdfs:label>A valley bottom</rdfs:label>
+        <skos:notation>valleyBottom</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:04:45.487Z</dct:modified>
+    <dct:description>Local topography</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/hilltop">
+        <dct:description xml:lang="en">Higher than all or nearly all of the surrounding land beyond a 50 m radius.</dct:description>
+        <rdfs:label>A hilltop</rdfs:label>
+        <skos:notation>hilltop</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <rdfs:label>Local topography</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/slope">
+        <dct:description xml:lang="en">Neither crest nor depression or valley bottom, and with slope more than 3 degrees.</dct:description>
+        <rdfs:label>A slope</rdfs:label>
+        <skos:notation>slope</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/LocalTopography/depression">
+        <dct:description xml:lang="en">Lower than surrounding land beyond a 50 m radius, with no surface outlet for water.</dct:description>
+        <rdfs:label>A depression</rdfs:label>
+        <skos:notation>depression</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </reg:Register>
+</rdf:RDF>

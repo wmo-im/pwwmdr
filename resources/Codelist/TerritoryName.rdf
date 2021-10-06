@@ -1,0 +1,1612 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <skos:Collection rdf:about="http://codes.wmo.int/wmdr/TerritoryName">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AUT">
+        <dct:description xml:lang="en">Austria</dct:description>
+        <rdfs:label>Austria</rdfs:label>
+        <skos:notation>AUT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MDG">
+        <dct:description xml:lang="en">Madagascar</dct:description>
+        <rdfs:label>Madagascar</rdfs:label>
+        <skos:notation>MDG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/EGY">
+        <dct:description xml:lang="en">Egypt</dct:description>
+        <rdfs:label>Egypt</rdfs:label>
+        <skos:notation>EGY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NPL">
+        <dct:description xml:lang="en">Nepal</dct:description>
+        <rdfs:label>Nepal</rdfs:label>
+        <skos:notation>NPL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PRY">
+        <dct:description xml:lang="en">Paraguay</dct:description>
+        <rdfs:label>Paraguay</rdfs:label>
+        <skos:notation>PRY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:22:09.713Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TUV">
+        <dct:description xml:lang="en">Tuvalu</dct:description>
+        <rdfs:label>Tuvalu</rdfs:label>
+        <skos:notation>TUV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MCO">
+        <dct:description xml:lang="en">Monaco</dct:description>
+        <rdfs:label>Monaco</rdfs:label>
+        <skos:notation>MCO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/IRN">
+        <dct:description xml:lang="en">Iran, Islamic Republic of</dct:description>
+        <rdfs:label>Iran, Islamic Republic of</rdfs:label>
+        <skos:notation>IRN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BGR">
+        <dct:description xml:lang="en">Bulgaria</dct:description>
+        <rdfs:label>Bulgaria</rdfs:label>
+        <skos:notation>BGR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SHN">
+        <dct:description xml:lang="en">Saint Helena</dct:description>
+        <rdfs:label>Saint Helena</rdfs:label>
+        <skos:notation>SHN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AZE">
+        <dct:description xml:lang="en">Azerbaijan</dct:description>
+        <rdfs:label>Azerbaijan</rdfs:label>
+        <skos:notation>AZE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TON">
+        <dct:description xml:lang="en">Tonga</dct:description>
+        <rdfs:label>Tonga</rdfs:label>
+        <skos:notation>TON</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DZA">
+        <dct:description xml:lang="en">Algeria</dct:description>
+        <rdfs:label>Algeria</rdfs:label>
+        <skos:notation>DZA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AUS">
+        <dct:description xml:lang="en">Australia</dct:description>
+        <rdfs:label>Australia</rdfs:label>
+        <skos:notation>AUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CAF">
+        <dct:description xml:lang="en">Central African Republic</dct:description>
+        <rdfs:label>Central African Republic</rdfs:label>
+        <skos:notation>CAF</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BHS">
+        <dct:description xml:lang="en">Bahamas</dct:description>
+        <rdfs:label>Bahamas</rdfs:label>
+        <skos:notation>BHS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CSM">
+        <dct:description xml:lang="en">Curacao and Sint Maarten</dct:description>
+        <rdfs:label>Curacao and Sint Maarten</rdfs:label>
+        <skos:notation>CSM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BLR">
+        <dct:description xml:lang="en">Belarus</dct:description>
+        <rdfs:label>Belarus</rdfs:label>
+        <skos:notation>BLR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NIC">
+        <dct:description xml:lang="en">Nicaragua</dct:description>
+        <rdfs:label>Nicaragua</rdfs:label>
+        <skos:notation>NIC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/COL">
+        <dct:description xml:lang="en">Colombia</dct:description>
+        <rdfs:label>Colombia</rdfs:label>
+        <skos:notation>COL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PHL">
+        <dct:description xml:lang="en">Philippines</dct:description>
+        <rdfs:label>Philippines</rdfs:label>
+        <skos:notation>PHL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/HRV">
+        <dct:description xml:lang="en">Croatia</dct:description>
+        <rdfs:label>Croatia</rdfs:label>
+        <skos:notation>HRV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SEN">
+        <dct:description xml:lang="en">Senegal</dct:description>
+        <rdfs:label>Senegal</rdfs:label>
+        <skos:notation>SEN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DJI">
+        <dct:description xml:lang="en">Djibouti</dct:description>
+        <rdfs:label>Djibouti</rdfs:label>
+        <skos:notation>DJI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PCN">
+        <dct:description xml:lang="en">Pitcairn</dct:description>
+        <rdfs:label>Pitcairn</rdfs:label>
+        <skos:notation>PCN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MHL">
+        <dct:description xml:lang="en">Marshall Islands</dct:description>
+        <rdfs:label>Marshall Islands</rdfs:label>
+        <skos:notation>MHL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/FLK">
+        <dct:description xml:lang="en">Falkland Islands (Malvinas)</dct:description>
+        <rdfs:label>Falkland Islands (Malvinas)</rdfs:label>
+        <skos:notation>FLK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AFG">
+        <dct:description xml:lang="en">Afghanistan</dct:description>
+        <rdfs:label>Afghanistan</rdfs:label>
+        <skos:notation>AFG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LUX">
+        <dct:description xml:lang="en">Luxembourg</dct:description>
+        <rdfs:label>Luxembourg</rdfs:label>
+        <skos:notation>LUX</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/URY">
+        <dct:description xml:lang="en">Uruguay</dct:description>
+        <rdfs:label>Uruguay</rdfs:label>
+        <skos:notation>URY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ISR">
+        <dct:description xml:lang="en">Israel</dct:description>
+        <rdfs:label>Israel</rdfs:label>
+        <skos:notation>ISR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/WSM">
+        <dct:description xml:lang="en">Samoa</dct:description>
+        <rdfs:label>Samoa</rdfs:label>
+        <skos:notation>WSM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/FJI">
+        <dct:description xml:lang="en">Fiji</dct:description>
+        <rdfs:label>Fiji</rdfs:label>
+        <skos:notation>FJI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/RWA">
+        <dct:description xml:lang="en">Rwanda</dct:description>
+        <rdfs:label>Rwanda</rdfs:label>
+        <skos:notation>RWA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ALB">
+        <dct:description xml:lang="en">Albania</dct:description>
+        <rdfs:label>Albania</rdfs:label>
+        <skos:notation>ALB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/HUN">
+        <dct:description xml:lang="en">Hungary</dct:description>
+        <rdfs:label>Hungary</rdfs:label>
+        <skos:notation>HUN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MLT">
+        <dct:description xml:lang="en">Malta</dct:description>
+        <rdfs:label>Malta</rdfs:label>
+        <skos:notation>MLT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LBR">
+        <dct:description xml:lang="en">Liberia</dct:description>
+        <rdfs:label>Liberia</rdfs:label>
+        <skos:notation>LBR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PSE">
+        <dct:description xml:lang="en">Palestine, State of</dct:description>
+        <rdfs:label>Palestine, State of</rdfs:label>
+        <skos:notation>PSE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BWA">
+        <dct:description xml:lang="en">Botswana</dct:description>
+        <rdfs:label>Botswana</rdfs:label>
+        <skos:notation>BWA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/UGA">
+        <dct:description xml:lang="en">Uganda</dct:description>
+        <rdfs:label>Uganda</rdfs:label>
+        <skos:notation>UGA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MSR">
+        <dct:description xml:lang="en">Montserrat</dct:description>
+        <rdfs:label>Montserrat</rdfs:label>
+        <skos:notation>MSR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GRC">
+        <dct:description xml:lang="en">Greece</dct:description>
+        <rdfs:label>Greece</rdfs:label>
+        <skos:notation>GRC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/COK">
+        <dct:description xml:lang="en">Cook Islands</dct:description>
+        <rdfs:label>Cook Islands</rdfs:label>
+        <skos:notation>COK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ARM">
+        <dct:description xml:lang="en">Armenia</dct:description>
+        <rdfs:label>Armenia</rdfs:label>
+        <skos:notation>ARM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PRK">
+        <dct:description xml:lang="en">Korea, Democratic People's Republic of</dct:description>
+        <rdfs:label>Korea, Democratic People's Republic of</rdfs:label>
+        <skos:notation>PRK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ETH">
+        <dct:description xml:lang="en">Ethiopia</dct:description>
+        <rdfs:label>Ethiopia</rdfs:label>
+        <skos:notation>ETH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SLB">
+        <dct:description xml:lang="en">Solomon Islands</dct:description>
+        <rdfs:label>Solomon Islands</rdfs:label>
+        <skos:notation>SLB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KWT">
+        <dct:description xml:lang="en">Kuwait</dct:description>
+        <rdfs:label>Kuwait</rdfs:label>
+        <skos:notation>KWT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/EST">
+        <dct:description xml:lang="en">Estonia</dct:description>
+        <rdfs:label>Estonia</rdfs:label>
+        <skos:notation>EST</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AIA">
+        <dct:description xml:lang="en">Anguilla</dct:description>
+        <rdfs:label>Anguilla</rdfs:label>
+        <skos:notation>AIA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CUB">
+        <dct:description xml:lang="en">Cuba</dct:description>
+        <rdfs:label>Cuba</rdfs:label>
+        <skos:notation>CUB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/FRA">
+        <dct:description xml:lang="en">France</dct:description>
+        <rdfs:label>France</rdfs:label>
+        <skos:notation>FRA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SSD">
+        <dct:description xml:lang="en">South Sudan</dct:description>
+        <rdfs:label>South Sudan</rdfs:label>
+        <skos:notation>SSD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TZA">
+        <dct:description xml:lang="en">Tanzania, United Republic of</dct:description>
+        <rdfs:label>Tanzania, United Republic of</rdfs:label>
+        <skos:notation>TZA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KNA">
+        <dct:description xml:lang="en">Saint Kitts and Nevis</dct:description>
+        <rdfs:label>Saint Kitts and Nevis</rdfs:label>
+        <skos:notation>KNA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LKA">
+        <dct:description xml:lang="en">Sri Lanka</dct:description>
+        <rdfs:label>Sri Lanka</rdfs:label>
+        <skos:notation>LKA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ARG">
+        <dct:description xml:lang="en">Argentina</dct:description>
+        <rdfs:label>Argentina</rdfs:label>
+        <skos:notation>ARG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SRB">
+        <dct:description xml:lang="en">Serbia</dct:description>
+        <rdfs:label>Serbia</rdfs:label>
+        <skos:notation>SRB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ZAF">
+        <dct:description xml:lang="en">South Africa</dct:description>
+        <rdfs:label>South Africa</rdfs:label>
+        <skos:notation>ZAF</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DEU">
+        <dct:description xml:lang="en">Germany</dct:description>
+        <rdfs:label>Germany</rdfs:label>
+        <skos:notation>DEU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ROU">
+        <dct:description xml:lang="en">Romania</dct:description>
+        <rdfs:label>Romania</rdfs:label>
+        <skos:notation>ROU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CXR">
+        <dct:description xml:lang="en">Christmas Island</dct:description>
+        <rdfs:label>Christmas Island</rdfs:label>
+        <skos:notation>CXR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NRU">
+        <dct:description xml:lang="en">Nauru</dct:description>
+        <rdfs:label>Nauru</rdfs:label>
+        <skos:notation>NRU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CIV">
+        <dct:description xml:lang="en">Côte d'Ivoire</dct:description>
+        <rdfs:label>Côte d'Ivoire</rdfs:label>
+        <skos:notation>CIV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ECU">
+        <dct:description xml:lang="en">Ecuador</dct:description>
+        <rdfs:label>Ecuador</rdfs:label>
+        <skos:notation>ECU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TKL">
+        <dct:description xml:lang="en">Tokelau</dct:description>
+        <rdfs:label>Tokelau</rdfs:label>
+        <skos:notation>TKL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:description>Territory of origin of data</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NGA">
+        <dct:description xml:lang="en">Nigeria</dct:description>
+        <rdfs:label>Nigeria</rdfs:label>
+        <skos:notation>NGA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SOM">
+        <dct:description xml:lang="en">Somalia</dct:description>
+        <rdfs:label>Somalia</rdfs:label>
+        <skos:notation>SOM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GNQ">
+        <dct:description xml:lang="en">Equatorial Guinea</dct:description>
+        <rdfs:label>Equatorial Guinea</rdfs:label>
+        <skos:notation>GNQ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CMR">
+        <dct:description xml:lang="en">Cameroon</dct:description>
+        <rdfs:label>Cameroon</rdfs:label>
+        <skos:notation>CMR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PLW">
+        <dct:description xml:lang="en">Palau</dct:description>
+        <rdfs:label>Palau</rdfs:label>
+        <skos:notation>PLW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SWZ">
+        <dct:description xml:lang="en">Eswatini</dct:description>
+        <rdfs:label>Eswatini</rdfs:label>
+        <skos:notation>SWZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PYF">
+        <dct:description xml:lang="en">French Polynesia</dct:description>
+        <rdfs:label>French Polynesia</rdfs:label>
+        <skos:notation>PYF</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/JPN">
+        <dct:description xml:lang="en">Japan</dct:description>
+        <rdfs:label>Japan</rdfs:label>
+        <skos:notation>JPN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ZWE">
+        <dct:description xml:lang="en">Zimbabwe</dct:description>
+        <rdfs:label>Zimbabwe</rdfs:label>
+        <skos:notation>ZWE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GAB">
+        <dct:description xml:lang="en">Gabon</dct:description>
+        <rdfs:label>Gabon</rdfs:label>
+        <skos:notation>GAB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/RUS">
+        <dct:description xml:lang="en">Russian Federation</dct:description>
+        <rdfs:label>Russian Federation</rdfs:label>
+        <skos:notation>RUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CPV">
+        <dct:description xml:lang="en">Cabo Verde</dct:description>
+        <rdfs:label>Cabo Verde</rdfs:label>
+        <skos:notation>CPV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/VUT">
+        <dct:description xml:lang="en">Vanuatu</dct:description>
+        <rdfs:label>Vanuatu</rdfs:label>
+        <skos:notation>VUT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ESH">
+        <dct:description xml:lang="en">Western Sahara</dct:description>
+        <rdfs:label>Western Sahara</rdfs:label>
+        <skos:notation>ESH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MEX">
+        <dct:description xml:lang="en">Mexico</dct:description>
+        <rdfs:label>Mexico</rdfs:label>
+        <skos:notation>MEX</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CHN">
+        <dct:description xml:lang="en">China</dct:description>
+        <rdfs:label>China</rdfs:label>
+        <skos:notation>CHN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SWE">
+        <dct:description xml:lang="en">Sweden</dct:description>
+        <rdfs:label>Sweden</rdfs:label>
+        <skos:notation>SWE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/COD">
+        <dct:description xml:lang="en">Congo, Democratic Republic of the</dct:description>
+        <rdfs:label>Congo, Democratic Republic of the</rdfs:label>
+        <skos:notation>COD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/VNM">
+        <dct:description xml:lang="en">Viet Nam</dct:description>
+        <rdfs:label>Viet Nam</rdfs:label>
+        <skos:notation>VNM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MDV">
+        <dct:description xml:lang="en">Maldives</dct:description>
+        <rdfs:label>Maldives</rdfs:label>
+        <skos:notation>MDV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/FSM">
+        <dct:description xml:lang="en">Micronesia, Federated States of</dct:description>
+        <rdfs:label>Micronesia, Federated States of</rdfs:label>
+        <skos:notation>FSM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KAZ">
+        <dct:description xml:lang="en">Kazakhstan</dct:description>
+        <rdfs:label>Kazakhstan</rdfs:label>
+        <skos:notation>KAZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SDN">
+        <dct:description xml:lang="en">Sudan</dct:description>
+        <rdfs:label>Sudan</rdfs:label>
+        <skos:notation>SDN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PNG">
+        <dct:description xml:lang="en">Papua New Guinea</dct:description>
+        <rdfs:label>Papua New Guinea</rdfs:label>
+        <skos:notation>PNG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GRD">
+        <dct:description xml:lang="en">Grenada</dct:description>
+        <rdfs:label>Grenada</rdfs:label>
+        <skos:notation>GRD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/IND">
+        <dct:description xml:lang="en">India</dct:description>
+        <rdfs:label>India</rdfs:label>
+        <skos:notation>IND</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SAU">
+        <dct:description xml:lang="en">Saudi Arabia</dct:description>
+        <rdfs:label>Saudi Arabia</rdfs:label>
+        <skos:notation>SAU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ATG">
+        <dct:description xml:lang="en">Antigua and Barbuda</dct:description>
+        <rdfs:label>Antigua and Barbuda</rdfs:label>
+        <skos:notation>ATG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MNG">
+        <dct:description xml:lang="en">Mongolia</dct:description>
+        <rdfs:label>Mongolia</rdfs:label>
+        <skos:notation>MNG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BHR">
+        <dct:description xml:lang="en">Bahrain</dct:description>
+        <rdfs:label>Bahrain</rdfs:label>
+        <skos:notation>BHR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/JOR">
+        <dct:description xml:lang="en">Jordan</dct:description>
+        <rdfs:label>Jordan</rdfs:label>
+        <skos:notation>JOR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TLS">
+        <dct:description xml:lang="en">Timor-Leste</dct:description>
+        <rdfs:label>Timor-Leste</rdfs:label>
+        <skos:notation>TLS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MKD">
+        <dct:description xml:lang="en">Macedonia, the former Yugoslav Republic of</dct:description>
+        <rdfs:label>Macedonia, the former Yugoslav Republic of</rdfs:label>
+        <skos:notation>MKD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ERI">
+        <dct:description xml:lang="en">Eritrea</dct:description>
+        <rdfs:label>Eritrea</rdfs:label>
+        <skos:notation>ERI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/JAM">
+        <dct:description xml:lang="en">Jamaica</dct:description>
+        <rdfs:label>Jamaica</rdfs:label>
+        <skos:notation>JAM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BGD">
+        <dct:description xml:lang="en">Bangladesh</dct:description>
+        <rdfs:label>Bangladesh</rdfs:label>
+        <skos:notation>BGD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/IDN">
+        <dct:description xml:lang="en">Indonesia</dct:description>
+        <rdfs:label>Indonesia</rdfs:label>
+        <skos:notation>IDN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CUW">
+        <dct:description xml:lang="en">Curacao</dct:description>
+        <rdfs:label>Curacao</rdfs:label>
+        <skos:notation>CUW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NOR">
+        <dct:description xml:lang="en">Norway</dct:description>
+        <rdfs:label>Norway</rdfs:label>
+        <skos:notation>NOR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/IRL">
+        <dct:description xml:lang="en">Ireland</dct:description>
+        <rdfs:label>Ireland</rdfs:label>
+        <skos:notation>IRL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/POL">
+        <dct:description xml:lang="en">Poland</dct:description>
+        <rdfs:label>Poland</rdfs:label>
+        <skos:notation>POL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DOM">
+        <dct:description xml:lang="en">Dominican Republic</dct:description>
+        <rdfs:label>Dominican Republic</rdfs:label>
+        <skos:notation>DOM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SUR">
+        <dct:description xml:lang="en">Suriname</dct:description>
+        <rdfs:label>Suriname</rdfs:label>
+        <skos:notation>SUR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SXM">
+        <dct:description xml:lang="en">Sint Maarten</dct:description>
+        <rdfs:label>Sint Maarten</rdfs:label>
+        <skos:notation>SXM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KIR">
+        <dct:description xml:lang="en">Kiribati</dct:description>
+        <rdfs:label>Kiribati</rdfs:label>
+        <skos:notation>KIR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BLZ">
+        <dct:description xml:lang="en">Belize</dct:description>
+        <rdfs:label>Belize</rdfs:label>
+        <skos:notation>BLZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TKM">
+        <dct:description xml:lang="en">Turkmenistan</dct:description>
+        <rdfs:label>Turkmenistan</rdfs:label>
+        <skos:notation>TKM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GNB">
+        <dct:description xml:lang="en">Guinea-Bissau</dct:description>
+        <rdfs:label>Guinea-Bissau</rdfs:label>
+        <skos:notation>GNB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MRT">
+        <dct:description xml:lang="en">Mauritania</dct:description>
+        <rdfs:label>Mauritania</rdfs:label>
+        <skos:notation>MRT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SVK">
+        <dct:description xml:lang="en">Slovakia</dct:description>
+        <rdfs:label>Slovakia</rdfs:label>
+        <skos:notation>SVK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MMR">
+        <dct:description xml:lang="en">Myanmar</dct:description>
+        <rdfs:label>Myanmar</rdfs:label>
+        <skos:notation>MMR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DNK">
+        <dct:description xml:lang="en">Denmark</dct:description>
+        <rdfs:label>Denmark</rdfs:label>
+        <skos:notation>DNK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/STP">
+        <dct:description xml:lang="en">Sao Tome and Principe</dct:description>
+        <rdfs:label>Sao Tome and Principe</rdfs:label>
+        <skos:notation>STP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/FIN">
+        <dct:description xml:lang="en">Finland</dct:description>
+        <rdfs:label>Finland</rdfs:label>
+        <skos:notation>FIN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LVA">
+        <dct:description xml:lang="en">Latvia</dct:description>
+        <rdfs:label>Latvia</rdfs:label>
+        <skos:notation>LVA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TJK">
+        <dct:description xml:lang="en">Tajikistan</dct:description>
+        <rdfs:label>Tajikistan</rdfs:label>
+        <skos:notation>TJK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LTU">
+        <dct:description xml:lang="en">Lithuania</dct:description>
+        <rdfs:label>Lithuania</rdfs:label>
+        <skos:notation>LTU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BRA">
+        <dct:description xml:lang="en">Brazil</dct:description>
+        <rdfs:label>Brazil</rdfs:label>
+        <skos:notation>BRA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PER">
+        <dct:description xml:lang="en">Peru</dct:description>
+        <rdfs:label>Peru</rdfs:label>
+        <skos:notation>PER</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TUN">
+        <dct:description xml:lang="en">Tunisia</dct:description>
+        <rdfs:label>Tunisia</rdfs:label>
+        <skos:notation>TUN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TWN">
+        <dct:description xml:lang="en">Taiwan, Province of China</dct:description>
+        <rdfs:label>Taiwan, Province of China</rdfs:label>
+        <skos:notation>TWN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LBN">
+        <dct:description xml:lang="en">Lebanon</dct:description>
+        <rdfs:label>Lebanon</rdfs:label>
+        <skos:notation>LBN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SYC">
+        <dct:description xml:lang="en">Seychelles</dct:description>
+        <rdfs:label>Seychelles</rdfs:label>
+        <skos:notation>SYC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/OMN">
+        <dct:description xml:lang="en">Oman</dct:description>
+        <rdfs:label>Oman</rdfs:label>
+        <skos:notation>OMN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GIB">
+        <dct:description xml:lang="en">Gibraltar</dct:description>
+        <rdfs:label>Gibraltar</rdfs:label>
+        <skos:notation>GIB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LAO">
+        <dct:description xml:lang="en">Lao People's Democratic Republic</dct:description>
+        <rdfs:label>Lao People's Democratic Republic</rdfs:label>
+        <skos:notation>LAO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MWI">
+        <dct:description xml:lang="en">Malawi</dct:description>
+        <rdfs:label>Malawi</rdfs:label>
+        <skos:notation>MWI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BMU">
+        <dct:description xml:lang="en">Bermuda</dct:description>
+        <rdfs:label>Bermuda</rdfs:label>
+        <skos:notation>BMU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NCL">
+        <dct:description xml:lang="en">New Caledonia</dct:description>
+        <rdfs:label>New Caledonia</rdfs:label>
+        <skos:notation>NCL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/USA">
+        <dct:description xml:lang="en">United States (the)</dct:description>
+        <rdfs:label>United States (the)</rdfs:label>
+        <skos:notation>USA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NAM">
+        <dct:description xml:lang="en">Namibia</dct:description>
+        <rdfs:label>Namibia</rdfs:label>
+        <skos:notation>NAM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BFA">
+        <dct:description xml:lang="en">Burkina Faso</dct:description>
+        <rdfs:label>Burkina Faso</rdfs:label>
+        <skos:notation>BFA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ISL">
+        <dct:description xml:lang="en">Iceland</dct:description>
+        <rdfs:label>Iceland</rdfs:label>
+        <skos:notation>ISL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PRI">
+        <dct:description xml:lang="en">Puerto Rico</dct:description>
+        <rdfs:label>Puerto Rico</rdfs:label>
+        <skos:notation>PRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/UZB">
+        <dct:description xml:lang="en">Uzbekistan</dct:description>
+        <rdfs:label>Uzbekistan</rdfs:label>
+        <skos:notation>UZB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ITA">
+        <dct:description xml:lang="en">Italy</dct:description>
+        <rdfs:label>Italy</rdfs:label>
+        <skos:notation>ITA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SYR">
+        <dct:description xml:lang="en">Syrian Arab Republic</dct:description>
+        <rdfs:label>Syrian Arab Republic</rdfs:label>
+        <skos:notation>SYR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CYM">
+        <dct:description xml:lang="en">Cayman Islands</dct:description>
+        <rdfs:label>Cayman Islands</rdfs:label>
+        <skos:notation>CYM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/VEN">
+        <dct:description xml:lang="en">Venezuela, Bolivarian Republic of</dct:description>
+        <rdfs:label>Venezuela, Bolivarian Republic of</rdfs:label>
+        <skos:notation>VEN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TTO">
+        <dct:description xml:lang="en">Trinidad and Tobago</dct:description>
+        <rdfs:label>Trinidad and Tobago</rdfs:label>
+        <skos:notation>TTO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LBY">
+        <dct:description xml:lang="en">Libya</dct:description>
+        <rdfs:label>Libya</rdfs:label>
+        <skos:notation>LBY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/COM">
+        <dct:description xml:lang="en">Comoros</dct:description>
+        <rdfs:label>Comoros</rdfs:label>
+        <skos:notation>COM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MOZ">
+        <dct:description xml:lang="en">Mozambique</dct:description>
+        <rdfs:label>Mozambique</rdfs:label>
+        <skos:notation>MOZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/VCT">
+        <dct:description xml:lang="en">Saint Vincent and Grenadines</dct:description>
+        <rdfs:label>Saint Vincent and Grenadines</rdfs:label>
+        <skos:notation>VCT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LSO">
+        <dct:description xml:lang="en">Lesotho</dct:description>
+        <rdfs:label>Lesotho</rdfs:label>
+        <skos:notation>LSO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/THA">
+        <dct:description xml:lang="en">Thailand</dct:description>
+        <rdfs:label>Thailand</rdfs:label>
+        <skos:notation>THA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BCT">
+        <dct:description xml:lang="en">British Caribbean Territories</dct:description>
+        <rdfs:label>British Caribbean Territories</rdfs:label>
+        <skos:notation>BCT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CRI">
+        <dct:description xml:lang="en">Costa Rica</dct:description>
+        <rdfs:label>Costa Rica</rdfs:label>
+        <skos:notation>CRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ARE">
+        <dct:description xml:lang="en">United Arab Emirates (the)</dct:description>
+        <rdfs:label>United Arab Emirates (the)</rdfs:label>
+        <skos:notation>ARE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NER">
+        <dct:description xml:lang="en">Niger</dct:description>
+        <rdfs:label>Niger</rdfs:label>
+        <skos:notation>NER</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/unknown">
+        <dct:description xml:lang="en">Territory unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GBR">
+        <dct:description xml:lang="en">United Kingdom (the)</dct:description>
+        <rdfs:label>United Kingdom (the)</rdfs:label>
+        <skos:notation>GBR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LIE">
+        <dct:description xml:lang="en">Liechtenstein</dct:description>
+        <rdfs:label>Liechtenstein</rdfs:label>
+        <skos:notation>LIE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TGO">
+        <dct:description xml:lang="en">Togo</dct:description>
+        <rdfs:label>Togo</rdfs:label>
+        <skos:notation>TGO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KGZ">
+        <dct:description xml:lang="en">Kyrgyzstan</dct:description>
+        <rdfs:label>Kyrgyzstan</rdfs:label>
+        <skos:notation>KGZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GMB">
+        <dct:description xml:lang="en">Gambia</dct:description>
+        <rdfs:label>Gambia</rdfs:label>
+        <skos:notation>GMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BEN">
+        <dct:description xml:lang="en">Benin</dct:description>
+        <rdfs:label>Benin</rdfs:label>
+        <skos:notation>BEN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PAK">
+        <dct:description xml:lang="en">Pakistan</dct:description>
+        <rdfs:label>Pakistan</rdfs:label>
+        <skos:notation>PAK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/HTI">
+        <dct:description xml:lang="en">Haiti</dct:description>
+        <rdfs:label>Haiti</rdfs:label>
+        <skos:notation>HTI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BIH">
+        <dct:description xml:lang="en">Bosnia and Herzegovina</dct:description>
+        <rdfs:label>Bosnia and Herzegovina</rdfs:label>
+        <skos:notation>BIH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NZL">
+        <dct:description xml:lang="en">New Zealand</dct:description>
+        <rdfs:label>New Zealand</rdfs:label>
+        <skos:notation>NZL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/LCA">
+        <dct:description xml:lang="en">Saint Lucia</dct:description>
+        <rdfs:label>Saint Lucia</rdfs:label>
+        <skos:notation>LCA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/DMA">
+        <dct:description xml:lang="en">Dominica</dct:description>
+        <rdfs:label>Dominica</rdfs:label>
+        <skos:notation>DMA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PRT">
+        <dct:description xml:lang="en">Portugal</dct:description>
+        <rdfs:label>Portugal</rdfs:label>
+        <skos:notation>PRT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/VGB">
+        <dct:description xml:lang="en">British Virgin Islands</dct:description>
+        <rdfs:label>British Virgin Islands</rdfs:label>
+        <skos:notation>VGB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AGO">
+        <dct:description xml:lang="en">Angola</dct:description>
+        <rdfs:label>Angola</rdfs:label>
+        <skos:notation>AGO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Territory of origin of data</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KEN">
+        <dct:description xml:lang="en">Kenya</dct:description>
+        <rdfs:label>Kenya</rdfs:label>
+        <skos:notation>KEN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BRB">
+        <dct:description xml:lang="en">Barbados</dct:description>
+        <rdfs:label>Barbados</rdfs:label>
+        <skos:notation>BRB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ZMB">
+        <dct:description xml:lang="en">Zambia</dct:description>
+        <rdfs:label>Zambia</rdfs:label>
+        <skos:notation>ZMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/YEM">
+        <dct:description xml:lang="en">Yemen</dct:description>
+        <rdfs:label>Yemen</rdfs:label>
+        <skos:notation>YEM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MYS">
+        <dct:description xml:lang="en">Malaysia</dct:description>
+        <rdfs:label>Malaysia</rdfs:label>
+        <skos:notation>MYS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GEO">
+        <dct:description xml:lang="en">Georgia</dct:description>
+        <rdfs:label>Georgia</rdfs:label>
+        <skos:notation>GEO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KOR">
+        <dct:description xml:lang="en">Korea, Republic of</dct:description>
+        <rdfs:label>Korea, Republic of</rdfs:label>
+        <skos:notation>KOR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/COG">
+        <dct:description xml:lang="en">Congo</dct:description>
+        <rdfs:label>Congo</rdfs:label>
+        <skos:notation>COG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BRN">
+        <dct:description xml:lang="en">Brunei Darussalam</dct:description>
+        <rdfs:label>Brunei Darussalam</rdfs:label>
+        <skos:notation>BRN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BTN">
+        <dct:description xml:lang="en">Bhutan</dct:description>
+        <rdfs:label>Bhutan</rdfs:label>
+        <skos:notation>BTN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MLI">
+        <dct:description xml:lang="en">Mali</dct:description>
+        <rdfs:label>Mali</rdfs:label>
+        <skos:notation>MLI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SGP">
+        <dct:description xml:lang="en">Singapore</dct:description>
+        <rdfs:label>Singapore</rdfs:label>
+        <skos:notation>SGP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MDA">
+        <dct:description xml:lang="en">Moldova, Republic of</dct:description>
+        <rdfs:label>Moldova, Republic of</rdfs:label>
+        <skos:notation>MDA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/ESP">
+        <dct:description xml:lang="en">Spain</dct:description>
+        <rdfs:label>Spain</rdfs:label>
+        <skos:notation>ESP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TCD">
+        <dct:description xml:lang="en">Chad</dct:description>
+        <rdfs:label>Chad</rdfs:label>
+        <skos:notation>TCD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MAC">
+        <dct:description xml:lang="en">Macao, China</dct:description>
+        <rdfs:label>Macao, China</rdfs:label>
+        <skos:notation>MAC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MAR">
+        <dct:description xml:lang="en">Morocco</dct:description>
+        <rdfs:label>Morocco</rdfs:label>
+        <skos:notation>MAR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/inapplicable">
+        <dct:description xml:lang="en">Territory not applicable.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/IRQ">
+        <dct:description xml:lang="en">Iraq</dct:description>
+        <rdfs:label>Iraq</rdfs:label>
+        <skos:notation>IRQ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/PAN">
+        <dct:description xml:lang="en">Panama</dct:description>
+        <rdfs:label>Panama</rdfs:label>
+        <skos:notation>PAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CHL">
+        <dct:description xml:lang="en">Chile</dct:description>
+        <rdfs:label>Chile</rdfs:label>
+        <skos:notation>CHL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GHA">
+        <dct:description xml:lang="en">Ghana</dct:description>
+        <rdfs:label>Ghana</rdfs:label>
+        <skos:notation>GHA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/AND">
+        <dct:description xml:lang="en">Andorra</dct:description>
+        <rdfs:label>Andorra</rdfs:label>
+        <skos:notation>AND</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SLV">
+        <dct:description xml:lang="en">El Salvador</dct:description>
+        <rdfs:label>El Salvador</rdfs:label>
+        <skos:notation>SLV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MUS">
+        <dct:description xml:lang="en">Mauritius</dct:description>
+        <rdfs:label>Mauritius</rdfs:label>
+        <skos:notation>MUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CYP">
+        <dct:description xml:lang="en">Cyprus</dct:description>
+        <rdfs:label>Cyprus</rdfs:label>
+        <skos:notation>CYP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CHE">
+        <dct:description xml:lang="en">Switzerland</dct:description>
+        <rdfs:label>Switzerland</rdfs:label>
+        <skos:notation>CHE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CZE">
+        <dct:description xml:lang="en">Czech Republic</dct:description>
+        <rdfs:label>Czech Republic</rdfs:label>
+        <skos:notation>CZE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/UKR">
+        <dct:description xml:lang="en">Ukraine</dct:description>
+        <rdfs:label>Ukraine</rdfs:label>
+        <skos:notation>UKR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GRL">
+        <dct:description xml:lang="en">Greenland</dct:description>
+        <rdfs:label>Greenland</rdfs:label>
+        <skos:notation>GRL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GTM">
+        <dct:description xml:lang="en">Guatemala</dct:description>
+        <rdfs:label>Guatemala</rdfs:label>
+        <skos:notation>GTM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/HKG">
+        <dct:description xml:lang="en">Hong Kong, China</dct:description>
+        <rdfs:label>Hong Kong, China</rdfs:label>
+        <skos:notation>HKG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CCK">
+        <dct:description xml:lang="en">Cocos (Keeling) Islands</dct:description>
+        <rdfs:label>Cocos (Keeling) Islands</rdfs:label>
+        <skos:notation>CCK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TUR">
+        <dct:description xml:lang="en">Turkey</dct:description>
+        <rdfs:label>Turkey</rdfs:label>
+        <skos:notation>TUR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BDI">
+        <dct:description xml:lang="en">Burundi</dct:description>
+        <rdfs:label>Burundi</rdfs:label>
+        <skos:notation>BDI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/KHM">
+        <dct:description xml:lang="en">Cambodia</dct:description>
+        <rdfs:label>Cambodia</rdfs:label>
+        <skos:notation>KHM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GIN">
+        <dct:description xml:lang="en">Guinea</dct:description>
+        <rdfs:label>Guinea</rdfs:label>
+        <skos:notation>GIN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/QAT">
+        <dct:description xml:lang="en">Qatar</dct:description>
+        <rdfs:label>Qatar</rdfs:label>
+        <skos:notation>QAT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SLE">
+        <dct:description xml:lang="en">Sierra Leone</dct:description>
+        <rdfs:label>Sierra Leone</rdfs:label>
+        <skos:notation>SLE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BOL">
+        <dct:description xml:lang="en">Bolivia, Plurinational State of</dct:description>
+        <rdfs:label>Bolivia, Plurinational State of</rdfs:label>
+        <skos:notation>BOL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SGS">
+        <dct:description xml:lang="en">South Georgia and the South Sandwich Islands</dct:description>
+        <rdfs:label>South Georgia and the South Sandwich Islands</rdfs:label>
+        <skos:notation>SGS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/BEL">
+        <dct:description xml:lang="en">Belgium</dct:description>
+        <rdfs:label>Belgium</rdfs:label>
+        <skos:notation>BEL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/GUY">
+        <dct:description xml:lang="en">Guyana</dct:description>
+        <rdfs:label>Guyana</rdfs:label>
+        <skos:notation>GUY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/MNE">
+        <dct:description xml:lang="en">Montenegro</dct:description>
+        <rdfs:label>Montenegro</rdfs:label>
+        <skos:notation>MNE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SVN">
+        <dct:description xml:lang="en">Slovenia</dct:description>
+        <rdfs:label>Slovenia</rdfs:label>
+        <skos:notation>SVN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NLD">
+        <dct:description xml:lang="en">Netherlands</dct:description>
+        <rdfs:label>Netherlands</rdfs:label>
+        <skos:notation>NLD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/NIU">
+        <dct:description xml:lang="en">Niue</dct:description>
+        <rdfs:label>Niue</rdfs:label>
+        <skos:notation>NIU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/CAN">
+        <dct:description xml:lang="en">Canada</dct:description>
+        <rdfs:label>Canada</rdfs:label>
+        <skos:notation>CAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/HND">
+        <dct:description xml:lang="en">Honduras</dct:description>
+        <rdfs:label>Honduras</rdfs:label>
+        <skos:notation>HND</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/TCA">
+        <dct:description xml:lang="en">Turks and Caicos Islands</dct:description>
+        <rdfs:label>Turks and Caicos Islands</rdfs:label>
+        <skos:notation>TCA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TerritoryName/SPM">
+        <dct:description xml:lang="en">Saint Pierre and Miquelon</dct:description>
+        <rdfs:label>Saint Pierre and Miquelon</rdfs:label>
+        <skos:notation>SPM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>

@@ -21,6 +21,8 @@ from geopandas import read_file as gpd_read_file
 from shapely.geometry import Point
 import glob
 import re
+import validators
+import pytz
 
 from lxml import etree
 
@@ -97,10 +99,23 @@ def get_codelists_from_rdf():
 
     codelist_files = {}
 
+    surface_cover_scheme_map = {
+        'SurfaceCoverGlob2009': 'globCover2009',
+        'SurfaceCoverIGBP': 'igbp',
+        'SurfaceCoverLAI': 'laifpar',
+        'SurfaceCoverLCCS': 'lccs',
+        'SurfaceCoverNPP': 'npp',
+        'SurfaceCoverPFT': 'pft',
+        'SurfaceCoverUMD': 'umd'
+    }
+
     listing = glob.glob(f'{userdir}/schema/resources/Codelist/*.rdf')
     for file in listing:
         key = re.sub('\.rdf$','',os.path.basename(file))
-        codelist_files[key] = file
+        if key in surface_cover_scheme_map.keys():
+            codelist_files[surface_cover_scheme_map[key]] = file
+        else:
+            codelist_files[key] = file
 
     # codelist_files = {
     #     'WMORegion': f'{userdir}/schema/resources/Codelist/WMORegion.rdf',
@@ -117,7 +132,9 @@ def get_codelists_from_rdf():
             codelists[key].append(concept.get(nspath_eval('rdf:about')))
             codelists[key].append(concept.find(nspath_eval('skos:notation')).text)
 
-    print(codelists)
+    # add time zones from pytz package
+        codelists["TimeZone"] = pytz.all_timezones
+
     return codelists
 
 
@@ -374,10 +391,33 @@ def parse_wmdr(content):
 
     root_tag = exml.getroot().tag
 
-    if root_tag != '{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord':
+    if root_tag != '{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord' and root_tag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
         raise RuntimeError('Does not look like a WMDR document!')
 
     return exml
+
+def get_coordinates(self):
+    xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geoLocation/gml:Point/gml:pos'
+    match = self.exml.xpath(xpath,namespaces=self.namespaces)
+    if not len(match):
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geoLocation/gml:Point/gml:coordinates'
+        match = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if not len(match):
+            raise ValueError("Missing wmdr:geoLocation/gml:Point/gml:pos")
+        else:
+            raise ValueError("gml:coordinates is deprecated. Use gml:pos")
+        return
+
+    coords = match[0].text.split(" ")
+    
+    if len(coords) < 2:
+        raise ValueError("gml:pos is missing values")
+        return
+
+    lon = float(coords[1])
+    lat = float(coords[0])
+    return lon, lat
+
 
 def get_region(lon,lat,getNotation=False):
 
@@ -404,3 +444,133 @@ def get_region(lon,lat,getNotation=False):
                     region = regions.code[i]
     
     return region
+
+def is_within_timezone(lon,lat,tzid):
+    userdir = get_userdir()
+    timezones_geojson_file = f'{userdir}/schema/resources/maps/timezones.json'
+    timezones = gpd_read_file(timezones_geojson_file)
+    l = [timezones.tzid[i] for i in range(0,len(timezones.tzid))]
+    if tzid not in l:
+        raise ValueError('timezone not found in code list')
+        return
+    i = l.index(tzid)
+    geometry = timezones.geometry[i]
+    st0 = Point(lon,lat)
+    if st0.within(geometry):
+        return True
+    else:
+        raise ValueError('coordinates dont match timezone')
+
+def validate_url(url):
+    return validators.url(url)
+
+def get_href_and_validate(exml,xpath,namespaces,codelist,element_name):
+    # finds reference and validates against codelist
+    # returns score, comments, value
+    score = 0
+    comments = []
+    value = None
+
+    matches = exml.xpath(xpath,namespaces=namespaces)
+
+    if not len(matches):
+        LOGGER.debug("%s not found" % element_name)
+        comments.append("%s not found" % element_name)
+    else:
+        m = matches[0]
+        value = m.get('{http://www.w3.org/1999/xlink}href')
+        if not value:
+            LOGGER.debug('%s href not found' % element_name)
+            comments.append('%s href not found'  % element_name)
+        else:
+            if value not in codelist:
+                LOGGER.debug('%s not present in codelist' % element_name)
+                comments.append('%s not present in codelist' % element_name)
+            else:
+                if value.split("/")[-1].lower() == 'unknown' or value.split("/")[-1].lower() == 'inapplicable':
+                    LOGGER.debug('%s is unknown or inapplicable' % element_name)
+                    comments.append('%s is unknown or inapplicable' % element_name)
+                else:
+                    LOGGER.debug('Found %s "%s"' % (element_name, value))
+                    score += 1
+    
+    return score, comments, value
+
+def get_text_and_validate(exml,xpath,namespaces,type="integer",element_name="element",min_length=1,codelist=None):
+    # finds and validates only first match of provided xpath 
+    # returns score, comments, value
+    score = 0
+    comments = []
+    value = None
+
+    matches = exml.xpath(xpath,namespaces=namespaces)
+
+    if not len(matches):
+        LOGGER.debug("%s not found" % element_name)
+        comments.append("%s not found" % element_name)
+    else:
+        text = matches[0].text
+        if type == "integer":
+            try:
+                value = int(text)
+            except ValueError:
+                LOGGER.debug("%s is not a valid integer" % element_name)
+                comments.append("%s is not a valid integer" % element_name)
+            else:
+                LOGGER.debug('Found %s "%s"' % (element_name, value))
+                score += 1
+        elif type == "string":
+            try:
+                value = str(text)
+            except ValueError:
+                LOGGER.debug("%s is not a valid string" % element_name)
+                comments.append("%s is not a valid string" % element_name)
+            else:
+                if len(value) < min_length:
+                    LOGGER.debug("%s is shorter than minimum length" % element_name)
+                    comments.append("%s is shorter than minimum length" % element_name)
+                else:   
+                    if codelist:
+                        if value not in codelist:
+                            LOGGER.debug('%s not present in codelist' % element_name)
+                            comments.append('%s not present in codelist' % element_name)
+                        else:
+                            if value.lower() == 'unknown' or value.lower() == 'inapplicable':
+                                LOGGER.debug('%s is unknown or inapplicable' % element_name)
+                                comments.append('%s is unknown or inapplicable' % element_name)
+                            else:
+                                LOGGER.debug('Found %s "%s"' % (element_name, value))
+                                score += 1
+                    else:
+                        LOGGER.debug('Found %s "%s"' % (element_name, value))
+                        score += 1
+        elif type == "url":
+            try:
+                value = str(text)
+            except ValueError:
+                LOGGER.debug("%s is not a valid string" % element_name)
+                comments.append("%s is not a valid string" % element_name)
+            else:
+                if not validators.url(value):
+                    if not validators.url('https://%s' % value):
+                        LOGGER.debug("%s is not a valid URL" % element_name)
+                        comments.append("%s is not a valid URL" % element_name)
+                    else:
+                        LOGGER.debug('Found %s "%s"' % (element_name, value))
+                        score += 1
+                else:  
+                    LOGGER.debug('Found %s "%s"' % (element_name, value))
+                    score += 1
+        elif type == "datetime":
+            try:
+                value = datetime.fromisoformat(re.sub('Z$','+00:00',text))
+            except ValueError:
+                LOGGER.debug("%s is not a valid date" % element_name)
+                comments.append("%s is not a valid date" % element_name)
+            else:
+                LOGGER.debug('Found %s "%s"' % (element_name, value))
+                score += 1
+        else:
+            raise RuntimeError("invalid type: %s" % type)
+    
+    return score, comments, value

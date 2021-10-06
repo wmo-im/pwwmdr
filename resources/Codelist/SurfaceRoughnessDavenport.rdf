@@ -1,0 +1,114 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <skos:Collection rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/smooth">
+        <dct:description xml:lang="en">Featureless land surface without any noticeable obstacles and with negligible vegetation; e.g. beaches, pack ice without large ridges, morass, and snow-covered or fallow open country. (zo 0.005)</dct:description>
+        <rdfs:label>Smooth (Mud flats, snow; no vegetation, no obstacles)</rdfs:label>
+        <skos:notation>smooth</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/sea">
+        <dct:description xml:lang="en">Open sea or lake (irrespective of the wave size), tidal flat, snow-covered flat plain, featureless desert, tarmac and concrete, with a free fetch of several kilometers. (zo 0.0002)</dct:description>
+        <rdfs:label>Sea (open water, tidal flat, snow with fetch above 3 km</rdfs:label>
+        <skos:notation>sea</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/unknown">
+        <dct:description xml:lang="en">The surface roughness is unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/closed">
+        <dct:description xml:lang="en">Landscape totally and quite regularly covered with similar size large obstacles, with open spaces comparable to the obstacle heights; e.g. mature regular forests, homogeneous cities or villages. (zo 1.0)</dct:description>
+        <rdfs:label>Closed (Regular large obstacle COVER (suburb, forest))</rdfs:label>
+        <skos:notation>closed</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/rough">
+        <dct:description xml:lang="en">Recently-developed 'young' landscape with high crops or crops of varying height, and scattered obstacles (e.g. dense shelterbelts, vineyards) at relative distances of about 15 obstacle heights. (zo 0.25)</dct:description>
+        <rdfs:label>Rough (High crops; scattered obstacles, 15 &lt; x/H &lt; 20)</rdfs:label>
+        <skos:notation>rough</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable in the context of this particular observation</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/roughlyOpen">
+        <dct:description xml:lang="en">Cultivated area with regular cover of low crops, or moderately open country with occasional obstacles (e.g. low hedges, single rows of trees, isolated farms) at relative horizontal distances of at least 20 obstacle heights. (zo 0.10)</dct:description>
+        <rdfs:label>Roughly open (Low crops; occasional large obstacles, x/H &gt; 20)</rdfs:label>
+        <skos:notation>roughlyOpen</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/chaotic">
+        <dct:description xml:lang="en">Centres of large towns with mixture of low-rise and high-rise buildings. Also irregular large forests with many clearings. (zo ≥ 2)</dct:description>
+        <rdfs:label>Chaotic (City centre with high and low-rise buildings)</rdfs:label>
+        <skos:notation>chaotic</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <dct:description>Surface roughness (Davenport roughness classification)</dct:description>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:21:32.061Z</dct:modified>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/open">
+        <dct:description xml:lang="en">Level country with low vegetation (e.g. grass) and isolated obstacles with separations of at least 50 obstacle heights; e.g. grazing land without windbreaks, heather, moor and tundra, runway area of airports. (zo 0.03)</dct:description>
+        <rdfs:label>Open (Open flat terrain; grass, few isolated obstacles)</rdfs:label>
+        <skos:notation>open</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Surface roughness (Davenport roughness classification)</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceRoughnessDavenport/veryRough">
+        <dct:description xml:lang="en">'Old' cultivated landscape with many rather large obstacle groups (large farms, clumps of forest) separated by open spaces of about 10 obstacle heights. Also low large vegetation with small interspaces, such as bushland, orchards, young densely-planted forest. (zo 0.5)</dct:description>
+        <rdfs:label>Very rough (Parkland, bushes; numerous obstacles, x/H ~ 10)</rdfs:label>
+        <skos:notation>veryRough</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </skos:Collection>
+</rdf:RDF>

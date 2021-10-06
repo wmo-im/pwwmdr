@@ -1,0 +1,107 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/unknown">
+        <dct:description xml:lang="en">The Surface cover classification scheme is unknown for this particular surface cover observation.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/igbp">
+        <dct:description xml:lang="en">International Geosphere-Biosphere Programme land cover classification scheme</dct:description>
+        <rdfs:label>Surface cover types (IGBP)</rdfs:label>
+        <skos:notation>igbp</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/lccs">
+        <dct:description xml:lang="en">FAO/UNEP land cover classification scheme (LCCS), a comprehensive, standardized a priori classification system, independent of the scale or means used to map. The system can be used for any land cover classification initiative anywhere in the world, using a set of independent diagnostic criteria that allow correlation with existing classifications and legends.</dct:description>
+        <rdfs:label>Surface cover types (LCCS)</rdfs:label>
+        <skos:notation>lccs</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <dct:description>Surface cover classification scheme</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/globCover2009">
+        <dct:description xml:lang="en">GlobCover 2009 land cover map is derived by an automatic and regionally-tuned classification of a time series of global MERIS FR mosaics for the year 2009. The global land cover map counts 22 land cover classes defined with the United Nations (UN) Land Cover Classification System (LCCS).</dct:description>
+        <rdfs:label>Surface cover types (GlobCover2009)</rdfs:label>
+        <skos:notation>globCover2009</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable in the context of this particular surface cover observation.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/pft">
+        <dct:description xml:lang="en">Plant Functional Types (PFT) land cover scheme</dct:description>
+        <rdfs:label>Surface cover types (PFT)</rdfs:label>
+        <skos:notation>pft</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:17:46.738Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/umd">
+        <dct:description xml:lang="en">The University of Maryland, Department of Geography generated global land cover classification collection from 1998. See also: http://glcf.umd.edu/data/landcover/</dct:description>
+        <rdfs:label>Surface cover types (UMD)</rdfs:label>
+        <skos:notation>umd</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/laifpar">
+        <dct:description xml:lang="en">Leaf Area Index (LAI) and Fractional Photosynthetically Active Radiation (FPAR). FPAR/LAI is the Fraction of Absorbed Photosynthetically Active radiation that a plant canopy absorbs for photosynthesis and growth in the 0.4 - 0.7nm spectral range.</dct:description>
+        <rdfs:label>Surface cover types (LAI/fPAR)</rdfs:label>
+        <skos:notation>laifpar</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverClassification/npp">
+        <dct:description xml:lang="en">MODIS-derived Net Primary Production (NPP) surface cover scheme</dct:description>
+        <rdfs:label>Surface cover types (NPP)</rdfs:label>
+        <skos:notation>npp</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Surface cover classification scheme</rdfs:label>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+  </ldp:Container>
+</rdf:RDF>

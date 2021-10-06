@@ -1,0 +1,93 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <skos:Collection rdf:about="http://codes.wmo.int/wmdr/RelativeElevation">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/inapplicable">
+        <dct:description xml:lang="en">Inapplicable (topographic context is 'Plains' or 'Basins')</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/middle">
+        <dct:description xml:lang="en">Between 25% and 75% of the elevation range</dct:description>
+        <rdfs:label>at Middle</rdfs:label>
+        <skos:notation>middle</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/high">
+        <dct:description xml:lang="en">Between 75% and 95% of the elevation range</dct:description>
+        <rdfs:label>at High</rdfs:label>
+        <skos:notation>high</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/lowest">
+        <dct:description xml:lang="en">In the bottom 5% of the elevation range</dct:description>
+        <rdfs:label>at Lowest</rdfs:label>
+        <skos:notation>lowest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/low">
+        <dct:description xml:lang="en">Between 5% and 25% of the elevation range</dct:description>
+        <rdfs:label>at Low</rdfs:label>
+        <skos:notation>low</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/highest">
+        <dct:description xml:lang="en">In the highest 5% of the elevation range</dct:description>
+        <rdfs:label>at Highest</rdfs:label>
+        <skos:notation>highest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/RelativeElevation/unknown">
+        <dct:description xml:lang="en">The relative elevation is unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:15:29.39Z</dct:modified>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <rdfs:label>Relative elevation</rdfs:label>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >3</owl:versionInfo>
+    <dct:description>Relative elevation</dct:description>
+  </skos:Collection>
+</rdf:RDF>

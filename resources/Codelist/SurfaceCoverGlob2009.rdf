@@ -1,0 +1,205 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <skos:Collection rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/irrigatesCroplands">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Post-flooding or irrigated croplands (or aquatic)</rdfs:label>
+        <skos:notation>irrigatesCroplands</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedDeciduousBroadleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed (&gt;40%) broadleaved deciduous forest (&gt;5m)</rdfs:label>
+        <skos:notation>closedDeciduousBroadleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedToOpenShrubland">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) (broadleaved or needleleaved, evergreen or deciduous) shrubland (&lt;5m)</rdfs:label>
+        <skos:notation>closedToOpenShrubland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/sparseVegetation">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Sparse (&lt;15%) vegetation</rdfs:label>
+        <skos:notation>sparseVegetation</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/urbanBuiltup">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Artificial surfaces and associated areas (Urban areas &gt;50%)</rdfs:label>
+        <skos:notation>urbanBuiltup</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/openDeciduousEvergreenNeedleleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Open (15-40%) needleleaved deciduous or evergreen forest (&gt;5m)</rdfs:label>
+        <skos:notation>openDeciduousEvergreenNeedleleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedToOpenBroadleavedForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) broadleaved forest regularly flooded (semi-permanently or temporarily) - Fresh or brackish water</rdfs:label>
+        <skos:notation>closedToOpenBroadleavedForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedToOpenBroadleavedEvergreenForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) broadleaved evergreen or semi-deciduous forest (&gt;5m)</rdfs:label>
+        <skos:notation>closedToOpenBroadleavedEvergreenForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedBroadleavedForestFloodedShrubland">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed (&gt;40%) broadleaved forest or shrubland permanently flooded - Saline or brackish water</rdfs:label>
+        <skos:notation>closedBroadleavedForestFloodedShrubland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedToOpenGrasslandWoodyVegetation">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) grassland or woody vegetation on regularly flooded or waterlogged soil - Fresh, brackish or saline water</rdfs:label>
+        <skos:notation>closedToOpenGrasslandWoodyVegetation</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/water">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Water bodies</rdfs:label>
+        <skos:notation>water</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/mixedForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) mixed broadleaved and needleleaved forest (&gt;5m)</rdfs:label>
+        <skos:notation>mixedForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:18:04.222Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/mosaicGrassland">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Mosaic grassland (50-70%) / forest or shrubland (20-50%)</rdfs:label>
+        <skos:notation>mosaicGrassland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/bareAreas">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Bare areas</rdfs:label>
+        <skos:notation>bareAreas</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedEvergreenNeedleleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed (&gt;40%) needleleaved evergreen forest (&gt;5m)</rdfs:label>
+        <skos:notation>closedEvergreenNeedleleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/openDeciduousBroadleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Open (15-40%) broadleaved deciduous forest/woodland (&gt;5m)</rdfs:label>
+        <skos:notation>openDeciduousBroadleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/unknown">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>No data (burnt areas, clouds,…)</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/mosaicVegetation">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Mosaic vegetation (grassland/shrubland/forest) (50-70%) / cropland (20-50%)</rdfs:label>
+        <skos:notation>mosaicVegetation</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/closedToOpenHerbaceousVegetation">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Closed to open (&gt;15%) herbaceous vegetation (grassland, savannas or lichens/mosses)</rdfs:label>
+        <skos:notation>closedToOpenHerbaceousVegetation</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/snowIce">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Permanent snow and ice</rdfs:label>
+        <skos:notation>snowIce</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/mosaicForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Mosaic forest or shrubland (50-70%) / grassland (20-50%)</rdfs:label>
+        <skos:notation>mosaicForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/mosaicCroplands">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Mosaic cropland (50-70%) / vegetation (grassland/shrubland/forest) (20-50%)</rdfs:label>
+        <skos:notation>mosaicCroplands</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverGlob2009/rainfedCroplands">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Rainfed croplands</rdfs:label>
+        <skos:notation>rainfedCroplands</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Surface cover types (Globcover2009)</rdfs:label>
+    <dct:description>Surface cover types (Globcover2009)</dct:description>
+  </skos:Collection>
+</rdf:RDF>

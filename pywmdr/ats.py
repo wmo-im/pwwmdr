@@ -69,7 +69,13 @@ class WMDRTestSuite:
         """
 
         self.test_id = None
-        self.exml = exml  # serialized already
+        rtag = exml.getroot().tag
+        if rtag != "{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord":
+            wigosmetadatarecord = exml.getroot().find('.//{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord')
+            if wigosmetadatarecord is None:
+                raise RuntimeError('Does not look like a WMDR document!')
+            exml._setroot(wigosmetadatarecord)
+        self.exml = exml
         self.namespaces = self.exml.getroot().nsmap
 
         # generate dict of codelists
@@ -98,173 +104,9 @@ class WMDRTestSuite:
             raise TestSuiteError('Invalid metadata', error_stack)
 
     def test_requirement_1_1_1(self):
-        """Requirement 6.1.1: Each WIGOS Metadata record shall validate without error against the XML schemas defined in https://schemas.wmo.int/wmdr/"""
+        """Requirement 1.1.1: Each WIGOS Metadata record shall validate without error against the XML schemas defined in https://schemas.wmo.int/wmdr/"""
         self.test_id = gen_test_id('WMDR-xml-schema-validation')
         validate_wmdr_xml(self.exml)
-
-    # def test_requirement_6_1_2(self):
-    #     """Requirement 6.1.2: Each WIS Discovery Metadata record shall validate without error against the rule-based constraints listed in ISO/TS 19139:2007 Annex A (Table A.1)."""
-    #     self.test_id = gen_test_id('ISO-TS-19139-2007-rule-based-validation')
-    #     # TODO
-
-    # def test_requirement_6_2_1(self):
-    #     """Requirement 6.2.1: Each WIS Discovery Metadata record shall explicitly name all namespaces used within the record; use of default namespaces is prohibited."""
-    #     self.test_id = gen_test_id('explicit-xml-namespace-identification')
-
-    #     assert(None not in self.namespaces), self.test_requirement_6_2_1.__doc__
-
-    # def test_requirement_6_3_1(self):
-    #     """Requirement 6.3.1: Each WIS Discovery Metadata record shall declare the following XML namespace for GML: http://www.opengis.net/gml/3.2."""
-    #     self.test_id = gen_test_id('gml-namespace-specification')
-
-    #     if 'gml' in self.namespaces:
-    #         assert(self.namespaces['gml'] == NAMESPACES['gml']), self.test_requirement_6_3_1.__doc__
-
-    # def test_requirement_8_1_1(self):
-    #     """Requirement 8.1.1: Each WIS Discovery Metadata record shall include one gmd:MD_Metadata/gmd:fileIdentifier attribute."""
-    #     self.test_id = gen_test_id('fileIdentifier-cardinality')
-
-    #     ids = self.exml.findall(nspath_eval('gmd:fileIdentifier'))
-    #     assert(len(ids) != 0), self.test_requirement_8_1_1.__doc__
-    #     assert(len(ids) < 2), self.test_requirement_8_1_1.__doc__ \
-    #         + f' Multiple definitions found at lines {[id.sourceline for id in ids ]}.'
-
-    # def test_requirement_8_2_1(self):
-    #     """Requirement 8.2.1: Each WIS Discovery Metadata record shall include at least one keyword from the WMO_CategoryCode code list."""
-    #     self.test_id = gen_test_id('WMO_CategoryCode-keyword-cardinality')
-
-    #     found = False
-
-    #     # (i) check thesaurus
-    #     wmo_cats = self._get_wmo_keyword_lists()
-    #     assert(len(wmo_cats) > 0), self.test_requirement_8_2_1.__doc__
-
-    #     # (ii) check all WMO keyword sets valid codelist value
-    #     line_numbers_with_error = []
-    #     for cat in wmo_cats:
-    #         keyword_values = self._get_keyword_values(cat.findall(nspath_eval('gmd:keyword')))
-    #         for keyword_value in keyword_values:
-    #             if keyword_value in self.codelists['wmo']['WMO_CategoryCode']:
-    #                 found = True
-    #                 break
-    #         else:
-    #             line_numbers_with_error.append(cat.sourceline)
-
-    #     assert(found), self.test_requirement_8_2_1.__doc__ \
-    #         + f' Invalid keyword(s) found at line(s) {line_numbers_with_error}.'
-
-    # def test_requirement_8_2_2(self):
-    #     """Requirement 8.2.2: Keywords from WMO_CategoryCode code list shall be defined as keyword type "theme"."""
-    #     self.test_id = gen_test_id('WMO_CategoryCode-keyword-theme')
-
-    #     wmo_cats = self._get_wmo_keyword_lists()
-    #     assert(len(wmo_cats) > 0), self.test_requirement_8_2_2.__doc__
-
-    #     for cat in wmo_cats:
-    #         for keyword_type in cat.findall(nspath_eval('gmd:type/gmd:MD_KeywordTypeCode')):
-    #             assert(keyword_type.text == 'theme'), self.test_requirement_8_2_2.__doc__ \
-    #                 + f' Invalid keyword found at line {keyword_type.sourceline}.'
-
-    # def test_requirement_8_2_3(self):
-    #     """Requirement 8.2.3: All keywords sourced from a particular keyword thesaurus shall be grouped into a single instance of the MD_Keywords class."""
-    #     self.test_id = gen_test_id('keyword-grouping')
-
-    #     unique = 0
-    #     thesauri = []
-    #     wmo_cats = self._get_wmo_keyword_lists()
-    #     assert(len(wmo_cats) > 0), self.test_requirement_8_2_3.__doc__
-
-    #     for cat in wmo_cats:
-    #         for node in cat.findall(nspath_eval('gmd:thesaurusName/gmd:CI_Citation/gmd:title')):
-    #             if node is not None:
-    #                 node2 = node.find(nspath_eval('gmx:Anchor'))
-    #                 if node2 is not None:  # search gmx:Anchor
-    #                     value = node2.text
-    #                 else:  # gmd:title should be WMO_CategoryCode
-    #                     value = node.text
-    #                 thesauri.append(value)
-
-    #     if len(thesauri) == 1:
-    #         unique = 1
-    #     else:  # check if list if unique
-    #         thesauri2 = list(set(thesauri))
-    #         if len(thesauri) == len(thesauri2):
-    #             unique = 1
-
-    #     assert(unique == 1), self.test_requirement_8_2_3.__doc__
-
-    # def test_requirement_8_2_4(self):
-    #     """Requirement 8.2.4: Each WIS Discovery Metadata record describing geographic data shall include the description of at least one geographic bounding box defining the spatial extent of the data."""
-    #     self.test_id = gen_test_id('geographic-bounding-box')
-
-    #     hierarchy = self.exml.find(nspath_eval('gmd:hierarchyLevel/gmd:MD_ScopeCode'))
-    #     assert(hierarchy.text != 'nonGeographicDataset'), self.test_requirement_8_2_4.__doc__ \
-    #         + f' Dataset defined as non-geographic at line {hierarchy.sourceline}.'
-
-    #     bbox = self.exml.find(nspath_eval('gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox'))
-    #     assert(bbox is not None), self.test_requirement_8_2_4.__doc__
-
-    # def test_requirement_9_1_1(self):
-    #     """Requirement 9.1.1: A WIS Discovery Metadata record describing data for global exchange via the WIS shall indicate the scope of distribution using the keyword "GlobalExchange" of type "dataCenter" from thesaurus WMO_DistributionScopeCode."""
-    #     self.test_id = gen_test_id('identification-of-globally-exchanged-data')
-
-    #     dist_cats = self._get_wmo_keyword_lists('WMO_DistributionScopeCode')
-    #     if len(dist_cats) > 0:
-    #         for cat in dist_cats:
-    #             for keyword_type in cat.findall(nspath_eval('gmd:type/gmd:MD_KeywordTypeCode')):
-    #                 assert(keyword_type.text == 'dataCentre'), self.test_requirement_9_1_1.__doc__ \
-    #                     + f' Invalid keyword found at line {keyword_type.sourceline}.'
-    #                 keyword_values = self._get_keyword_values(cat.findall(nspath_eval('gmd:keyword')))
-    #                 assert('GlobalExchange' in keyword_values), self.test_requirement_9_1_1.__doc__ \
-    #                     + f' Invalid keyword(s) ({keyword_values}) found at line {keyword_type.sourceline}.'
-
-    # def test_requirement_9_2_1(self):
-    #     """Requirement 9.2.1: A WIS Discovery Metadata record describing data for global exchange via the WIS shall have a gmd:MD_Metadata/gmd:fileIdentifier attribute formatted as follows (where {uid} is a unique identifier derived from the GTS bulletin or file name): urn:x-wmo:md:int.wmo.wis::{uid}."""
-    #     self.test_id = gen_test_id('fileIdentifier-for-globally-exchanged-data')
-
-    #     mask = 'urn:x-wmo:md:int.wmo.wis::'
-    #     identifier_element = self.exml.find(nspath_eval('gmd:fileIdentifier/gco:CharacterString'))
-    #     identifier = identifier_element.text
-
-    #     assert(identifier.startswith(mask)), self.test_requirement_9_2_1.__doc__ \
-    #         + f' Invalid identifier ({identifier}) found at line {identifier_element.sourceline}.'
-
-    # def test_requirement_9_3_1(self):
-    #     """Requirement 9.3.1: A WIS Discovery Metadata record describing data for global exchange via the WIS shall indicate the WMO Data License as Legal Constraint (type: "otherConstraints") using one and only one term from the WMO_DataLicenseCode code list."""
-    #     self.test_id = gen_test_id('WMO-data-policy-for-globally-exchanged-data')
-
-    #     count = 0
-
-    #     xpath = 'gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints'
-    #     other_constraints_elements = self.exml.findall(nspath_eval(xpath))
-    #     for constr_element in other_constraints_elements:
-    #         constr_vals = get_string_or_anchor_value(constr_element)
-    #         for constr in constr_vals:
-    #             if constr in self.codelists['wmo']['WMO_DataLicenseCode']:
-    #                 count += 1
-    #     if len(other_constraints_elements) == 0:
-    #         assert(count == 1), self.test_requirement_9_3_1.__doc__
-    #     else:
-    #         assert(count == 1), self.test_requirement_9_3_1.__doc__ \
-    #             + f' Please check contraints at lines {[c.sourceline for c in other_constraints_elements ]}.'
-
-    # def test_requirement_9_3_2(self):
-    #     """Requirement 9.3.2: A WIS Discovery Metadata record describing data for global exchange via the WIS shall indicate the GTS Priority as Legal Constraint (type: "otherConstraints") using one and only one term from the WMO_GTSProductCategoryCode code list."""
-    #     self.test_id = gen_test_id('GTS-priority-for-globally-exchanged-data')
-
-    #     count = 0
-    #     xpath = 'gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints'
-    #     other_constraints_elements = self.exml.findall(nspath_eval(xpath))
-    #     for constr_element in other_constraints_elements:
-    #         constr_vals = get_string_or_anchor_value(constr_element)
-    #         for constr in constr_vals:
-    #             if constr in self.codelists['wmo']['WMO_GTSProductCategoryCode']:
-    #                 count += 1
-    #     if len(other_constraints_elements) == 0:
-    #         assert(count == 1), self.test_requirement_9_3_2.__doc__
-    #     else:
-    #         assert(count == 1), self.test_requirement_9_3_2.__doc__ \
-    #             + f' Please check contraints at lines {[c.sourceline for c in other_constraints_elements ]}.'
 
     def _get_wmo_keyword_lists(self, code: str = 'WMO_CategoryCode') -> list:
         """

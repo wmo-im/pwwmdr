@@ -4,3 +4,4 @@ lxml
 pyspellchecker
 python-dateutil
 geopandas
+validators

@@ -1,0 +1,275 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <reg:Register rdf:about="http://codes.wmo.int/wmdr/ClimateZone">
+    <dct:description>Climate zone</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateFullyHumidWarmSummer">
+        <dct:description xml:lang="en">Warm Temperate - Fully humid - Warm summer</dct:description>
+        <rdfs:label>Cfb</rdfs:label>
+        <skos:notation>warmTemperateFullyHumidWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryWinterWarmSummer">
+        <dct:description xml:lang="en">Snow - Dry winter - Warm summer</dct:description>
+        <rdfs:label>Dwb</rdfs:label>
+        <skos:notation>snowDryWinterWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryWinterColdSummer">
+        <dct:description xml:lang="en">Snow - Dry winter - Cold summer</dct:description>
+        <rdfs:label>Dwc</rdfs:label>
+        <skos:notation>snowDryWinterColdSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateFullyHumidCoolSummer">
+        <dct:description xml:lang="en">Warm Temperate - Fully humid - Cool summer</dct:description>
+        <rdfs:label>Cfc</rdfs:label>
+        <skos:notation>warmTemperateFullyHumidCoolSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryCoolSummer">
+        <dct:description xml:lang="en">Snow - Dry and cool summer</dct:description>
+        <rdfs:label>Dsc</rdfs:label>
+        <skos:notation>snowDryCoolSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryWinterWarmSummer">
+        <dct:description xml:lang="en">Warm Temperate - Dry winter - Warm summer</dct:description>
+        <rdfs:label>Cwb</rdfs:label>
+        <skos:notation>warmTemperateDryWinterWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/desertColdArid">
+        <dct:description xml:lang="en">Desert - Cold arid</dct:description>
+        <rdfs:label>BWk</rdfs:label>
+        <skos:notation>desertColdArid</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/equatorialSavannahDrySummer">
+        <dct:description xml:lang="en">Equatorial - Savannah - dry summer</dct:description>
+        <rdfs:label>Aw</rdfs:label>
+        <skos:notation>equatorialSavannahDrySummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateFullyHumidHotSummer">
+        <dct:description xml:lang="en">Warm Temperate - Fully humid - Hot summer</dct:description>
+        <rdfs:label>Cfa</rdfs:label>
+        <skos:notation>warmTemperateFullyHumidHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryWinterVeryColdWinter">
+        <dct:description xml:lang="en">Snow - Dry winter - Very cold winter</dct:description>
+        <rdfs:label>Dwd</rdfs:label>
+        <skos:notation>snowDryWinterVeryColdWinter</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/desertHotArid">
+        <dct:description xml:lang="en">Desert - Hot arid</dct:description>
+        <rdfs:label>BWh</rdfs:label>
+        <skos:notation>desertHotArid</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/steppeHotArid">
+        <dct:description xml:lang="en">Steppe - Hot arid</dct:description>
+        <rdfs:label>BSh</rdfs:label>
+        <skos:notation>steppeHotArid</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowFullyHumidHotSummer">
+        <dct:description xml:lang="en">Snow - Fully humid - Hot summer</dct:description>
+        <rdfs:label>Dfa</rdfs:label>
+        <skos:notation>snowFullyHumidHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/equatorialSavannahDryWinter">
+        <dct:description xml:lang="en">Equatorial - Savannah - dry winter</dct:description>
+        <rdfs:label>As</rdfs:label>
+        <skos:notation>equatorialSavannahDryWinter</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/equatorialRainforestFullyHumid">
+        <dct:description xml:lang="en">Equatorial rainforest - fully humid</dct:description>
+        <rdfs:label>Af</rdfs:label>
+        <skos:notation>equatorialRainforestFullyHumid</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDrySummerVeryColdWinter">
+        <dct:description xml:lang="en">Snow - Dry summer - Very cold winter</dct:description>
+        <rdfs:label>Dsd</rdfs:label>
+        <skos:notation>snowDrySummerVeryColdWinter</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryWinterHotSummer">
+        <dct:description xml:lang="en">Snow - Dry winter - Hot summer</dct:description>
+        <rdfs:label>Dwa</rdfs:label>
+        <skos:notation>snowDryWinterHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryHotSummer">
+        <dct:description xml:lang="en">Warm temperate - Dry and hot summer</dct:description>
+        <rdfs:label>Csa</rdfs:label>
+        <skos:notation>warmTemperateDryHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryCoolSummer">
+        <dct:description xml:lang="en">Warm temperate - Dry and cool summer</dct:description>
+        <rdfs:label>Csc</rdfs:label>
+        <skos:notation>warmTemperateDryCoolSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T08:55:13.687Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/polarFrost">
+        <dct:description xml:lang="en">Polar - Frost</dct:description>
+        <rdfs:label>EF</rdfs:label>
+        <skos:notation>polarFrost</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowFullyHumidCoolSummer">
+        <dct:description xml:lang="en">Snow - Fully humid - Cool summer</dct:description>
+        <rdfs:label>Dfc</rdfs:label>
+        <skos:notation>snowFullyHumidCoolSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/polarTundra">
+        <dct:description xml:lang="en">Polar - Tundra</dct:description>
+        <rdfs:label>ET</rdfs:label>
+        <skos:notation>polarTundra</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryWarmSummer">
+        <dct:description xml:lang="en">Warm temperate - Dry and warm summer</dct:description>
+        <rdfs:label>Csb</rdfs:label>
+        <skos:notation>warmTemperateDryWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/inapplicable">
+        <dct:description xml:lang="en">Inapplicable.</dct:description>
+        <rdfs:label>Inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowFullyHumidWarmSummer">
+        <dct:description xml:lang="en">Snow - Fully humid - Warm summer</dct:description>
+        <rdfs:label>Dfb</rdfs:label>
+        <skos:notation>snowFullyHumidWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowFullyHumidVeryColdWinter">
+        <dct:description xml:lang="en">Snow - Fully humid - Very cold winter</dct:description>
+        <rdfs:label>Dfd</rdfs:label>
+        <skos:notation>snowFullyHumidVeryColdWinter</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/steppeColdArid">
+        <dct:description xml:lang="en">Steppe - Cold arid</dct:description>
+        <rdfs:label>BSk</rdfs:label>
+        <skos:notation>steppeColdArid</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryWarmSummer">
+        <dct:description xml:lang="en">Snow - Dry and warm summer</dct:description>
+        <rdfs:label>Dsb</rdfs:label>
+        <skos:notation>snowDryWarmSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryWinterCoolSummer">
+        <dct:description xml:lang="en">Warm Temperate - Dry winter - Cool summer</dct:description>
+        <rdfs:label>Cwc</rdfs:label>
+        <skos:notation>warmTemperateDryWinterCoolSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/unknown">
+        <dct:description xml:lang="en">Unknown - The value is unknown or missing.</dct:description>
+        <rdfs:label>Unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/warmTemperateDryWinterHotSummer">
+        <dct:description xml:lang="en">Warm Temperate - Dry winter - Hot summer</dct:description>
+        <rdfs:label>Cwa</rdfs:label>
+        <skos:notation>warmTemperateDryWinterHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/snowDryHotSummer">
+        <dct:description xml:lang="en">Snow - Dry and hot summer</dct:description>
+        <rdfs:label>Dsa</rdfs:label>
+        <skos:notation>snowDryHotSummer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <rdfs:label>Climate zone</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ClimateZone/equatorialMonsoon">
+        <dct:description xml:lang="en">Equatorial - Monsoon</dct:description>
+        <rdfs:label>Am</rdfs:label>
+        <skos:notation>equatorialMonsoon</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </reg:Register>
+</rdf:RDF>
