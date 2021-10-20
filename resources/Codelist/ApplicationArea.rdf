@@ -1,0 +1,198 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/ApplicationArea">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/cryosphere">
+        <dct:description xml:lang="en">EGOS-IP</dct:description>
+        <rdfs:label>Cryosphere</rdfs:label>
+        <skos:notation>cryosphere</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:description>Application areas</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/atmosphericCompositionForecasting">
+        <dct:description xml:lang="en">Applications from global to regional scales (with horizontal resolutions similar to global NWP (~10 km and coarser) with stringent timeliness requirements (NRT) to support operations such as sand and dust storm and chemical weather forecasts [source: http://www.wmo.int/pages/prog/arep/gaw/documents/FINAL_GAW_221.pdf]</dct:description>
+        <rdfs:label>Forecasting atmospheric composition</rdfs:label>
+        <skos:notation>atmosphericCompositionForecasting</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T08:54:05.062Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/inapplicable">
+        <dct:description xml:lang="en">No application area is applicable.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/unknown">
+        <dct:description xml:lang="en">Application area unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/oceanApplications">
+        <dct:description xml:lang="en">http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-Ocean.pdf</dct:description>
+        <rdfs:label>Ocean applications</rdfs:label>
+        <skos:notation>oceanApplications</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/nowcasting">
+        <dct:description xml:lang="en">Nowcasting and very short-range forecasting (NVSRF) covers the 0-12 hours forecasting range with high time and space resolution, focusing on rapid evolving phenomena like convection and using dedicated algorithms with combined relevant observed and model data, to produce forecasts usually near the surface, in a seamless way for the forecast range. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-Nowcasting-VSRF.pdf</dct:description>
+        <rdfs:label>Nowcasting and very short-range forecasting (NVSRF)</rdfs:label>
+        <skos:notation>nowcasting</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/climateScience">
+        <dct:description xml:lang="en">This application area aims at coordinating international research to improve the understanding, analysis and prediction of the Earth System</dct:description>
+        <rdfs:label>Climate Science</rdfs:label>
+        <skos:notation>climateScience</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/climateApplications">
+        <dct:description xml:lang="en">Climate applications cover the effective application of climate knowledge and information for the benefit of society and the provision of climate services, including the prediction of significant climate variations both natural and as a result of human activity. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-Climate- CCl.pdf</dct:description>
+        <rdfs:label>Climate applications</rdfs:label>
+        <skos:notation>climateApplications</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/atmosphericCompositionMonitoring">
+        <dct:description xml:lang="en">Applications related to evaluating and analysing changes (temporally and spatially) in atmospheric composition regionally and globally to support treaty monitoring, climatologies and re-analyses, assessing trends in composition and emissions/ fluxes, and to better understand processes, using data of controlled quality (and with less stringent time requirements (not needed in NRT)), and used in products such as Ozone and Greenhouse Gas Bulletins, and State/Health of the Atmosphere reports [source: http://www.wmo.int/pages/prog/arep/gaw/documents/FINAL_GAW_221.pdf]</dct:description>
+        <rdfs:label>Monitoring atmospheric composition</rdfs:label>
+        <skos:notation>atmosphericCompositionMonitoring</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/globalNumericalWeatherPrediction">
+        <dct:description xml:lang="en">Global numerical weather prediction (GNWP) covers numerical weather prediction on a global scale, required for weather forecasting for more than a few days ahead. NWP uses mathematical models of the atmosphere and oceans to predict the weather based on current conditions of the atmosphere and oceans. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-Global-NWP.pdf</dct:description>
+        <rdfs:label>Global numerical weather prediction (GNWP)</rdfs:label>
+        <skos:notation>globalNumericalWeatherPrediction</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/health">
+        <dct:description xml:lang="en">Health-related services, often provided to the public, particularly those related to prevention, e.g. pollen allergies, UV radiation, heat wave alerts</dct:description>
+        <rdfs:label>Health sector</rdfs:label>
+        <skos:notation>health</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/terrestrialEcology">
+        <dct:description xml:lang="en">Activities and services related to the terrestrial environment, e.g., relating to bio-diversity</dct:description>
+        <rdfs:label>Terrestrial ecology</rdfs:label>
+        <skos:notation>terrestrialEcology</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/climateMonitoring">
+        <dct:description xml:lang="en">Climate monitoring (as supported through GCOS) covers the GCOS coordinated international network of global observing systems for climate, fundamental to detect, model and assess climate change, support adaptation to climate change, monitor the effectiveness of policies for mitigating climate change, develop climate information services, promote sustainable national economic development and meet other requirements of the UNFCCC and other convention and agreements. http://www.wmo.int/pages/prog/gcos/</dct:description>
+        <rdfs:label>Climate monitoring (GCOS)</rdfs:label>
+        <skos:notation>climateMonitoring</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Application areas</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/agriculturalMeteorology">
+        <dct:description xml:lang="en">Agricultural Meteorology relates to specific weather and climate services addressed to the agricultural community to help develop sustainable agricultural production systems. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-Agriculture.pdf</dct:description>
+        <rdfs:label>Agricultural meteorology</rdfs:label>
+        <skos:notation>agriculturalMeteorology</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/energy">
+        <dct:description xml:lang="en">Economic activities that produce or distribute energy, such as renewable energies, e.g. solar, thermal, wind</dct:description>
+        <rdfs:label>Energy sector</rdfs:label>
+        <skos:notation>energy</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/hydrology">
+        <dct:description xml:lang="en">Hydrology covers the assessment of the quantity and quality of water resources, both surface and groundwater (in support of the National Authorities responsible for water management in a wide range of activities), in order to meet the needs of society, to permit mitigation of water-related hazards, and to maintain or enhance the condition of the global environment. http://www.wmo.int/pages/prog/www/OSY/SOG/SOG-Hydrology.pdf</dct:description>
+        <rdfs:label>Hydrology</rdfs:label>
+        <skos:notation>hydrology</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/seasonalForecasting">
+        <dct:description xml:lang="en">Sub-seasonal to longer predictions covers predictions in sub-seasonal to decadal time-ranges (roughly two weeks to 10 years), using numerical prediction models based on current and past observations and analyses. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-SSLP.pdf</dct:description>
+        <rdfs:label>Sub-seasonal to longer predictions</rdfs:label>
+        <skos:notation>seasonalForecasting</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/spaceWeather">
+        <dct:description xml:lang="en">Space weather is a discipline which aims at observing, understanding and predicting the state of the Sun, of the interplanetary and planetary environments, their disturbances, and the potential impacts of these disturbances on biological and technological systems. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-SW.pdf</dct:description>
+        <rdfs:label>Space weather</rdfs:label>
+        <skos:notation>spaceWeather</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/transport">
+        <dct:description xml:lang="en">Economic activities related to transportation of people and goods, on land, air and water</dct:description>
+        <rdfs:label>Transportation sector</rdfs:label>
+        <skos:notation>transport</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/integratedUrbanServices">
+        <dct:description xml:lang="en">Applications that target limited areas (with horizontal resolution of a few km or smaller and stringent timeliness requirements to support services related to weather/climate/pollution, such as air quality forecasting  [source: http://www.wmo.int/pages/prog/arep/gaw/documents/FINAL_GAW_221.pdf])</dct:description>
+        <rdfs:label>Providing atmospheric composition information to support services in urban and populated areas</rdfs:label>
+        <skos:notation>integratedUrbanServices</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/aeronauticalMeteorology">
+        <dct:description xml:lang="en">Aeronautical meteorology covers worldwide, reliable provision of high quality, timely and cost-effective meteorological services to aviation users.</dct:description>
+        <rdfs:label>Aeronautical meteorology</rdfs:label>
+        <skos:notation>aeronauticalMeteorology</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ApplicationArea/highResolutionNumericalWeatherPrediction">
+        <dct:description xml:lang="en">High-resolution numerical weather prediction (HRNWP) covers forecasting of meteorological events over a limited area with a 1-5 km horizontal resolution, for 1 or 2 days ahead. Its high spatial resolutions allows: (i) to get more realistic descriptions of the surface and of atmospheric phenomena such as clouds and precipitation or boundary layer processes; and (ii) to use denser and more frequent observations than global NWP over the area of interest. http://www.wmo.int/pages/prog/www/OSY/SOG/SoG-HighRes-NWP.pdf</dct:description>
+        <rdfs:label>High-resolution numerical weather prediction (HRNWP)</rdfs:label>
+        <skos:notation>highResolutionNumericalWeatherPrediction</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </ldp:Container>
+</rdf:RDF>

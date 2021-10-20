@@ -46,6 +46,7 @@
 
 # WMO Core Metadata Profile Key Performance Indicators (KPIs)
 
+from datetime import datetime, timedelta, timezone
 from io import BytesIO
 import json
 import os
@@ -61,7 +62,10 @@ from pywmdr.ats import TestSuiteError, WMDRTestSuite
 from pywmdr.util import (get_cli_common_options, get_keyword_info,
                          get_string_or_anchor_value, get_string_or_anchor_values,
                          nspath_eval, parse_time_position, parse_wmdr,
-                         setup_logger, urlopen_, check_url, get_codelists_from_rdf, get_region, get_coordinates, is_within_timezone, validate_url, get_href_and_validate, get_text_and_validate) # get_codelists, 
+                         setup_logger, urlopen_, check_url, get_codelists_from_rdf,
+                         get_region, get_coordinates, is_within_timezone, 
+                         validate_url, get_href_and_validate, get_text_and_validate, 
+                         validate_text) # get_codelists, 
 
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
@@ -300,66 +304,34 @@ class WMDRKeyPerformanceIndicators:
     def kpi_2000(self):
         # Rule 2-0-00: Coordinates
         # 2-0-00-a: A geopositioning method is specified and not "unknown".
-        total = 2 # len(self.exml.xpath('/wmdr:WIGOSMetadataRecord/wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation',namespaces=self.namespaces))*2
-        # NOTE: only first matching observingFacility is evaluated
+        # NOTE: in case of multiple matches the average score is returned
+        total = 2 
         score = 0
         comments = []
 
-        ## Rule 2-0-00-a: A geopositioning method is specified and not "unknown"
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geopositioningMethod'
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation'
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if not len(matches):
+            LOGGER.debug('geospatialLocation not found')
+            comments.append('geospatialLocation not found')
+        else:
+            sum = 0
+            count = 0
+            for geospatialLocation in matches:
+                count = count + 2
 
-        sscore, scomments, value = get_href_and_validate(self.exml,xpath,self.namespaces,self.codelists["GeopositioningMethod"],"geopositioning method")
-        score += sscore
-        comments = comments + scomments
+                ## Rule 2-0-00-a: A geopositioning method is specified and not "unknown"
+                xpath = './wmdr:GeospatialLocation/wmdr:geopositioningMethod'
+                sscore, scomments, value = get_href_and_validate(geospatialLocation,xpath,self.namespaces,self.codelists["GeopositioningMethod"],"geopositioning method")
+                sum += sscore
+                comments = comments + scomments
 
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("geopositioningMethod not found")
-        #     comments.append("geopositioningMethod not found")
-        # else:
-        #     m = matches[0]
-        #     href = m.get('{http://www.w3.org/1999/xlink}href')
-        #     if not href:
-        #         LOGGER.debug('geopositioningMethod not found')
-        #         comments.append('geopositioningMethod not found')
-        #     else:
-        #         if href not in self.codelists['GeopositioningMethod']:
-        #             LOGGER.debug('geopositioningMethod not present in codelist')
-        #             comments.append('geopositioningMethod not present in codelist')
-        #         else:
-        #             if href == "http://codes.wmo.int/wmdr/GeopositioningMethod/unknown" or href == "http://codes.wmo.int/wmdr/GeopositioningMethod/inapplicable":
-        #                 LOGGER.debug('geopositioningMethod is unknown or inapplicable')
-        #                 comments.append('geopositioningMethod is unknown or inapplicable')
-        #             else:
-        #                 score += 1
-            
-        ## Rule 2-0-00-b: The begin position of valid period is specified
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
-
-        sscore, scomments, value = get_text_and_validate(self.exml,xpath,self.namespaces,type="datetime",element_name="valid period of geospatial location")
-        score += sscore
-        comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("beginPosition not found")
-        #     comments.append("beginPosition not found")
-        # else:
-        #     m = matches[0]
-        #     text = m.text
-        #     if text:
-        #         LOGGER.debug('beginPosition is specified')
-        #         value = None  
-        #         try:
-        #             value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',text))
-        #         except ValueError:
-        #             LOGGER.debug("validPeriod/timePeriod/beginPosition of TimeZone not valid")
-        #             comments.append("validPeriod/timePeriod/beginPosition of TimeZone not valid")
-        #         else:
-        #             score += 1
-        
+                ## Rule 2-0-00-b: The begin position of valid period is specified
+                xpath = './wmdr:GeospatialLocation/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
+                sscore, scomments, value = get_text_and_validate(geospatialLocation,xpath,self.namespaces,type="datetime",element_name="valid period of geospatial location")
+                sum += sscore
+                comments = comments + scomments
+            score = sum / count * total
         return total, score, comments
     
     def kpi_2001(self):
@@ -382,44 +354,6 @@ class WMDRKeyPerformanceIndicators:
         if not wmoregion:
             return total, score, comments
         
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("wmoRegion not found")
-        #     comments.append("wmoRegion not found")
-        #     return total, score, comments
-
-        # m = matches[0]
-        # if nspath_eval('xlink:href') in m.attrib and m.get(nspath_eval('xlink:href')) != "":
-        #     wmoregion = m.get(nspath_eval('xlink:href'))
-        #     if wmoregion == "http://codes.wmo.int/wmdr/WMORegion/unknown":
-        #         LOGGER.debug("wmoRegion is unknown")
-        #         comments.append("wmoRegion is unknown")
-        #         return total, score, comments    
-        #     elif wmoregion == "http://codes.wmo.int/wmdr/WMORegion/inapplicable":
-        #         LOGGER.debug("wmoRegion is inapplicable")
-        #         comments.append("wmoRegion is inapplicable")
-        #         return total, score, comments    
-        #     getNotation = False
-        # elif m.text == "":
-        #     LOGGER.debug("wmoRegion is empty")
-        #     comments.append("wmoRegion is empty")
-        #     return total, score, comments
-        # elif m.text == "unknown" or m.text == "inapplicable":
-        #     LOGGER.debug("wmoRegion is unknown or inapplicable")
-        #     comments.append("wmoRegion is unknown or inapplicable")
-        #     return total, score, comments
-        # else:
-        #     wmoregion = m.text
-        #     getNotation = True
-
-        # # print('found region %s' % wmoregion) # text}')
-
-        # if wmoregion not in self.codelists['WMORegion']:
-        #     LOGGER.debug('wmoRegion not present in codelist')
-        #     comments.append('wmoRegion not present in codelist')
-        #     return total, score, comments
-
         ## get the coordinates
         lon, lat = (None, None)
         try:
@@ -478,22 +412,6 @@ class WMDRKeyPerformanceIndicators:
         score += sscore
         comments = comments + scomments
 
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("validPeriod/timePeriod/beginPosition of TimeZone not found")
-        #     comments.append("validPeriod/timePeriod/beginPosition of TimeZone not found")
-        # else:
-        #     m = matches[0]      
-        #     value = None  
-        #     try:
-        #         value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',m.text))
-        #     except ValueError:
-        #         LOGGER.debug("validPeriod/timePeriod/beginPosition of TimeZone not valid")
-        #         comments.append("validPeriod/timePeriod/beginPosition of TimeZone not valid")
-        #     else:
-        #         score += 1
-
         return total, score, comments
 
     def kpi_2003(self):
@@ -511,18 +429,6 @@ class WMDRKeyPerformanceIndicators:
         score += sscore
         comments = comments + scomments
         
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("responsibleParty not found")
-        #     comments.append("responsibleParty not found")
-        # else:
-        #     m = matches[0]
-        #     if m.text.lower() == "unknown":
-        #         LOGGER.debug("responsibleParty is unknown")
-        #         comments.append("responsibleParty is unknown")
-        #     else:
-        #        score += 1
         
         # Rule 2-0-03-b: The begin position of valid period is specified.
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty/wmdr:ResponsibleParty/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
@@ -530,22 +436,6 @@ class WMDRKeyPerformanceIndicators:
         sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="datetime", element_name="valid period of supervising organization")
         score += sscore
         comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("validPeriod/timePeriod/beginPosition of ResponsibleParty not found")
-        #     comments.append("validPeriod/timePeriod/beginPosition of ResponsibleParty not found")
-        # else:
-        #     m = matches[0]      
-        #     value = None  
-        #     try:
-        #         value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',m.text))
-        #     except ValueError:
-        #         LOGGER.debug("validPeriod/timePeriod/beginPosition of ResponsibleParty not valid")
-        #         comments.append("validPeriod/timePeriod/beginPosition of ResponsibleParty not valid")
-        #     else:
-        #         score += 1
 
         return total, score, comments
 
@@ -560,24 +450,6 @@ class WMDRKeyPerformanceIndicators:
         sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="url", element_name="facility URL")
         score += sscore
         comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath, namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("facility URL not found")
-        #     comments.append("facility URL not found")
-        # else:
-        #     m = matches[0]      
-        #     if m.text.lower() == "unknown":
-        #         LOGGER.debug("station URL is unknown")
-        #         comments.append("station URL is unknown")
-        #     else:
-        #         valid = validate_url(m.text)
-        #         if valid==False:
-        #             LOGGER.debug("station URL is invalid")
-        #             comments.append("station URL is invalid")
-        #         else:
-        #             score += 1
         
         return total, score, comments
 
@@ -625,17 +497,8 @@ class WMDRKeyPerformanceIndicators:
         score += sscore
         comments = comments + scomments
 
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("Site description is missing")
-        #     comments.append("Site description is missing")
-        # else:
-        #     score += 1
-
         if not site_description:
-            return total, score, comments
-        
+            return total, score, comments      
 
         # Rule 2-0-06-b: Requirement for minimum length is fulfilled.
         # NOTE: can't fine minimum length requirement in documentation. Set at 300 chars
@@ -662,50 +525,12 @@ class WMDRKeyPerformanceIndicators:
         score += sscore
         comments = comments + scomments
 
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("ClimateZone is missing")
-        #     comments.append("ClimateZone is missing")
-        # else:
-        #     m = matches[0]
-        #     href = m.get('{http://www.w3.org/1999/xlink}href')
-        #     if not href:
-        #         LOGGER.debug('ClimateZone href not found')
-        #         comments.append('ClimateZone href not found')
-        #     else:
-        #         if href not in self.codelists['ClimateZone']:
-        #             LOGGER.debug('ClimateZone href not present in codelist')
-        #             comments.append('ClimateZone href not present in codelist')
-        #         else:
-        #             if href == "http://codes.wmo.int/wmdr/ClimateZone/unknown" or href == "http://codes.wmo.int/wmdr/ClimateZone/inapplicable":
-        #                 LOGGER.debug('ClimateZone href is unknown or inapplicable')
-        #                 comments.append('ClimateZone href is unknown or inapplicable')
-        #             else:
-        #                 score += 1
-
         # Rule 2-0-07-b: The begin position of valid period is specified.
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:climateZone/wmdr:ClimateZone/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
 
         sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="datetime", element_name="valid period of climate zone")
         score += sscore
         comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("ClimateZone valid period is missing")
-        #     comments.append("ClimateZone valid period is missing")
-        # else:
-        #     m = matches[0]
-        #     value = None  
-        #     try:
-        #         value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',m.text))
-        #     except ValueError:
-        #         LOGGER.debug("ClimateZone valid period is not valid")
-        #         comments.append("ClimateZone valid period is not valid")
-        #     else:
-        #         score += 1
 
         return total, score, comments
 
@@ -721,27 +546,6 @@ class WMDRKeyPerformanceIndicators:
 
         sscore, scomments, surface_cover_scheme = get_href_and_validate(self.exml, xpath, self.namespaces, self.codelists["SurfaceCoverClassification"], "surface cover classification")
         
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("surface cover classification scheme not found")
-        #     comments.append("surface cover classification scheme not found")
-        # else:
-        #     m = matches[0]
-        #     href = m.get('{http://www.w3.org/1999/xlink}href')
-        #     if not href:
-        #         LOGGER.debug('surface cover classification scheme href not found')
-        #         comments.append('surface cover classification scheme href not found')
-        #     else:
-        #         if href not in self.codelists['SurfaceCoverClassification']:
-        #             LOGGER.debug('surface cover classification scheme href not present in codelist')
-        #             comments.append('surface cover classification scheme href not present in codelist')
-        #         else:
-                    # surface_cover_scheme = href.split("/")[-1].lower()
-                    # if surface_cover_scheme == 'unknown' or surface_cover_scheme == 'inapplicable':
-                    #     LOGGER.debug('surface cover classification scheme href is unknown or inapplicable')
-                    #     comments.append('surface cover classification scheme href is unknown or inapplicable')
-                    # else:
         if not surface_cover_scheme:
             comments = comments + scomments
         else:
@@ -755,50 +559,13 @@ class WMDRKeyPerformanceIndicators:
                 sscore, scomments, surface_cover = get_href_and_validate(self.exml, xpath, self.namespaces, self.codelists[surface_cover_scheme], "surface cover")
                 score += sscore
                 comments = comments + scomments
- 
-                # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-                # if not len(matches):
-                #     LOGGER.debug("surface cover not found")
-                #     comments.append("surface cover not found")
-                # else:
-                #     m = matches[0]
-                #     href = m.get('{http://www.w3.org/1999/xlink}href')
-                #     if not href:
-                #         LOGGER.debug('surface cover href not found')
-                #         comments.append('surface cover href not found')
-                #     else:
-                #         if href not in self.codelists[surface_cover_scheme]:
-                #             LOGGER.debug('surface cover not present in codelist')
-                #             comments.append('surface cover not present in codelist')
-                #         else:
-                #             if href.split("/")[-1].lower() == 'unknown' or href.split("/")[-1].lower() == 'inapplicable':
-                #                 LOGGER.debug('surface cover is unknown or inapplicable')
-                #                 comments.append('surface cover is unknown or inapplicable')
-                #             else:
-                #                 score += 1
-        
+         
         # Rule 2-0-08-b: The begin position of valid period is specified.
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:surfaceCover/wmdr:SurfaceCover/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
         
         sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="datetime", element_name="valid period of surface cover")
         score += sscore
         comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("surface cover valid period is missing")
-        #     comments.append("surface cover valid period is missing")
-        # else:
-        #     m = matches[0]
-        #     value = None  
-        #     try:
-        #         value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',m.text))
-        #     except ValueError:
-        #         LOGGER.debug("surface cover valid period is not valid")
-        #         comments.append("surface cover valid period is not valid")
-        #     else:
-        #         score += 1
 
         return total, score, comments
     
@@ -817,26 +584,6 @@ class WMDRKeyPerformanceIndicators:
         comments = comments + scomments
         matches = self.exml.xpath(xpath,namespaces=self.namespaces)
 
-        # if not len(matches):
-        #     LOGGER.debug("surface rougness not found")
-        #     comments.append("surface rougness not found")
-        # else:
-        #     m = matches[0]
-        #     href = m.get('{http://www.w3.org/1999/xlink}href')
-        #     if not href:
-        #         LOGGER.debug('surface roughness href not found')
-        #         comments.append('surface roughness href not found')
-        #     else:
-        #         if href not in self.codelists["SurfaceRoughnessDavenport"]:
-        #             LOGGER.debug('surface roughness not present in codelist')
-        #             comments.append('surface roughness not present in codelist')
-        #         else:
-        #             if href.split("/")[-1].lower() == 'unknown' or href.split("/")[-1].lower() == 'inapplicable':
-        #                 LOGGER.debug('surface cover is unknown or inapplicable')
-        #                 comments.append('surface cover is unknown or inapplicable')
-        #             else:
-        #                 score += 1
-
         # Rule 2-0-09-b: The begin position of valid period is specified.
 
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:surfaceRoughness/wmdr:SurfaceRoughness/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
@@ -844,22 +591,6 @@ class WMDRKeyPerformanceIndicators:
         sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="datetime", element_name="valid period of surface roughness")
         score += sscore
         comments = comments + scomments
-
-        # matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-
-        # if not len(matches):
-        #     LOGGER.debug("surface roughness valid period is missing")
-        #     comments.append("surface roughness valid period is missing")
-        # else:
-        #     m = matches[0]
-        #     value = None  
-        #     try:
-        #         value = datetime.datetime.fromisoformat(re.sub('Z$','+00:00',m.text))
-        #     except ValueError:
-        #         LOGGER.debug("surface roughness valid period is not valid")
-        #         comments.append("surface roughness valid period is not valid")
-        #     else:
-        #         score += 1
 
         return total, score, comments
 
@@ -938,46 +669,91 @@ class WMDRKeyPerformanceIndicators:
         score = 0
         comments = []
 
-        # Rule 2-0-12-a: A date is added (range or single day).
-        
-        # xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:datetime'
-        # sscore, scomments, value = get_datetime_and_validate(self.exml,xpath,self.namespaces,"datetime of event report")
-        # score += sscore
-        # comments = comments + scomments
+        xpath = "./wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry"
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if not len(matches):
+            LOGGER.debug("logEntry not found")
+            comments.append("logEntry not found")
+        else:
+            sum = 0
+            count = 0
+            value = []
+            for logEntry in matches:
+                count = count + 5
+                
+                # Rule 2-0-12-a: A date is added (range or single day).
+                element_name = "valid period of reported event"
+                # xpath = './wmdr:EventReport/wmdr:datetime'
+                xpath = './wmdr:EventReport/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
+                matches = logEntry.xpath(xpath,namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    text = matches[0].text
+                    sscore, scomments, svalue = validate_text(text,"datetime",element_name) 
+                    sum += sscore
+                    comments = comments + scomments
+                    value.append(svalue)
 
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
-        sscore, scomments, value = get_text_and_validate(self.exml,xpath,self.namespaces,type="datetime",element_name="valid period of reported event")
-        score += sscore
-        comments = comments + scomments
+                # Rule 2-0-12-b: The event is specified and not "unknown".
+                xpath = './wmdr:EventReport/wmdr:typeOfEvent'
+                element_name = "type of event"
+                matches = logEntry.xpath(xpath,namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    text = matches[0].get('{http://www.w3.org/1999/xlink}href')
+                    sscore, scomments, svalue = validate_text(text,"href",element_name,codelist=self.codelists["EventAtFacility"])
+                    sum += sscore
+                    comments = comments + scomments
+                    value.append(svalue)
 
-        # Rule 2-0-12-b: The event is specified and not "unknown".
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:typeOfEvent'
-        
-        sscore, scomments, value = get_href_and_validate(self.exml,xpath,self.namespaces,self.codelists["EventAtFacility"],"type of event")
-        score += sscore
-        comments = comments + scomments
+                # Rule 2-0-12-c: A description is provided.
+                xpath = './wmdr:EventReport/wmdr:description'
+                element_name = "event description"
+                matches = logEntry.xpath(xpath,namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    text = matches[0].text
+                    sscore, scomments, svalue = validate_text(text,"string",element_name,min_length=100)
+                    sum += sscore
+                    comments = comments + scomments
+                    value.append(svalue)
 
-        # Rule 2-0-12-c: A description is provided.
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:description'
-        
-        sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="string", element_name="description of log entry",min_length=100)
-        score += sscore
-        comments = comments + scomments
+                # 2-0-12-d: The author is named.
+                xpath = './wmdr:EventReport/wmdr:author'
+                element_name = "author of log entry"
+                matches = logEntry.xpath(xpath,namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    text = matches[0].text
+                    sscore, scomments, svalue = validate_text(text,"string",element_name)
+                    sum += sscore
+                    comments = comments + scomments
+                    value.append(svalue)
 
-        # 2-0-12-d: The author is named.
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:author'
-        
-        sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="string", element_name="author of log entry")
-        score += sscore
-        comments = comments + scomments
+                # 2-0-12-e: The event has an online reference.
+                xpath = './wmdr:EventReport/wmdr:documentationURL'
+                element_name = "documentation URL of log entry"
+                matches = logEntry.xpath(xpath,namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    text = matches[0].text
+                    sscore, scomments, svalue = validate_text(text,"url",element_name)
+                    sum += sscore
+                    comments = comments + scomments
+                    value.append(svalue)
 
-        # 2-0-12-e: The event has an online reference.
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:facilityLog/wmdr:FacilityLog/wmdr:logEntry/wmdr:EventReport/wmdr:documentationURL'
-        
-        sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="url", element_name="documentation URL of log entry")
-        score += sscore
-        comments = comments + scomments
-
+            score = sum / count * total
+            # print("sum: %d, count: %s, score: %03f" % (sum, count, score))
         return total, score, comments
 
     def kpi_2013(self):
@@ -1001,6 +777,201 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
 
+    def kpi_21(self) -> tuple:
+        """
+        Implements KPI-2-1: Station characteristics (OSCAR/Surface)
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 5
+        score = 0
+        comments = []
+        name = 'KPI-2-1: station characteristics (OSCAR/Surface)'
+        LOGGER.info(f'Running {name}')
+
+        # rule 2-1-00 Station photo gallery
+        # The station has 1-2 photos -> 1
+        # The station has 3-5 photos -> 2
+        # The station has more than 5 photos -> 3
+        
+        # TODO
+
+        # rule 2-1-01 Station photo
+        # The added direction of view is not "unknown" -> 1
+        # The angle of view (focal length) is specified -> 1
+
+        # TODO
+
+        return name, total, score, comments
+
+    def kpi_50(self) -> tuple:
+        """
+        Implements KPI-5-0: Bibliographic references and Documents (OSCAR/Surface)
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 2
+        score = 0
+        comments = []
+        name = 'KPI-5-0: Bibliographic references and Documents (OSCAR/Surface)'
+        LOGGER.info(f'Running {name}')
+
+        # Rule 5-0-00 Reference. Station record has at least one reference.
+        
+        # TODO
+
+        # Rule 5-0-01 5-0-01 Source. Reference contains a valid URL or DOI or a document.
+
+        # TODO
+
+        return name, total, score, comments
+
+    def kpi_60(self) -> tuple:
+        """
+        Implements KPI-6-0: Value of a station for WIGOS
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 8
+        score = 0
+        comments = []
+        name = 'KPI-6-0: Value of a station for WIGOS'
+        LOGGER.info(f'Running {name}')
+
+        # Rule   
+        # 2 - 3 program affiliations (score: 1)
+        # 3 - 5 program affiliations (score: 2)
+        # More than 5 program affiliations (score: 3)
+        
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:programAffiliation/wmdr:ProgramAffiliation/wmdr:programAffiliation'
+        element_name = "program affiliation"
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if(not len(matches)):
+            LOGGER.debug("%s not found" % element_name)
+            comments.append("%s not found" % element_name)
+        else:
+            programs = set()
+            for match in matches:
+                href = match.get('{http://www.w3.org/1999/xlink}href')
+                # NOTE should codelist matching be case-sensitive? 
+                sscore, scomments, svalue = validate_text(href,"href",element_name,codelist=self.codelists["ProgramAffiliation"])
+                comments = comments + scomments
+                if(svalue):
+                    programs.add(svalue)
+            if len(programs) > 5:
+                score += 3
+            elif len(programs) > 3:
+                LOGGER.debug("found 4-5 %s (goal >5)" % element_name)
+                comments.append("found 4-5 %s (goal >5)" % element_name)
+                score += 2
+            elif len(programs) > 1:
+                LOGGER.debug("found 2-3 %s (goal >5)" % element_name)
+                comments.append("found 2-3 %s (goal >5)" % element_name)
+                score += 1
+            else:
+                LOGGER.debug("found 0-1 %s (goal >5)" % element_name)
+                comments.append("found 0-1 %s (goal >5)" % element_name)
+        
+        # Rule 6-0-01 Observations / measurements
+        # 2 - 5 observations (score: 1)
+        # 5 - 10 observations (score: 2)
+        # More than 10 observations (score: 3)
+
+        xpath = '//wmdr:observation/wmdr:ObservingCapability/wmdr:observation'
+        element_name = "observation"
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if(not len(matches)):
+            LOGGER.debug("%s not found" % element_name)
+            comments.append("%s not found" % element_name)
+        else:
+            if len(matches) > 10:
+                score += 3
+            elif len(matches) > 5:
+                LOGGER.debug("found 6-10 %s (goal >10)" % element_name)
+                comments.append("found 6-10 %s (goal >10)" % element_name)
+                score += 2
+            elif len(matches) > 1:
+                LOGGER.debug("found 2-5 %s (goal >10)" % element_name)
+                comments.append("found 2-5 %s (goal >10)" % element_name)
+                score += 1
+            else:
+                LOGGER.debug("found 1 %s (goal >10)" % element_name)
+                comments.append("found 1 %s (goal >10)" % element_name)
+
+        # Rule 6-0-02 Application area(s). Deployment has more than one application area.
+        # 1 (for each deployment)
+        
+        xpath = '//wmdr:deployment/wmdr:Deployment/wmdr:applicationArea'
+        element_name = "application area"
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if(not len(matches)):
+            LOGGER.debug("%s not found" % element_name)
+            comments.append("%s not found" % element_name)
+        else:
+            application_areas = set()
+            count = 0
+            for match in matches:
+                count = count + 1
+                text = match.get('{http://www.w3.org/1999/xlink}href')
+                sscore, scomments, svalue = validate_text(text,"href",element_name,codelist=self.codelists["ApplicationArea"])
+                comments = comments + scomments
+                if(svalue):
+                    application_areas.add(svalue)
+            if len(application_areas) < 2:
+                LOGGER.debug("found 0-1 valid %s (goal >1)" % element_name)
+                comments.append("found 0-1 valid %s (goal >1)" % element_name)
+            else:
+                score += len(application_areas) / count * 1
+
+        # Rule 6-0-03 Near real time availability. Data are available for near real time. 
+        # 1 (for each deployment) 
+        # NOTE missing criteria for what is considered near real time, using 24 hours
+        time_interval = timedelta(days=1)
+
+        xpath = '//wmdr:deployment/wmdr:Deployment/wmdr:validPeriod/gml:TimePeriod/gml:endPosition'
+        element_name = "end position of deployment valid period"
+        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if(not len(matches)):
+            LOGGER.debug("%s not found" % element_name)
+            comments.append("%s not found" % element_name)
+        else:
+            sum = 0
+            count = 0
+            for match in matches:
+                count = count + 1
+                text = match.text
+                sscore, scomments, svalue = validate_text(text,"datetime",element_name)
+                comments = comments + scomments
+                if svalue:
+                    if svalue + time_interval < datetime.now(timezone.utc):
+                        LOGGER.debug("deployment is not real time")
+                        comments.append("deployment is not real time")
+                    else:
+                        sum = sum + 1
+            score += sum / count * 1
+
+        return name, total, score, comments
+    
+    def kpi_61(self):
+        """
+        Implements KPI-6-1: Maintenance of a station record. Timeliness of data implementation rules
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 1
+        score = 0
+        comments = []
+        name = 'KPI-6-1: Maintenance of a station record'
+        LOGGER.info(f'Running {name}')
+
+        # TODO 
+
+        return name, total, score, comments
+
     #### END OF KPIS ####
 
     def evaluate(self, kpi: int = 0) -> dict:
@@ -1013,6 +984,7 @@ class WMDRKeyPerformanceIndicators:
         known_kpis = [
             'kpi_10',
             'kpi_20',
+            'kpi_60'
         ]
 
         kpis_to_run = known_kpis

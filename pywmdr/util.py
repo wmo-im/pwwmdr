@@ -496,81 +496,110 @@ def get_href_and_validate(exml,xpath,namespaces,codelist,element_name):
     
     return score, comments, value
 
-def get_text_and_validate(exml,xpath,namespaces,type="integer",element_name="element",min_length=1,codelist=None):
-    # finds and validates only first match of provided xpath 
+def get_text_and_validate(exml,xpath,namespaces,type="integer",element_name="element",min_length=1,codelist=None,get_only_first_match=True):
+    # finds and validates matches of provided xpath 
     # returns score, comments, value
-    score = 0
     comments = []
-    value = None
-
     matches = exml.xpath(xpath,namespaces=namespaces)
-
     if not len(matches):
         LOGGER.debug("%s not found" % element_name)
         comments.append("%s not found" % element_name)
     else:
         text = matches[0].text
-        if type == "integer":
-            try:
-                value = int(text)
-            except ValueError:
-                LOGGER.debug("%s is not a valid integer" % element_name)
-                comments.append("%s is not a valid integer" % element_name)
-            else:
-                LOGGER.debug('Found %s "%s"' % (element_name, value))
-                score += 1
-        elif type == "string":
-            try:
-                value = str(text)
-            except ValueError:
-                LOGGER.debug("%s is not a valid string" % element_name)
-                comments.append("%s is not a valid string" % element_name)
-            else:
-                if len(value) < min_length:
-                    LOGGER.debug("%s is shorter than minimum length" % element_name)
-                    comments.append("%s is shorter than minimum length" % element_name)
-                else:   
-                    if codelist:
-                        if value not in codelist:
-                            LOGGER.debug('%s not present in codelist' % element_name)
-                            comments.append('%s not present in codelist' % element_name)
+
+        if(get_only_first_match):
+            return validate_text(text,type,element_name,min_length,codelist)
+        else:   # validates all matches and returns average score
+            sum = 0
+            count = 0
+            value = []
+            for match in matches:
+                text = match.text
+                sscore, scomments, svalue = validate_text(text,type,element_name,min_length,codelist) 
+                sum += sscore
+                comments = comments + scomments
+                count = count + 1
+                value.append(svalue)
+            score = sum/count 
+            return score, comments, value
+
+def validate_text(text,type="integer",element_name="element",min_length=1,codelist=None):
+    score = 0
+    comments = []
+    value = None
+    if type == "integer":
+        try:
+            value = int(text)
+        except ValueError:
+            LOGGER.debug("%s is not a valid integer" % element_name)
+            comments.append("%s is not a valid integer" % element_name)
+        else:
+            LOGGER.debug('Found %s "%s"' % (element_name, value))
+            score += 1
+    elif type == "string":
+        try:
+            value = str(text)
+        except ValueError:
+            LOGGER.debug("%s is not a valid string" % element_name)
+            comments.append("%s is not a valid string" % element_name)
+        else:
+            if len(value) < min_length:
+                LOGGER.debug("%s is shorter than minimum length" % element_name)
+                comments.append("%s is shorter than minimum length" % element_name)
+            else:   
+                if codelist:
+                    if value not in codelist:
+                        LOGGER.debug('%s not present in codelist' % element_name)
+                        comments.append('%s not present in codelist' % element_name)
+                    else:
+                        if value.lower() == 'unknown' or value.lower() == 'inapplicable':
+                            LOGGER.debug('%s is unknown or inapplicable' % element_name)
+                            comments.append('%s is unknown or inapplicable' % element_name)
                         else:
-                            if value.lower() == 'unknown' or value.lower() == 'inapplicable':
-                                LOGGER.debug('%s is unknown or inapplicable' % element_name)
-                                comments.append('%s is unknown or inapplicable' % element_name)
-                            else:
-                                LOGGER.debug('Found %s "%s"' % (element_name, value))
-                                score += 1
-                    else:
-                        LOGGER.debug('Found %s "%s"' % (element_name, value))
-                        score += 1
-        elif type == "url":
-            try:
-                value = str(text)
-            except ValueError:
-                LOGGER.debug("%s is not a valid string" % element_name)
-                comments.append("%s is not a valid string" % element_name)
-            else:
-                if not validators.url(value):
-                    if not validators.url('https://%s' % value):
-                        LOGGER.debug("%s is not a valid URL" % element_name)
-                        comments.append("%s is not a valid URL" % element_name)
-                    else:
-                        LOGGER.debug('Found %s "%s"' % (element_name, value))
-                        score += 1
-                else:  
+                            LOGGER.debug('Found %s "%s"' % (element_name, value))
+                            score += 1
+                else:
                     LOGGER.debug('Found %s "%s"' % (element_name, value))
                     score += 1
-        elif type == "datetime":
-            try:
-                value = datetime.fromisoformat(re.sub('Z$','+00:00',text))
-            except ValueError:
-                LOGGER.debug("%s is not a valid date" % element_name)
-                comments.append("%s is not a valid date" % element_name)
+    elif type == "url":
+        try:
+            value = str(text)
+        except ValueError:
+            LOGGER.debug("%s is not a valid string" % element_name)
+            comments.append("%s is not a valid string" % element_name)
+        else:
+            if not validators.url(value):
+                if not validators.url('https://%s' % value):
+                    LOGGER.debug("%s is not a valid URL" % element_name)
+                    comments.append("%s is not a valid URL" % element_name)
+                else:
+                    LOGGER.debug('Found %s "%s"' % (element_name, value))
+                    score += 1
+            else:  
+                LOGGER.debug('Found %s "%s"' % (element_name, value))
+                score += 1
+    elif type == "datetime":
+        try:
+            value = datetime.fromisoformat(re.sub('Z$','+00:00',text))
+        except ValueError:
+            LOGGER.debug("%s is not a valid date" % element_name)
+            comments.append("%s is not a valid date" % element_name)
+        else:
+            LOGGER.debug('Found %s "%s"' % (element_name, value))
+            score += 1
+    elif type == "href":
+        value = str(text)
+        if value not in codelist:
+                LOGGER.debug('%s not present in codelist' % element_name)
+                comments.append('%s not present in codelist' % element_name)
+        else:
+            if value.split("/")[-1].lower() == 'unknown' or value.split("/")[-1].lower() == 'inapplicable':
+                LOGGER.debug('%s is unknown or inapplicable' % element_name)
+                comments.append('%s is unknown or inapplicable' % element_name)
             else:
                 LOGGER.debug('Found %s "%s"' % (element_name, value))
                 score += 1
-        else:
-            raise RuntimeError("invalid type: %s" % type)
+    else:
+        raise RuntimeError("invalid type: %s" % type)
     
     return score, comments, value
