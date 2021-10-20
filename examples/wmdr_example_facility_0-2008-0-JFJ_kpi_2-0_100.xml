@@ -138,7 +138,7 @@
 			</wmdr:territory>
 			<wmdr:programAffiliation>
 				<wmdr:ProgramAffiliation>
-					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/gawGlobal"/>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWglobal"/>
 					<wmdr:programSpecificFacilityId>JFJ</wmdr:programSpecificFacilityId>
 					<wmdr:reportingStatus>
 						<wmdr:ReportingStatus>
@@ -155,8 +155,28 @@
 			</wmdr:programAffiliation>
 			<wmdr:programAffiliation>
 				<wmdr:ProgramAffiliation>
-					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/GOS"/>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/IAGOS"/>
 					<wmdr:programSpecificFacilityId>06730</wmdr:programSpecificFacilityId>
+				</wmdr:ProgramAffiliation>
+			</wmdr:programAffiliation>
+			<wmdr:programAffiliation>
+				<wmdr:ProgramAffiliation>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/MEDARGO"/>
+				</wmdr:ProgramAffiliation>
+			</wmdr:programAffiliation>
+			<wmdr:programAffiliation>
+				<wmdr:ProgramAffiliation>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTU"/>
+				</wmdr:ProgramAffiliation>
+			</wmdr:programAffiliation>
+			<wmdr:programAffiliation>
+				<wmdr:ProgramAffiliation>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqOKMC"/>
+				</wmdr:ProgramAffiliation>
+			</wmdr:programAffiliation>
+			<wmdr:programAffiliation>
+				<wmdr:ProgramAffiliation>
+					<wmdr:programAffiliation xlink:href="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOMorocco"/>
 				</wmdr:ProgramAffiliation>
 			</wmdr:programAffiliation>
 			<wmdr:climateZone>
@@ -200,10 +220,26 @@
 							<wmdr:datetime>1957-09-28T00:00:00</wmdr:datetime>
 							<wmdr:author>Cicero</wmdr:author>
 							<wmdr:description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</wmdr:description>
-							<wmdr:documentationURL>https://www.lipsum.com/</wmdr:documentationURL>		<wmdr:typeOfEvent xlink:href="http://codes.wmo.int/wmdr/EventAtFacility/solarFlares"/>
+							<wmdr:documentationURL>https://www.lipsum.com/</wmdr:documentationURL>
+							<wmdr:typeOfEvent xlink:href="http://codes.wmo.int/wmdr/EventAtFacility/solarFlares"/>
 							<wmdr:validPeriod>
 								<gml:TimePeriod>
 									<gml:beginPosition>1957-09-28T00:00:00</gml:beginPosition>
+									<gml:endPosition/>
+								</gml:TimePeriod>
+							</wmdr:validPeriod>
+						</wmdr:EventReport>
+					</wmdr:logEntry>
+					<wmdr:logEntry>
+						<wmdr:EventReport>
+							<wmdr:datetime>1958-09-28T00:00:00</wmdr:datetime>
+							<wmdr:author>Cicero</wmdr:author>
+							<wmdr:description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</wmdr:description>
+							<wmdr:documentationURL>https://www.lipsum.com/</wmdr:documentationURL>
+							<wmdr:typeOfEvent xlink:href="http://codes.wmo.int/wmdr/EventAtFacility/solarFlares"/>
+							<wmdr:validPeriod>
+								<gml:TimePeriod>
+									<gml:beginPosition>1958-09-28T00:00:00</gml:beginPosition>
 									<gml:endPosition/>
 								</gml:TimePeriod>
 							</wmdr:validPeriod>
@@ -238,6 +274,309 @@
 					</wmdr:validPeriod>
 				</wmdr:Population>
 			</wmdr:population>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:phenomenonTime></om:phenomenonTime>
+							<om:resultTime></om:resultTime>
+							<om:validTime></om:validTime>
+							<om:procedure></om:procedure>
+							<om:parameter></om:parameter>
+							<om:observedProperty></om:observedProperty>
+							<om:featureOfInterest></om:featureOfInterest>
+							<om:resultQuality></om:resultQuality>
+							<om:result></om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
+			<wmdr:observation>
+				<wmdr:ObservingCapability>
+					<wmdr:facility xlink:href="#_0-20008-0-JFJ"/>
+					<wmdr:observation>
+						<om:OM_Observation>
+							<om:type xlink:href="http://codes.wmo.int/wmdr/featureOfInterest/point"/>						
+							<om:metadata>
+									<!--link to WIS metadata record goes here if available-->
+							</om:metadata>
+							<om:phenomenonTime>
+								<gml:TimePeriod gml:id="id7">
+									<gml:beginPosition>1957-09-28</gml:beginPosition>
+									<gml:endPosition></gml:endPosition>
+								</gml:TimePeriod>
+							</om:phenomenonTime>					
+							<om:resultTime/>
+							<om:validTime/>							
+							<om:procedure>
+								<wmdr:Process>
+									<wmdr:deployment>
+										<wmdr:Deployment>
+											<wmdr:deployedEquipment></wmdr:deployedEquipment>
+											<wmdr:dataGeneration>
+												<wmdr:DataGeneration>
+													<wmdr:validPeriod></wmdr:validPeriod>
+													<wmdr:schedule>
+														<wmdr:Schedule>
+															<wmdr:startMonth>1</wmdr:startMonth>
+															<wmdr:endMonth>12</wmdr:endMonth>
+															<wmdr:startWeekday>1</wmdr:startWeekday>
+															<wmdr:endWeekday>7</wmdr:endWeekday>
+															<wmdr:startHour>0</wmdr:startHour>
+															<wmdr:endHour>23</wmdr:endHour>
+															<wmdr:startMinute>0</wmdr:startMinute>
+															<wmdr:endMinute>59</wmdr:endMinute>
+															<wmdr:diurnalBaseTime>00:00:00Z</wmdr:diurnalBaseTime>
+														</wmdr:Schedule>
+													</wmdr:schedule>
+													<wmdr:sampling>
+														<wmdr:Sampling>
+															<wmdr:samplingStrategy xlink:href="http://codes.wmo.int/common/wmdr/SamplingStrategy/continuous"/>
+															<wmdr:temporalSamplingInterval>PT60S</wmdr:temporalSamplingInterval>
+														</wmdr:Sampling>
+													</wmdr:sampling>
+													<wmdr:reporting>
+														<wmdr:Reporting>
+															<wmdr:internationalExchange>false</wmdr:internationalExchange>
+															<wmdr:uom xlink:href="http://codes.wmo.int/wmdr/unit/t_ha-1"/>
+															<wmdr:temporalReportingInterval>PT600S</wmdr:temporalReportingInterval>
+														</wmdr:Reporting>
+													</wmdr:reporting>
+												</wmdr:DataGeneration>
+											</wmdr:dataGeneration>
+											<wmdr:dataGeneration>
+												<wmdr:DataGeneration gml:id="id11">
+													<wmdr:validPeriod></wmdr:validPeriod>
+													<wmdr:schedule>
+														<wmdr:Schedule>
+															<wmdr:startMonth>1</wmdr:startMonth>
+															<wmdr:endMonth>12</wmdr:endMonth>
+															<wmdr:startWeekday>1</wmdr:startWeekday>
+															<wmdr:endWeekday>7</wmdr:endWeekday>
+															<wmdr:startHour>0</wmdr:startHour>
+															<wmdr:endHour>23</wmdr:endHour>
+															<wmdr:startMinute>0</wmdr:startMinute>
+															<wmdr:endMinute>59</wmdr:endMinute>
+															<wmdr:diurnalBaseTime>00:00:00Z</wmdr:diurnalBaseTime>
+														</wmdr:Schedule>
+													</wmdr:schedule>
+													<wmdr:sampling>
+														<wmdr:Sampling>
+															<wmdr:samplingStrategy xlink:href="http://codes.wmo.int/common/wmdr/SamplingStrategy/continuous"/>
+															<wmdr:temporalSamplingInterval>PT60S</wmdr:temporalSamplingInterval>
+														</wmdr:Sampling>
+													</wmdr:sampling>
+													<wmdr:reporting>
+														<wmdr:Reporting>
+															<wmdr:internationalExchange>true</wmdr:internationalExchange>
+															<wmdr:uom xlink:href="http://codes.wmo.int/common/unit/ppbv"/>
+															<wmdr:temporalReportingInterval>PT3600S</wmdr:temporalReportingInterval>
+														</wmdr:Reporting>
+													</wmdr:reporting>
+												</wmdr:DataGeneration>
+											</wmdr:dataGeneration>
+											<wmdr:validPeriod>
+												<gml:TimePeriod>
+													<gml:beginPosition>2021-10-10T12:00:00+00:00</gml:beginPosition>
+													<gml:endPosition>2021-10-19T12:00:00+00:00</gml:endPosition>
+												</gml:TimePeriod>
+											</wmdr:validPeriod>
+											<wmdr:applicationArea xlink:href="http://codes.wmo.int/wmdr/ApplicationArea/atmosphericCompositionForecasting"></wmdr:applicationArea>
+											<wmdr:applicationArea xlink:href="http://codes.wmo.int/wmdr/ApplicationArea/nowcasting"></wmdr:applicationArea>
+											<wmdr:sourceOfObservation></wmdr:sourceOfObservation>
+										</wmdr:Deployment>
+									</wmdr:deployment>
+								</wmdr:Process>
+							</om:procedure>
+							<om:observedProperty xlink:href="http://codes.wmo.int/wmdr/ObservedVariable/262"/>
+							<om:featureOfInterest xlink:href="http://codes.wmo.int/wmdr/FeatureOfInterest/atmosphere"/>
+							<om:resultQuality></om:resultQuality>
+							<om:result>
+								<wmdr:ResultSet>
+									<wmdr:distributionInfo>
+										<gmd:MD_Distribution>
+											<gmd:transferOptions>
+												<gmd:MD_DigitalTransferOptions>
+													<gmd:onLine>
+														<gmd:CI_OnlineResource>
+															<gmd:linkage>
+																<gmd:URL><![CDATA[http://ds.data.jma.go.jp/gmd/wdcgg/cgi-bin/wdcgg/accessdata.cgi?index=JFJ646N00-EMPA&select=parameter&param=200612120619]]></gmd:URL>
+															</gmd:linkage>
+														</gmd:CI_OnlineResource>
+													</gmd:onLine>
+												</gmd:MD_DigitalTransferOptions>
+											</gmd:transferOptions>
+										</gmd:MD_Distribution>
+									</wmdr:distributionInfo>
+								</wmdr:ResultSet>
+							</om:result>
+						</om:OM_Observation>
+					</wmdr:observation>
+				</wmdr:ObservingCapability>
+			</wmdr:observation>
 		</wmdr:ObservingFacility>
 	</wmdr:facility>
 </wmdr:WIGOSMetadataRecord>
