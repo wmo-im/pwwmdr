@@ -76,7 +76,7 @@ Using the API:
 >>> ...
 >>> # test KPI
 >>> from pywcmp.kpi import WMDRKeyPerformanceIndicators
->>> kpis = WMOCoreMetadataProfileKeyPerformanceIndicators(exml)
+>>> kpis = WMDRKeyPerformanceIndicators(exml)
 >>> results = kpis.evaluate()
 >>> results['summary']
 >>> # scoring rubric
