@@ -805,6 +805,581 @@ class WMDRKeyPerformanceIndicators:
 
         return name, total, score, comments
 
+    def kpi_30(self) -> tuple:
+        """
+        Implements KPI-3-0: 
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 0 
+        score = 0
+        comments = []
+
+        name = 'KPI-3-0: Observations/measurements - Basic information'
+
+        LOGGER.info(f'Running {name}')
+        
+        oms_xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation'
+        print(oms_xpath)
+
+        oms = self.exml.xpath(oms_xpath, namespaces=self.namespaces)
+        total += 2*len(oms)
+
+        LOGGER.info(f'Running ID: 3-0-00 Geometry')
+
+        LOGGER.debug(f'Rule: Geometry (code list: http://codes.wmo.int/wmdr/Geometry) is not specified as "unknown". ')
+
+        if len(oms) > 0:
+            for om in oms:
+                om_type = om.find(nspath_eval('om:type'))
+                if om_type is not None:
+                    href = om_type.get('{http://www.w3.org/1999/xlink}href')
+                    geom_code_url = href.rsplit('/',1)[0]
+                    geom_type = href.rsplit('/',1)[-1]
+                    if geom_code_url == 'http://codes.wmo.int/wmdr/Geometry':
+                        if geom_type != 'unknown':
+                            result = check_url(href, False)
+                            if result['accessible']:
+                                score += 1
+                                LOGGER.debug('Geometry type not unknown found for OM_Observation')
+                                comments.append('Geometry type %s found for OM_Observation' % geom_type)
+                            else:
+                                LOGGER.debug(f'Geometry type %s is not in code list'  % geom_type)
+                                comments.append(f'Geometry type %s is not in code list'  % geom_type)
+                        else:
+                            LOGGER.debug("Geometry type uses 'unknown' code")
+                            comments.append("Geometry type uses 'unknown' code")
+                    else:
+                        LOGGER.debug("Geometry type does not use http://codes.wmo.int/wmdr/Geometry")
+                        comments.append("Geometry type does not use http://codes.wmo.int/wmdr/Geometry")
+                else:
+                    LOGGER.debug("Geometry type not found for OM_Observation")
+                    comments.append("Geometry type not found for OM_Observation")
+        else:
+            LOGGER.debug("No OM_Observation found")
+
+        LOGGER.info(f'Running ID: 3-0-01 Deployments')
+
+        LOGGER.debug(f'Rule: The observation/measurement has at least one deployment.')
+
+        if len(oms) > 0:
+            for om in oms:
+                deployments = om.findall(nspath_eval('./om:procedure/wmdr:Process/wmdr:deployment'))
+                n_deployments = len(deployments)
+                print(n_deployments)
+                if n_deployments > 0:
+                    for deployment in deployments:
+                        if deployment is not None:
+                            score += 1/n_deployments
+                            print(score)
+                            LOGGER.debug('Deployment found for OM_Observation')
+                            comments.append('Deployment found for OM_Observation')
+                else:
+                    LOGGER.debug("Deployment not found for OM_Observation")
+                    comments.append("Deployment not found for OM_Observation")
+        else:
+            LOGGER.debug("No OM_Observation found")
+
+
+        return name, total, score, comments
+
+    def kpi_31(self) -> tuple:
+        """
+        Implements KPI-3-1: Deployment
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+        #TODO implement single kpi functions 
+
+        total = 0
+        score = 0
+        comments = []
+        #empty function now
+        comments.append('Not implemented yet')
+        name = 'KPI-3-1: Deployment'
+        LOGGER.info(f'Running {name}')
+
+        # Rule 3-1-00: Source of observation
+        stotal, sscore, scomments = self.kpi_3100()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 3-1-01: Distance from reference surface 
+        stotal, sscore, scomments = self.kpi_3101()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 3-1-02: Type of reference surface 
+        stotal, sscore, scomments = self.kpi_3102()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 3-1-03: Application area(s)
+        stotal, sscore, scomments = self.kpi_3103()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 3-1-04: Exposure of instrument
+        stotal, sscore, scomments = self.kpi_3104()
+        total += stotal
+        score += sscore
+        comments = comments + scomments 
+
+        # Rule 3-1-05: Configuration of instrument 
+        stotal, sscore, scomments = self.kpi_3105()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-06: Representativeness of observation
+        stotal, sscore, scomments = self.kpi_3106()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-07: Measurement leader / principal investigator
+        stotal, sscore, scomments = self.kpi_3107()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-08: Organization
+        stotal, sscore, scomments = self.kpi_3108()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-09: Near Real Time 
+        stotal, sscore, scomments = self.kpi_3109()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-10: 
+        stotal, sscore, scomments = self.kpi_3110()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-11: Data URL
+        stotal, sscore, scomments = self.kpi_3111()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-12: Data communication method
+        stotal, sscore, scomments = self.kpi_3112()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        # Rule 3-1-13: Instrument QA/QC schedule
+        stotal, sscore, scomments = self.kpi_3113()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-14: Maintenance schedule 
+        stotal, sscore, scomments = self.kpi_3114()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-15: Instrument details
+        stotal, sscore, scomments = self.kpi_3115()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-16: 
+        stotal, sscore, scomments = self.kpi_3116()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-17: Coordinates
+        stotal, sscore, scomments = self.kpi_3117()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-18: Instrument operating status
+        stotal, sscore, scomments = self.kpi_3118()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-19: Firmware version
+        stotal, sscore, scomments = self.kpi_3119()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-20: Observable range
+        stotal, sscore, scomments = self.kpi_3120()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-21: Uncertainty
+        stotal, sscore, scomments = self.kpi_3121()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-22: Drift per unit time
+        stotal, sscore, scomments = self.kpi_3122()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-23: Specification URL 
+        stotal, sscore, scomments = self.kpi_3123()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-24: Uncertainty evaluation procedure 
+        stotal, sscore, scomments = self.kpi_3124()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-25: Observation frequency and polarization 
+        stotal, sscore, scomments = self.kpi_3125()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-26: Telecommunication frequency 
+        stotal, sscore, scomments = self.kpi_3126()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+        
+        # Rule 3-1-27: Data generation
+        stotal, sscore, scomments = self.kpi_3127()
+        total += stotal
+        score += sscore
+        comments = comments + scomments
+
+        return name, total, score, comments
+
+    def kpi_3100(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3101(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3102(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3103(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3104(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3105(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3106(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3107(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3108(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3109(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3110(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3111(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3112(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3113(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3114(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3115(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3116(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3117(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3118(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3119(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3120(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3121(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3122(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3123(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3124(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3125(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3126(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3127(self):
+        total = 1
+        score = 0
+        comments = []
+
+        return total, score, comments
+
+    def kpi_40(self) -> tuple:
+        """
+        Implements KPI-4-0: Station contacts
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+        total = 1
+        score = 0
+        comments = []
+
+        name = 'KPI-4-0: Station contacts'
+
+        LOGGER.info(f'Running {name}')
+
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty'
+
+        LOGGER.info(f'Running ID: 4-0-00 Number of station contacts')
+
+        LOGGER.debug(f'Rule: Station has at least on contact person.')
+
+        matches = self.exml.xpath(xpath, namespaces=self.namespaces)
+
+        if not len(matches):
+            LOGGER.debug("responsibleParty not found")
+            comments.append("responsibleParty not found")
+        else:
+            score += 1
+            LOGGER.debug(f'responsibleParty specified')
+            comments.append(f'responsibleParty specified')
+
+        return name, total, score, comments
+
+    def kpi_41(self) -> tuple:
+        """
+        Implements KPI-4-1: Station contact - individual
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 0 
+        score = 0
+        comments = []
+
+        name = 'KPI-4-1: Station contact - individual'
+
+        LOGGER.info(f'Running {name}')
+
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty'
+
+        responsibleParties = self.exml.xpath(xpath, namespaces=self.namespaces)
+        print(len(responsibleParties))
+        total += 5*len(responsibleParties)
+
+
+        if len(responsibleParties) > 0:
+            responsiblePartyRecord = 1 
+            for responsibleParty in responsibleParties:
+                address = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString'))
+                postal_code = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString'))
+                country = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString'))
+                phone = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString'))
+                contact_url = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'))
+                LOGGER.info(f'Running ID: 4-1-00 Address')
+                if address is not None:
+                    score += 1
+                    LOGGER.debug('Station contact %s address found' % responsiblePartyRecord)
+                    comments.append('Station contact %s address found' % responsiblePartyRecord)
+                else:
+                    LOGGER.debug("Station contact %s address not found" % responsiblePartyRecord)
+                    comments.append("Station contact %s address not found" % responsiblePartyRecord)
+                LOGGER.info(f'Running ID: 4-1-01 Postal code')
+                if postal_code is not None:
+                    score += 1
+                    LOGGER.debug('Station contact %s postal code found' % responsiblePartyRecord)
+                    comments.append('Station contact %s postal code found' % responsiblePartyRecord)
+                else:
+                    LOGGER.debug("Station contact %s postal code not found" % responsiblePartyRecord)
+                    comments.append("Station contact %s postal code not found" % responsiblePartyRecord)
+                LOGGER.info(f'Running ID: 4-1-02 Country')
+                if country is not None:
+                    score += 1
+                    LOGGER.debug('Station contact %s country found' % responsiblePartyRecord)
+                    comments.append('Station contact %s country found' % responsiblePartyRecord)
+                else:
+                    LOGGER.debug("Station contact %s country not found" % responsiblePartyRecord)
+                    comments.append("Station contact %s country not found" % responsiblePartyRecord)
+                LOGGER.info(f'Running ID: 4-1-03 Phone (main & other)')
+                if phone is not None:
+                    score += 1
+                    LOGGER.debug('Station contact %s phone found' % responsiblePartyRecord)
+                    comments.append('Station contact %s phone found' % responsiblePartyRecord)
+                else:
+                    LOGGER.debug("Station contact %s phone not found" % responsiblePartyRecord)
+                    comments.append("Station contact %s phone not found" % responsiblePartyRecord)
+                LOGGER.info(f'Running ID: 4-1-04 Contact URL')
+                if contact_url is not None:
+                    result = check_url(contact_url.text, False)
+                    if result['accessible']:
+                        score += 1
+                        LOGGER.debug("Station contact %s URL found and valid" % responsiblePartyRecord)
+                        comments.append("Station contact %s URL found and valid" % responsiblePartyRecord)
+                    else:
+                        LOGGER.debug(f'Station contact %s URL not not accessible: {contact_url.text}' % responsiblePartyRecord)
+                        comments.append(f'Station contact %s URL not accessible: {contact_url.text}' % responsiblePartyRecord)
+                else:
+                    LOGGER.debug("Station contact %s URL not found" % responsiblePartyRecord)
+                    comments.append("Station contact %s URL not found" % responsiblePartyRecord)
+                responsiblePartyRecord += 1 
+        else:
+            LOGGER.debug("No responsibleParty found")
+            comments.append("No responsibleParty found")
+
+        return name, total, score, comments
+
     def kpi_50(self) -> tuple:
         """
         Implements KPI-5-0: Bibliographic references and Documents (OSCAR/Surface)
@@ -984,6 +1559,10 @@ class WMDRKeyPerformanceIndicators:
         known_kpis = [
             'kpi_10',
             'kpi_20',
+            'kpi_30',
+            'kpi_31',
+            'kpi_40',
+            'kpi_41',
             'kpi_60'
         ]
 
@@ -1101,9 +1680,9 @@ def group_kpi_results(kpis_results: dict) -> dict:
 
     categories = {
         # "mandatory": [1000],
-        "station_characteristics": [2000, 2001],    
-        # "observations_measurements": [3000],
-        # "station_contacts": [4000],
+        "station_characteristics": [20, 21],    
+        "observations_measurements": [30],
+        "station_contacts": [40, 41],
         # "bibliographic_references_and_documents": [5000],
         # "value_of_a_station_for_WIGOS": [6000]    
     }

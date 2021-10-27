@@ -33,6 +33,8 @@ NAMESPACES = {
     'gmd': 'http://www.isotc211.org/2005/gmd',
     'gml': 'http://www.opengis.net/gml/3.2',
     'gmx': 'http://www.isotc211.org/2005/gmx',
+    'om': 'http://www.opengis.net/om/2.0',
+    'wmdr': 'http://def.wmo.int/wmdr/1.0',
     'xlink': 'http://www.w3.org/1999/xlink',
     'skos': 'http://www.w3.org/2004/02/skos/core#',
     'dct':   'http://purl.org/dc/terms/',
