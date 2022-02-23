@@ -899,376 +899,407 @@ class WMDRKeyPerformanceIndicators:
 
         :returns: `tuple` of KPI name, achieved score, total score, and comments
         """
-        #TODO implement single kpi functions 
-
         total = 0
         score = 0
         comments = []
-        #empty function now
-        comments.append('Not implemented yet')
         name = 'KPI-3-1: Deployment'
         LOGGER.info(f'Running {name}')
-
-        # Rule 3-1-00: Source of observation
-        stotal, sscore, scomments = self.kpi_3100()
-        total += stotal
-        score += sscore
-        comments = comments + scomments 
-
-        # Rule 3-1-01: Distance from reference surface 
-        stotal, sscore, scomments = self.kpi_3101()
-        total += stotal
-        score += sscore
-        comments = comments + scomments 
-
-        # Rule 3-1-02: Type of reference surface 
-        stotal, sscore, scomments = self.kpi_3102()
-        total += stotal
-        score += sscore
-        comments = comments + scomments 
-
-        # Rule 3-1-03: Application area(s)
-        stotal, sscore, scomments = self.kpi_3103()
-        total += stotal
-        score += sscore
-        comments = comments + scomments 
-
-        # Rule 3-1-04: Exposure of instrument
-        stotal, sscore, scomments = self.kpi_3104()
-        total += stotal
-        score += sscore
-        comments = comments + scomments 
-
-        # Rule 3-1-05: Configuration of instrument 
-        stotal, sscore, scomments = self.kpi_3105()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-06: Representativeness of observation
-        stotal, sscore, scomments = self.kpi_3106()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-07: Measurement leader / principal investigator
-        stotal, sscore, scomments = self.kpi_3107()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-08: Organization
-        stotal, sscore, scomments = self.kpi_3108()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-09: Near Real Time 
-        stotal, sscore, scomments = self.kpi_3109()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-10: 
-        stotal, sscore, scomments = self.kpi_3110()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-11: Data URL
-        stotal, sscore, scomments = self.kpi_3111()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-12: Data communication method
-        stotal, sscore, scomments = self.kpi_3112()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-
-        # Rule 3-1-13: Instrument QA/QC schedule
-        stotal, sscore, scomments = self.kpi_3113()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
         
-        # Rule 3-1-14: Maintenance schedule 
-        stotal, sscore, scomments = self.kpi_3114()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-15: Instrument details
-        stotal, sscore, scomments = self.kpi_3115()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-16: 
-        stotal, sscore, scomments = self.kpi_3116()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-17: Coordinates
-        stotal, sscore, scomments = self.kpi_3117()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-18: Instrument operating status
-        stotal, sscore, scomments = self.kpi_3118()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-19: Firmware version
-        stotal, sscore, scomments = self.kpi_3119()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-20: Observable range
-        stotal, sscore, scomments = self.kpi_3120()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-21: Uncertainty
-        stotal, sscore, scomments = self.kpi_3121()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-22: Drift per unit time
-        stotal, sscore, scomments = self.kpi_3122()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-23: Specification URL 
-        stotal, sscore, scomments = self.kpi_3123()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-24: Uncertainty evaluation procedure 
-        stotal, sscore, scomments = self.kpi_3124()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-25: Observation frequency and polarization 
-        stotal, sscore, scomments = self.kpi_3125()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-26: Telecommunication frequency 
-        stotal, sscore, scomments = self.kpi_3126()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
-        
-        # Rule 3-1-27: Data generation
-        stotal, sscore, scomments = self.kpi_3127()
-        total += stotal
-        score += sscore
-        comments = comments + scomments
+        # get OM_Observations
+        OM_Observations = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation',namespaces=self.namespaces)
+        if not len(OM_Observations):
+            comments.append("OM_Observation not found")
+            total = 27
+        else:
+        # compute kpi for each OM_Observation instance
+            i = 0
+            for instance in OM_Observations:
+                i += 1
+                # LOGGER.debug(instance)
+                el_total = 0
+                el_score = 0
+                # Rule 3-1-00: Source of observation
+                stotal, sscore, scomments = self.kpi_3100(instance)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
 
+                # Rule 3-1-01: Distance from reference surface 
+                stotal, sscore, scomments = self.kpi_3101(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-1-02: Type of reference surface 
+                stotal, sscore, scomments = self.kpi_3102(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-1-03: Application area(s)
+                stotal, sscore, scomments = self.kpi_3103(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-1-04: Exposure of instrument
+                stotal, sscore, scomments = self.kpi_3104(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-1-05: Configuration of instrument 
+                stotal, sscore, scomments = self.kpi_3105(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-06: Representativeness of observation
+                stotal, sscore, scomments = self.kpi_3106(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-07: Measurement leader / principal investigator
+                stotal, sscore, scomments = self.kpi_3107(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-08: Organization
+                stotal, sscore, scomments = self.kpi_3108(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-09: Near Real Time 
+                stotal, sscore, scomments = self.kpi_3109(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-10: (not defined)
+                # stotal, sscore, scomments = self.kpi_3110(instance)
+                # el_total  += stotal
+                # el_score  += sscore
+                # comments = comments + scomments
+
+                # Rule 3-1-11: Data URL (same as 3-1-09.2)
+                # stotal, sscore, scomments = self.kpi_3111(instance)
+                # el_total  += stotal
+                # el_score  += sscore
+                # comments = comments + scomments
+
+                # Rule 3-1-12: Data communication method
+                stotal, sscore, scomments = self.kpi_3112(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-1-13: Instrument QA/QC schedule
+                stotal, sscore, scomments = self.kpi_3113(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-14: Maintenance schedule 
+                stotal, sscore, scomments = self.kpi_3114(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-15: Instrument details
+                stotal, sscore, scomments = self.kpi_3115(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-16: 
+                stotal, sscore, scomments = self.kpi_3116(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-17: Coordinates
+                stotal, sscore, scomments = self.kpi_3117(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-18: Instrument operating status
+                stotal, sscore, scomments = self.kpi_3118(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-19: Firmware version
+                stotal, sscore, scomments = self.kpi_3119(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-20: Observable range
+                stotal, sscore, scomments = self.kpi_3120(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-21: Uncertainty
+                stotal, sscore, scomments = self.kpi_3121(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-22: Drift per unit time
+                stotal, sscore, scomments = self.kpi_3122(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-23: Specification URL 
+                stotal, sscore, scomments = self.kpi_3123(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-24: Uncertainty evaluation procedure 
+                stotal, sscore, scomments = self.kpi_3124(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-25: Observation frequency and polarization 
+                stotal, sscore, scomments = self.kpi_3125(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-26: Telecommunication frequency 
+                stotal, sscore, scomments = self.kpi_3126(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+                
+                # Rule 3-1-27: Data generation
+                stotal, sscore, scomments = self.kpi_3127(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                LOGGER.debug("instance %s, total: %s, score: %s" % (i, el_total, el_score))
+                total += el_total
+                score += el_score
+
+            total = total / len(OM_Observations)
+            score = score / len(OM_Observations)
         return name, total, score, comments
 
-    def kpi_3100(self):
+    def kpi_3100(self,instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:sourceOfObservation'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["SourceOfObservation"],"source of observation")
+        return total, score, comments
+
+    def kpi_3101(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:heightAboveLocalReferenceSurface'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"float","deployment height above local reference surface")
+        return total, score, comments
+
+    def kpi_3102(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:localReferenceSurface'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ReferenceSurfaceType"],"reference surface type")
+        return total, score, comments
+
+    def kpi_3103(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:applicationArea'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ApplicationArea"],"application area")
+        return total, score, comments
+
+    def kpi_3104(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:exposure'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Exposure"],"exposure")
+        return total, score, comments
+
+    def kpi_3105(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:configuration'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment configuration")
+        return total, score, comments
+
+    def kpi_3106(self, instance):
+        total = 1
+        score = 0
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:representativeness'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Representativeness"],"representativeness")
+        comments = []
+
+        return total, score, comments
+
+    def kpi_3107(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:metadata/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","contact responsible party individual name")
+        return total, score, comments
+
+    def kpi_3108(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:metadata/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:organizationName/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","contact responsible party organization name")
+        return total, score, comments
+
+    def kpi_3109(self, instance):
+        total = 2
+        xpath = './om:result/wmdr:ResultSet/wmdr:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString'
+        score1, comments1, value1 = get_text_and_validate(instance,xpath,self.namespaces,"string","online resource description")
+        xpath = './om:result/wmdr:ResultSet/wmdr:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"url","online resource linkage url")
+        return total, score1+score2, comments1+comments2
+
+    def kpi_3110(self, instance):
+        # NOT DEFINED
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3101(self):
+    def kpi_3111(self, instance):
+        # same as 3109.2
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3102(self):
+    def kpi_3112(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:communicationMethod'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["DataCommunicationMethod"],"communication method")
+        return total, score, comments
+
+    def kpi_3113(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:controlSchedule'
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment control schedule")
+        return total, score, comments
+
+    def kpi_3114(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:maintenanceSchedule'
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment maintenance schedule")
+        return total, score, comments
+
+    def kpi_3115(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3103(self):
+    def kpi_3116(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3104(self):
+    def kpi_3117(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3105(self):
+    def kpi_3118(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3106(self):
+    def kpi_3119(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3107(self):
+    def kpi_3120(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3108(self):
+    def kpi_3121(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3109(self):
+    def kpi_3122(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3110(self):
+    def kpi_3123(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3111(self):
+    def kpi_3124(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3112(self):
+    def kpi_3125(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3113(self):
+    def kpi_3126(self, instance):
         total = 1
         score = 0
         comments = []
 
         return total, score, comments
 
-    def kpi_3114(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3115(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3116(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3117(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3118(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3119(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3120(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3121(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3122(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3123(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3124(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3125(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3126(self):
-        total = 1
-        score = 0
-        comments = []
-
-        return total, score, comments
-
-    def kpi_3127(self):
+    def kpi_3127(self, instance):
         total = 1
         score = 0
         comments = []

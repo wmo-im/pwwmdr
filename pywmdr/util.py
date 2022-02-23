@@ -569,6 +569,15 @@ def validate_text(text,type="integer",element_name="element",min_length=1,codeli
         else:
             LOGGER.debug('Found %s "%s"' % (element_name, value))
             score += 1
+    elif type == "float":
+        try:
+            value = float(text)
+        except ValueError:
+            LOGGER.debug("%s is not a valid float" % element_name)
+            comments.append("%s is not a valid float" % element_name)
+        else:
+            LOGGER.debug('Found %s "%s"' % (element_name, value))
+            score += 1
     elif type == "string":
         try:
             value = str(text)

@@ -69,6 +69,8 @@ KEYWORDS = [
 
 DESCRIPTION = 'A Python implementation of the test suite for WMO WIGOS Metadata Representation'  # noqa
 
+codelist_names = ["AltitudeOrDepth","SurfaceCoverIGBP","ApplicationArea","SurfaceCoverLAI","ClimateZone","SurfaceCoverLCCS","EventAtFacility","SurfaceCoverNPP","GeopositioningMethod","SurfaceCoverPFT","LocalTopography","SurfaceCoverUMD","ProgramAffiliation","SurfaceRoughnessDavenport","RelativeElevation","TerritoryName","SurfaceCoverClassification","TopographicContext","SurfaceCoverGlob2009","WMORegion","SourceOfObservation","ReferenceSurfaceType","Exposure","Representativeness","DataCommunicationMethod"]
+
 # ensure a fresh MANIFEST file is generated
 if (os.path.exists('MANIFEST')):
     os.unlink('MANIFEST')
@@ -103,7 +105,6 @@ if not os.path.exists(USERDIR):
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
-        codelist_names = ["AltitudeOrDepth","SurfaceCoverIGBP","ApplicationArea","SurfaceCoverLAI","ClimateZone","SurfaceCoverLCCS","EventAtFacility","SurfaceCoverNPP","GeopositioningMethod","SurfaceCoverPFT","LocalTopography","SurfaceCoverUMD","ProgramAffiliation","SurfaceRoughnessDavenport","RelativeElevation","TerritoryName","SurfaceCoverClassification","TopographicContext","SurfaceCoverGlob2009","WMORegion"]
         for codelist in codelist_names:
             FILE_URL = f'http://codes.wmo.int/wmdr/{codelist}?_format=rdf'
             rdf_filename = f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist{os.sep}{codelist}.rdf'
