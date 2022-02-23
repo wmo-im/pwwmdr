@@ -5,3 +5,4 @@ pyspellchecker
 python-dateutil
 geopandas
 validators
+tzwhere

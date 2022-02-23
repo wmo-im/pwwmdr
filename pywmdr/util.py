@@ -23,6 +23,8 @@ import glob
 import re
 import validators
 import pytz
+from tzwhere import tzwhere
+tzwhere = tzwhere.tzwhere()
 
 from lxml import etree
 
@@ -356,7 +358,7 @@ def check_url(url: str, check_ssl: bool) -> dict:
     return result
 
 
-def validate_wmdr_xml(xml):
+def validate_wmdr_xml(xml,version="1.0"):
     """
     Perform XML Schema validation of WMDR Metadata
 
@@ -370,7 +372,7 @@ def validate_wmdr_xml(xml):
         raise IOError(f'{userdir} does not exist')
     if isinstance(xml, str):
         xml = etree.fromstring(xml)
-    xsd = os.path.join(userdir, 'wmdr.xsd')
+    xsd = os.path.join(userdir, "schema","xsd", version, 'wmdr.xsd')
     LOGGER.debug(f'Validating {xml} against schema {xsd}')
     schema = etree.XMLSchema(etree.parse(xsd))
     schema.assertValid(xml)
@@ -447,21 +449,44 @@ def get_region(lon,lat,getNotation=False):
     
     return region
 
+# def is_within_timezone_(lon,lat,tzid):
+#     userdir = get_userdir()
+#     timezones_geojson_file = f'{userdir}/schema/resources/maps/timezones.json'
+#     timezones = gpd_read_file(timezones_geojson_file)
+#     l = [timezones.tzid[i] for i in range(0,len(timezones.tzid))]
+#     if tzid not in l:
+#         raise ValueError('timezone not found in code list')
+#         return
+#     i = l.index(tzid)
+#     geometry = timezones.geometry[i]
+#     st0 = Point(lon,lat)
+#     if st0.within(geometry):
+#         return True
+#     else:
+#         raise ValueError('coordinates dont match timezone')
+
 def is_within_timezone(lon,lat,tzid):
-    userdir = get_userdir()
-    timezones_geojson_file = f'{userdir}/schema/resources/maps/timezones.json'
-    timezones = gpd_read_file(timezones_geojson_file)
-    l = [timezones.tzid[i] for i in range(0,len(timezones.tzid))]
-    if tzid not in l:
+    
+    if tzid not in pytz.all_timezones:
         raise ValueError('timezone not found in code list')
-        return
-    i = l.index(tzid)
-    geometry = timezones.geometry[i]
-    st0 = Point(lon,lat)
-    if st0.within(geometry):
-        return True
-    else:
-        raise ValueError('coordinates dont match timezone')
+    
+    timezone_str = tzwhere.tzNameAt(lat, lon)
+    if timezone_str != tzid:
+        raise ValueError('coordinates don\'t match timezone')
+    
+    return True
+    # timezone = pytz.timezone(timezone_str)
+    # dt = datetime.datetime.now()
+    # timezone.utcoffset(dt)
+
+def timezone_to_offset(tz_string):
+    timezone = pytz.timezone(tz_string)
+    offset = timezone.utcoffset(datetime.utcnow())
+    total_seconds = offset.total_seconds()
+    sign = lambda x: ("+", "-")[x<0]
+    hours, remainder = divmod(abs(total_seconds), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return '%s%02d:%02d' % (sign(total_seconds), int(hours), int(minutes))
 
 def validate_url(url):
     return validators.url(url)
@@ -501,16 +526,19 @@ def get_href_and_validate(exml,xpath,namespaces,codelist,element_name):
 def get_text_and_validate(exml,xpath,namespaces,type="integer",element_name="element",min_length=1,codelist=None,get_only_first_match=True):
     # finds and validates matches of provided xpath 
     # returns score, comments, value
+    score = 0
     comments = []
+    value = []
     matches = exml.xpath(xpath,namespaces=namespaces)
     if not len(matches):
         LOGGER.debug("%s not found" % element_name)
         comments.append("%s not found" % element_name)
     else:
-        text = matches[0].text
-
         if(get_only_first_match):
-            return validate_text(text,type,element_name,min_length,codelist)
+            text = matches[0].text
+            score, comments, value = validate_text(text,type,element_name,min_length,codelist)
+            # LOGGER.debug("validate text result: %s, %s, %s" % (score, ",".join(comments), value))
+            return score, comments, value
         else:   # validates all matches and returns average score
             sum = 0
             count = 0
@@ -523,13 +551,16 @@ def get_text_and_validate(exml,xpath,namespaces,type="integer",element_name="ele
                 count = count + 1
                 value.append(svalue)
             score = sum/count 
-            return score, comments, value
+    return score, comments, value
 
-def validate_text(text,type="integer",element_name="element",min_length=1,codelist=None):
+def validate_text(text,type="integer",element_name="element",min_length=1,codelist=None,caseSensitive=False):
     score = 0
     comments = []
     value = None
-    if type == "integer":
+    if not text:
+        LOGGER.debug("%s is missing or empty" % element_name)
+        comments.append("%s is missing or empty" % element_name)
+    elif type == "integer":
         try:
             value = int(text)
         except ValueError:
@@ -550,13 +581,18 @@ def validate_text(text,type="integer",element_name="element",min_length=1,codeli
                 comments.append("%s is shorter than minimum length" % element_name)
             else:   
                 if codelist:
+                    if(not caseSensitive):
+                        codelist = [item.lower() for item in codelist]
+                        value = value.lower()
                     if value not in codelist:
                         LOGGER.debug('%s not present in codelist' % element_name)
                         comments.append('%s not present in codelist' % element_name)
+                        value = None
                     else:
                         if value.lower() == 'unknown' or value.lower() == 'inapplicable':
                             LOGGER.debug('%s is unknown or inapplicable' % element_name)
                             comments.append('%s is unknown or inapplicable' % element_name)
+                            value = None
                         else:
                             LOGGER.debug('Found %s "%s"' % (element_name, value))
                             score += 1
@@ -581,27 +617,37 @@ def validate_text(text,type="integer",element_name="element",min_length=1,codeli
                 LOGGER.debug('Found %s "%s"' % (element_name, value))
                 score += 1
     elif type == "datetime":
-        try:
-            value = datetime.fromisoformat(re.sub('Z$','+00:00',text))
-        except ValueError:
-            LOGGER.debug("%s is not a valid date" % element_name)
-            comments.append("%s is not a valid date" % element_name)
+        if isinstance(text,str):
+            try:
+                value = datetime.fromisoformat(re.sub('Z$','+00:00',text))
+            except ValueError:
+                LOGGER.debug("%s is not a valid date" % element_name)
+                comments.append("%s is not a valid date" % element_name)
+            else:
+                LOGGER.debug('Found %s "%s"' % (element_name, value))
+                score += 1
         else:
-            LOGGER.debug('Found %s "%s"' % (element_name, value))
-            score += 1
+            LOGGER.debug("%s is not a string" % element_name)
+            comments.append("%s is not a string" % element_name)
     elif type == "href":
         value = str(text)
+        if(not caseSensitive):
+            codelist = [item.lower() for item in codelist]
+            value = value.lower()
         if value not in codelist:
-                LOGGER.debug('%s not present in codelist' % element_name)
-                comments.append('%s not present in codelist' % element_name)
+            LOGGER.debug('%s not present in codelist' % element_name)
+            comments.append('%s not present in codelist' % element_name)
+            value = None
         else:
             if value.split("/")[-1].lower() == 'unknown' or value.split("/")[-1].lower() == 'inapplicable':
                 LOGGER.debug('%s is unknown or inapplicable' % element_name)
                 comments.append('%s is unknown or inapplicable' % element_name)
+                value = None
             else:
                 LOGGER.debug('Found %s "%s"' % (element_name, value))
                 score += 1
     else:
         raise RuntimeError("invalid type: %s" % type)
     
+    # LOGGER.debug("%s, %s, %s" % (score, ",".join(comments), value))
     return score, comments, value

@@ -92,8 +92,17 @@ class WMDRKeyPerformanceIndicators:
         if rtag != "{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord":
             wigosmetadatarecord = exml.getroot().find('.//{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord')
             if wigosmetadatarecord is None:
-                raise RuntimeError('Does not look like a WMDR document!')
-            exml._setroot(wigosmetadatarecord)
+                if rtag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
+                    wigosmetadatarecord = exml.getroot().find('{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord')
+                    if wigosmetadatarecord is None:
+                        raise RuntimeError('Does not look like a WMDR document!')
+                    else:
+                        exml._setroot(wigosmetadatarecord)
+                LOGGER.debug("Warning: document is wmdr/2017 (1.0RC9)!")
+                self.version = "1.0RC9"
+            else:
+                exml._setroot(wigosmetadatarecord)
+                self.version = "1.0"
         self.exml = exml
         self.namespaces = self.exml.getroot().nsmap
         # remove empty (default) namespace to avoid exceptions in exml.xpath
@@ -1412,6 +1421,7 @@ class WMDRKeyPerformanceIndicators:
 
         total = 8
         score = 0
+        previous_score = 0
         comments = []
         name = 'KPI-6-0: Value of a station for WIGOS'
         LOGGER.info(f'Running {name}')
@@ -1420,7 +1430,7 @@ class WMDRKeyPerformanceIndicators:
         # 2 - 3 program affiliations (score: 1)
         # 3 - 5 program affiliations (score: 2)
         # More than 5 program affiliations (score: 3)
-        
+
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:programAffiliation/wmdr:ProgramAffiliation/wmdr:programAffiliation'
         element_name = "program affiliation"
         matches = self.exml.xpath(xpath,namespaces=self.namespaces)
@@ -1431,7 +1441,7 @@ class WMDRKeyPerformanceIndicators:
             programs = set()
             for match in matches:
                 href = match.get('{http://www.w3.org/1999/xlink}href')
-                # NOTE should codelist matching be case-sensitive? 
+                # NOTE should codelist matching be case-sensitive? probably NOT! 
                 sscore, scomments, svalue = validate_text(href,"href",element_name,codelist=self.codelists["ProgramAffiliation"])
                 comments = comments + scomments
                 if(svalue):
@@ -1450,6 +1460,8 @@ class WMDRKeyPerformanceIndicators:
                 LOGGER.debug("found 0-1 %s (goal >5)" % element_name)
                 comments.append("found 0-1 %s (goal >5)" % element_name)
         
+        LOGGER.debug("rule 6-0-00, score: %s, goal %s" % (score-previous_score,3))
+        previous_score = score
         # Rule 6-0-01 Observations / measurements
         # 2 - 5 observations (score: 1)
         # 5 - 10 observations (score: 2)
@@ -1476,30 +1488,46 @@ class WMDRKeyPerformanceIndicators:
                 LOGGER.debug("found 1 %s (goal >10)" % element_name)
                 comments.append("found 1 %s (goal >10)" % element_name)
 
+        LOGGER.debug("rule 6-0-01, score: %s, goal %s" % (score-previous_score,3))
+        previous_score = score
+
         # Rule 6-0-02 Application area(s). Deployment has more than one application area.
         # 1 (for each deployment)
         
-        xpath = '//wmdr:deployment/wmdr:Deployment/wmdr:applicationArea'
-        element_name = "application area"
-        matches = self.exml.xpath(xpath,namespaces=self.namespaces)
-        if(not len(matches)):
+        xpath = '//wmdr:deployment/wmdr:Deployment'
+        element_name = "deployment"
+        deployments = self.exml.xpath(xpath,namespaces=self.namespaces)
+        if(not len(deployments)):
             LOGGER.debug("%s not found" % element_name)
             comments.append("%s not found" % element_name)
         else:
-            application_areas = set()
-            count = 0
-            for match in matches:
-                count = count + 1
-                text = match.get('{http://www.w3.org/1999/xlink}href')
-                sscore, scomments, svalue = validate_text(text,"href",element_name,codelist=self.codelists["ApplicationArea"])
-                comments = comments + scomments
-                if(svalue):
-                    application_areas.add(svalue)
-            if len(application_areas) < 2:
-                LOGGER.debug("found 0-1 valid %s (goal >1)" % element_name)
-                comments.append("found 0-1 valid %s (goal >1)" % element_name)
-            else:
-                score += len(application_areas) / count * 1
+            sub_score = 0
+            for deployment in deployments:
+                xpath = 'wmdr:applicationArea'
+                element_name = "application area"
+                matches = deployment.xpath(xpath,namespaces=self.namespaces)
+                if(not len(matches)):
+                    LOGGER.debug("%s not found" % element_name)
+                    comments.append("%s not found" % element_name)
+                else:
+                    application_areas = set()
+                    count = 0
+                    for match in matches:
+                        count = count + 1
+                        text = match.get('{http://www.w3.org/1999/xlink}href')
+                        sscore, scomments, svalue = validate_text(text,"href",element_name,codelist=self.codelists["ApplicationArea"])
+                        comments = comments + scomments
+                        if(svalue):
+                            application_areas.add(svalue)
+                    if len(application_areas) < 2:
+                        LOGGER.debug("found 0-1 valid %s (goal >1)" % element_name)
+                        comments.append("found 0-1 valid %s (goal >1)" % element_name)
+                    else:
+                        sub_score += 1
+            score += sub_score / len(deployments)
+
+        LOGGER.debug("rule 6-0-04, score: %s, goal %s" % (score-previous_score,1))
+        previous_score = score
 
         # Rule 6-0-03 Near real time availability. Data are available for near real time. 
         # 1 (for each deployment) 
@@ -1528,6 +1556,8 @@ class WMDRKeyPerformanceIndicators:
                         sum = sum + 1
             score += sum / count * 1
 
+        LOGGER.debug("rule 6-0-04, score: %s, goal %s" % (score-previous_score,1))
+
         return name, total, score, comments
     
     def kpi_61(self):
@@ -1543,7 +1573,7 @@ class WMDRKeyPerformanceIndicators:
         name = 'KPI-6-1: Maintenance of a station record'
         LOGGER.info(f'Running {name}')
 
-        # TODO 
+        # TODO as defined by Oscar/surface
 
         return name, total, score, comments
 

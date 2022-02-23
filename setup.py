@@ -77,10 +77,20 @@ print(f'Downloading WMO WMDR XML Schemas and Codelists.xml to {USERDIR}')
 
 if not os.path.exists(USERDIR):
     os.mkdir(USERDIR)
+    os.mkdir(f'{USERDIR}{os.sep}schema')
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd')
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0')
     FILE_URL = 'https://raw.githubusercontent.com/wmo-im/wmdr/master/xsd/wmdr.xsd'
-    xsd_filename = f'{USERDIR}{os.sep}wmdr.xsd'
+    xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0{os.sep}wmdr.xsd'
     with open(xsd_filename,'wb') as f:
         f.write(urlopen_(FILE_URL).read())
+
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9')
+    FILE_URL = 'https://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd'
+    xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9{os.sep}wmdr.xsd'
+    with open(xsd_filename,'wb') as f:
+        f.write(urlopen_(FILE_URL).read())
+
 
     CODELIST_URL = 'https://wis.wmo.int/2012/codelists/WMOCodeLists.xml'  # do we have this for wigos?
 
@@ -89,11 +99,16 @@ if not os.path.exists(USERDIR):
     with open(schema_filename, 'wb') as f:
         f.write(urlopen_(CODELIST_URL).read())
 
-    if not os.path.exists(f'{USERDIR}{os.sep}schema'):
-        os.mkdir(f'{USERDIR}{os.sep}schema')
+    if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources'):
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
         os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
+        codelist_names = ["AltitudeOrDepth","SurfaceCoverIGBP","ApplicationArea","SurfaceCoverLAI","ClimateZone","SurfaceCoverLCCS","EventAtFacility","SurfaceCoverNPP","GeopositioningMethod","SurfaceCoverPFT","LocalTopography","SurfaceCoverUMD","ProgramAffiliation","SurfaceRoughnessDavenport","RelativeElevation","TerritoryName","SurfaceCoverClassification","TopographicContext","SurfaceCoverGlob2009","WMORegion"]
+        for codelist in codelist_names:
+            FILE_URL = f'http://codes.wmo.int/wmdr/{codelist}?_format=rdf'
+            rdf_filename = f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist{os.sep}{codelist}.rdf'
+            with open(rdf_filename,'wb') as f:
+                f.write(urlopen_(FILE_URL).read())
         script_dirname = os.path.dirname(__file__)
         codelist_filenames = os.path.join(script_dirname, 'resources/Codelist/*.rdf')
         for file in glob.glob(codelist_filenames):

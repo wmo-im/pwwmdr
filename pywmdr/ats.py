@@ -73,8 +73,17 @@ class WMDRTestSuite:
         if rtag != "{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord":
             wigosmetadatarecord = exml.getroot().find('.//{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord')
             if wigosmetadatarecord is None:
-                raise RuntimeError('Does not look like a WMDR document!')
-            exml._setroot(wigosmetadatarecord)
+                if rtag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
+                    wigosmetadatarecord = exml.getroot().find('{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord')
+                    if wigosmetadatarecord is None:
+                        raise RuntimeError('Does not look like a WMDR document!')
+                    else:
+                        exml._setroot(wigosmetadatarecord)
+                LOGGER.debug("Warning: document is wmdr/2017 (1.0RC9)!")
+                self.version = "1.0RC9"
+            else:
+                exml._setroot(wigosmetadatarecord)
+                self.version = "1.0"
         self.exml = exml
         self.namespaces = self.exml.getroot().nsmap
 
@@ -106,7 +115,7 @@ class WMDRTestSuite:
     def test_requirement_1_1_1(self):
         """Requirement 1.1.1: Each WIGOS Metadata record shall validate without error against the XML schemas defined in https://schemas.wmo.int/wmdr/"""
         self.test_id = gen_test_id('WMDR-xml-schema-validation')
-        validate_wmdr_xml(self.exml)
+        validate_wmdr_xml(self.exml,version=self.version)
 
     def _get_wmo_keyword_lists(self, code: str = 'WMO_CategoryCode') -> list:
         """
