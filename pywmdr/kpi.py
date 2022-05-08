@@ -1424,71 +1424,97 @@ class WMDRKeyPerformanceIndicators:
 
         LOGGER.info(f'Running {name}')
 
-        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty'
-
-        responsibleParties = self.exml.xpath(xpath, namespaces=self.namespaces)
-        total += 5*len(responsibleParties)
-
-
-        if len(responsibleParties) > 0:
-            responsiblePartyRecord = 1 
-            for responsibleParty in responsibleParties:
-                address = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString'))
-                postal_code = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString'))
-                country = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString'))
-                phone = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString'))
-                contact_url = responsibleParty.find(nspath_eval('wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'))
-                LOGGER.info(f'Running ID: 4-1-00 Address')
-                if address is not None:
-                    score += 1
-                    LOGGER.debug('Station contact %s address found' % responsiblePartyRecord)
-                    comments.append('Station contact %s address found' % responsiblePartyRecord)
-                else:
-                    LOGGER.debug("Station contact %s address not found" % responsiblePartyRecord)
-                    comments.append("Station contact %s address not found" % responsiblePartyRecord)
-                LOGGER.info(f'Running ID: 4-1-01 Postal code')
-                if postal_code is not None:
-                    score += 1
-                    LOGGER.debug('Station contact %s postal code found' % responsiblePartyRecord)
-                    comments.append('Station contact %s postal code found' % responsiblePartyRecord)
-                else:
-                    LOGGER.debug("Station contact %s postal code not found" % responsiblePartyRecord)
-                    comments.append("Station contact %s postal code not found" % responsiblePartyRecord)
-                LOGGER.info(f'Running ID: 4-1-02 Country')
-                if country is not None:
-                    score += 1
-                    LOGGER.debug('Station contact %s country found' % responsiblePartyRecord)
-                    comments.append('Station contact %s country found' % responsiblePartyRecord)
-                else:
-                    LOGGER.debug("Station contact %s country not found" % responsiblePartyRecord)
-                    comments.append("Station contact %s country not found" % responsiblePartyRecord)
-                LOGGER.info(f'Running ID: 4-1-03 Phone (main & other)')
-                if phone is not None:
-                    score += 1
-                    LOGGER.debug('Station contact %s phone found' % responsiblePartyRecord)
-                    comments.append('Station contact %s phone found' % responsiblePartyRecord)
-                else:
-                    LOGGER.debug("Station contact %s phone not found" % responsiblePartyRecord)
-                    comments.append("Station contact %s phone not found" % responsiblePartyRecord)
-                LOGGER.info(f'Running ID: 4-1-04 Contact URL')
-                if contact_url is not None:
-                    result = check_url(contact_url.text, False)
-                    if result['accessible']:
-                        score += 1
-                        LOGGER.debug("Station contact %s URL found and valid" % responsiblePartyRecord)
-                        comments.append("Station contact %s URL found and valid" % responsiblePartyRecord)
-                    else:
-                        LOGGER.debug(f'Station contact %s URL not not accessible: {contact_url.text}' % responsiblePartyRecord)
-                        comments.append(f'Station contact %s URL not accessible: {contact_url.text}' % responsiblePartyRecord)
-                else:
-                    LOGGER.debug("Station contact %s URL not found" % responsiblePartyRecord)
-                    comments.append("Station contact %s URL not found" % responsiblePartyRecord)
-                responsiblePartyRecord += 1 
+        # get wmdr:responsibleParty
+        responsibleParties = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty',namespaces=self.namespaces)
+        if not len(responsibleParties):
+            comments.append("responsibleParty not found")
+            total = 5
         else:
-            LOGGER.debug("No responsibleParty found")
-            comments.append("No responsibleParty found")
+        # compute kpi for each wmdr:responsibleParty instance
+            i = 0
+            for instance in responsibleParties:
+                i += 1
+                # LOGGER.debug(instance)
+                el_total = 0
+                el_score = 0
+                # Rule 4-1-00: delivery point
+                stotal, sscore, scomments = self.kpi_4100(instance)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments
+
+                # Rule 4-1-01: postal code
+                stotal, sscore, scomments = self.kpi_4101(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 4-1-02: country
+                stotal, sscore, scomments = self.kpi_4102(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 4-1-03: telephone
+                stotal, sscore, scomments = self.kpi_4103(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 4-1-04: online resource
+                stotal, sscore, scomments = self.kpi_4104(instance)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                LOGGER.debug("instance %s, total: %s, score: %s" % (i, el_total, el_score))
+                total += el_total
+                score += el_score
+
+            total = total / len(responsibleParties)
+            score = score / len(responsibleParties)
 
         return name, total, score, comments
+
+    def kpi_4100(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","delivery point")
+        return total, score, comments
+
+    def kpi_4101(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","postal code")
+        return total, score, comments
+
+    def kpi_4102(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","state or province")
+        return total, score, comments
+
+    def kpi_4103(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","phone (main or other)")
+        return total, score, comments
+
+    def kpi_4104(self, instance):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","contact URL")
+        return total, score, comments
 
     def kpi_50(self) -> tuple:
         """
