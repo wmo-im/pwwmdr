@@ -141,6 +141,24 @@ def get_codelists_from_rdf():
 
     return codelists
 
+def get_unit_notation():
+    """
+    Helper function to extract notation from RDF XML files
+
+    :returns: `list` of notation
+
+    """
+    userdir = get_userdir()
+
+    notation = []
+    unit_code_list = f'{userdir}/schema/resources/Codelist/unit.rdf'
+
+    xml = etree.parse(unit_code_list)
+    container = xml.getroot()[0]
+    for concept in container.findall(nspath_eval('skos:member/skos:Concept')):
+        notation.append(concept.find(nspath_eval('skos:notation')).text)
+
+    return notation
 
 def get_string_or_anchor_value(parent) -> list:
     """
