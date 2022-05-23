@@ -898,6 +898,7 @@ class WMDRKeyPerformanceIndicators:
         """
         total = 0
         score = 0
+        number_of_deployments = 0
         comments = []
         name = 'KPI-3-1: Deployment'
         LOGGER.info(f'Running {name}')
@@ -909,6 +910,7 @@ class WMDRKeyPerformanceIndicators:
             total = 27
         else:
         # compute kpi for each OM_Observation instance
+            number_of_deployments = len(OM_Observations)
             i = 0
             for instance in OM_Observations:
                 i += 1
@@ -916,263 +918,263 @@ class WMDRKeyPerformanceIndicators:
                 el_total = 0
                 el_score = 0
                 # Rule 3-1-00: Source of observation
-                stotal, sscore, scomments = self.kpi_3100(instance)
+                stotal, sscore, scomments = self.kpi_3100(instance,i)
                 el_total += stotal
                 el_score += sscore
                 comments = comments + scomments 
 
                 # Rule 3-1-01: Distance from reference surface 
-                stotal, sscore, scomments = self.kpi_3101(instance)
+                stotal, sscore, scomments = self.kpi_3101(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments 
 
                 # Rule 3-1-02: Type of reference surface 
-                stotal, sscore, scomments = self.kpi_3102(instance)
+                stotal, sscore, scomments = self.kpi_3102(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments 
 
                 # Rule 3-1-03: Application area(s)
-                stotal, sscore, scomments = self.kpi_3103(instance)
+                stotal, sscore, scomments = self.kpi_3103(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments 
 
                 # Rule 3-1-04: Exposure of instrument
-                stotal, sscore, scomments = self.kpi_3104(instance)
+                stotal, sscore, scomments = self.kpi_3104(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments 
 
                 # Rule 3-1-05: Configuration of instrument 
-                stotal, sscore, scomments = self.kpi_3105(instance)
+                stotal, sscore, scomments = self.kpi_3105(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-06: Representativeness of observation
-                stotal, sscore, scomments = self.kpi_3106(instance)
+                stotal, sscore, scomments = self.kpi_3106(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-07: Measurement leader / principal investigator
-                stotal, sscore, scomments = self.kpi_3107(instance)
+                stotal, sscore, scomments = self.kpi_3107(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-08: Organization
-                stotal, sscore, scomments = self.kpi_3108(instance)
+                stotal, sscore, scomments = self.kpi_3108(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-09: Near Real Time 
-                stotal, sscore, scomments = self.kpi_3109(instance)
+                stotal, sscore, scomments = self.kpi_3109(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-10: (not defined)
-                # stotal, sscore, scomments = self.kpi_3110(instance)
+                # stotal, sscore, scomments = self.kpi_3110(instance,i)
                 # el_total  += stotal
                 # el_score  += sscore
                 # comments = comments + scomments
 
                 # Rule 3-1-11: Data URL (same as 3-1-09.2)
-                # stotal, sscore, scomments = self.kpi_3111(instance)
+                # stotal, sscore, scomments = self.kpi_3111(instance,i)
                 # el_total  += stotal
                 # el_score  += sscore
                 # comments = comments + scomments
 
                 # Rule 3-1-12: Data communication method
-                stotal, sscore, scomments = self.kpi_3112(instance)
+                stotal, sscore, scomments = self.kpi_3112(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 3-1-13: Instrument QA/QC schedule
-                stotal, sscore, scomments = self.kpi_3113(instance)
+                stotal, sscore, scomments = self.kpi_3113(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-14: Maintenance schedule 
-                stotal, sscore, scomments = self.kpi_3114(instance)
+                stotal, sscore, scomments = self.kpi_3114(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-15: Instrument details
-                stotal, sscore, scomments = self.kpi_3115(instance)
+                stotal, sscore, scomments = self.kpi_3115(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-16: 
-                stotal, sscore, scomments = self.kpi_3116(instance)
+                stotal, sscore, scomments = self.kpi_3116(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-17: Coordinates
-                stotal, sscore, scomments = self.kpi_3117(instance)
+                stotal, sscore, scomments = self.kpi_3117(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-18: Instrument operating status
-                stotal, sscore, scomments = self.kpi_3118(instance)
+                stotal, sscore, scomments = self.kpi_3118(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-19: Firmware version
-                stotal, sscore, scomments = self.kpi_3119(instance)
+                stotal, sscore, scomments = self.kpi_3119(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-20: Observable range
-                stotal, sscore, scomments = self.kpi_3120(instance)
+                stotal, sscore, scomments = self.kpi_3120(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-21: Uncertainty
-                stotal, sscore, scomments = self.kpi_3121(instance)
+                stotal, sscore, scomments = self.kpi_3121(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-22: Drift per unit time
-                stotal, sscore, scomments = self.kpi_3122(instance)
+                stotal, sscore, scomments = self.kpi_3122(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-23: Specification URL 
-                stotal, sscore, scomments = self.kpi_3123(instance)
+                stotal, sscore, scomments = self.kpi_3123(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-24: Uncertainty evaluation procedure 
-                stotal, sscore, scomments = self.kpi_3124(instance)
+                stotal, sscore, scomments = self.kpi_3124(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-25: Observation frequency and polarization 
-                stotal, sscore, scomments = self.kpi_3125(instance)
+                stotal, sscore, scomments = self.kpi_3125(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-26: Telecommunication frequency 
-                stotal, sscore, scomments = self.kpi_3126(instance)
+                stotal, sscore, scomments = self.kpi_3126(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
                 
                 # Rule 3-1-27: Data generation
-                stotal, sscore, scomments = self.kpi_3127(instance)
+                stotal, sscore, scomments = self.kpi_3127(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
-                LOGGER.debug("instance %s, total: %s, score: %s" % (i, el_total, el_score))
+                LOGGER.debug("deployment number %s, total: %s, score: %s" % (i, el_total, el_score))
                 total += el_total
                 score += el_score
 
             total = total / len(OM_Observations)
             score = score / len(OM_Observations)
-        return name, total, score, comments
+        return name, total, score, comments, number_of_deployments
 
-    def kpi_3100(self,instance):
+    def kpi_3100(self,instance,deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:sourceOfObservation'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["SourceOfObservation"],"source of observation")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["SourceOfObservation"],"deployment number %s source of observation" % deployment_number)
         return total, score, comments
 
-    def kpi_3101(self, instance):
+    def kpi_3101(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:heightAboveLocalReferenceSurface'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"float","deployment height above local reference surface")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"float","deployment number %s height above local reference surface" % deployment_number)
         return total, score, comments
 
-    def kpi_3102(self, instance):
+    def kpi_3102(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:localReferenceSurface'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ReferenceSurfaceType"],"reference surface type")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ReferenceSurfaceType"],"deployment number %s reference surface type" % deployment_number)
         return total, score, comments
 
-    def kpi_3103(self, instance):
+    def kpi_3103(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:applicationArea'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ApplicationArea"],"application area")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ApplicationArea"],"deployment number %s application area" % deployment_number)
         return total, score, comments
 
-    def kpi_3104(self, instance):
+    def kpi_3104(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:exposure'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Exposure"],"exposure")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Exposure"],"deployment number %s exposure" % deployment_number)
         return total, score, comments
 
-    def kpi_3105(self, instance):
+    def kpi_3105(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:configuration'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment configuration")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s configuration" % deployment_number)
         return total, score, comments
 
-    def kpi_3106(self, instance):
+    def kpi_3106(self, instance, deployment_number):
         total = 1
         score = 0
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:representativeness'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Representativeness"],"representativeness")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Representativeness"],"deployment number %s representativeness" % deployment_number)
         comments = []
 
         return total, score, comments
 
-    def kpi_3107(self, instance):
+    def kpi_3107(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:metadata/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:individualName/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","contact responsible party individual name")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s contact responsible party individual name" % deployment_number)
         return total, score, comments
 
-    def kpi_3108(self, instance):
+    def kpi_3108(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:metadata/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:organizationName/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","contact responsible party organization name")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s contact responsible party organization name" % deployment_number)
         return total, score, comments
 
-    def kpi_3109(self, instance):
+    def kpi_3109(self, instance, deployment_number):
         total = 2
         xpath = './om:result/wmdr:ResultSet/wmdr:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description/gco:CharacterString'
-        score1, comments1, value1 = get_text_and_validate(instance,xpath,self.namespaces,"string","online resource description")
+        score1, comments1, value1 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s online resource description" % deployment_number)
         xpath = './om:result/wmdr:ResultSet/wmdr:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
-        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"url","online resource linkage url")
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"url","deployment number %s online resource linkage url" % deployment_number)
         return total, score1+score2, comments1+comments2
 
-    def kpi_3110(self, instance):
+    def kpi_3110(self, instance, deployment_number):
         # NOT DEFINED
         total = 1
         score = 0
@@ -1180,7 +1182,7 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
 
-    def kpi_3111(self, instance):
+    def kpi_3111(self, instance, deployment_number):
         # same as 3109.2
         total = 1
         score = 0
@@ -1188,45 +1190,45 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
 
-    def kpi_3112(self, instance):
+    def kpi_3112(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:communicationMethod'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["DataCommunicationMethod"],"communication method")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["DataCommunicationMethod"],"deployment number %s communication method" % deployment_number)
         return total, score, comments
 
-    def kpi_3113(self, instance):
+    def kpi_3113(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:controlSchedule'
-        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment control schedule")
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s control schedule" % deployment_number)
         return total, score, comments
 
-    def kpi_3114(self, instance):
+    def kpi_3114(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:maintenanceSchedule'
-        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment maintenance schedule")
+        score2, comments2, value2 = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s maintenance schedule" % deployment_number)
         return total, score, comments
 
-    def kpi_3115(self, instance):
+    def kpi_3115(self, instance, deployment_number):
         total = 3
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:manufacturer'
-        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","manufacturer")
+        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","deployment number %s manufacturer" % deployment_number)
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:model'
-        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"string","model")
+        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"string","deployment number %s model" % deployment_number)
         xpath3 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:serialNumber'
-        score3, comments3, value3 = get_text_and_validate(instance,xpath3,self.namespaces,"string","serialNumber")
+        score3, comments3, value3 = get_text_and_validate(instance,xpath3,self.namespaces,"string","deployment number %s serialNumber" % deployment_number)
         score = score1 + score2 + score3
         comments = comments1 + comments2 + comments3
         return total, score, comments
 
-    def kpi_3116(self, instance):
+    def kpi_3116(self, instance, deployment_number):
         # NOT DEFINED
         total = 0
         score = 0
@@ -1234,45 +1236,45 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
 
-    def kpi_3117(self, instance):
+    def kpi_3117(self, instance, deployment_number):
         total = 2
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geoLocation/gml:Point/gml:pos'
-        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","geolocation")
+        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","deployment number %s geolocation" % deployment_number)
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:geospatialLocation/wmdr:GeospatialLocation/wmdr:geopositioningMethod'
-        score2, comments2, value2 = get_href_and_validate(instance,xpath2,self.namespaces,self.codelists["GeopositioningMethod"],"geopositioning method")
+        score2, comments2, value2 = get_href_and_validate(instance,xpath2,self.namespaces,self.codelists["GeopositioningMethod"],"deployment number %s geopositioning method" % deployment_number)
         score = score1 + score2
         comments = comments1 + comments2
         return total, score, comments
 
-    def kpi_3118(self, instance):
+    def kpi_3118(self, instance, deployment_number):
         total = 2
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:instrumentOperatingStatus/wmdr:InstrumentOperatingStatus/wmdr:instrumentOperatingStatus'
-        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["InstrumentOperatingStatus"],"instrument operating status")
+        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["InstrumentOperatingStatus"],"deployment number %s instrument operating status" % deployment_number)
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:instrumentOperatingStatus/wmdr:InstrumentOperatingStatus/wmdr:validPeriod/gml:TimePeriod/gml:beginPosition'
-        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"datetime","valid begin position of time period")
+        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"datetime","deployment number %s valid begin position of time period" % deployment_number)
         score = score1 + score2
         comments = comments1 + comments2
         return total, score, comments
 
-    def kpi_3119(self, instance):
+    def kpi_3119(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:firmwareVersion'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","firmware version")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s firmware version" % deployment_number)
         return total, score, comments
 
-    def kpi_3120(self, instance):
+    def kpi_3120(self, instance, deployment_number):
         #this is in principle just a string but it should contain one MeasurementUnitType.
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:observableRange'
-        value_words = str(get_text_and_validate(instance,xpath,self.namespaces,"string","observable Range")[2]).split()
+        value_words = str(get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s observable Range" % deployment_number)[2]).split()
         units = get_unit_notation()
         has_units = False
         for value in value_words:
@@ -1284,10 +1286,10 @@ class WMDRKeyPerformanceIndicators:
         if has_units:
             score += 1
         else:
-            comments.append('valid unit is not specified for observable range')
+            comments.append('deployment number %s valid unit is not specified for observable range' % deployment_number)
         return total, score, comments
 
-    def kpi_3121(self, instance):
+    def kpi_3121(self, instance, deployment_number):
         #this is in principle just a string, so a value is difficult to assess.
         total = 2
         score = 0
@@ -1297,59 +1299,59 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
 
-    def kpi_3122(self, instance):
+    def kpi_3122(self, instance, deployment_number):
         #allow only a number value
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:driftPerUnitTime'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"integer","drift per unit time")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"integer","deployment number %s drift per unit time" % deployment_number)
         return total, score, comments
 
-    def kpi_3123(self, instance):
+    def kpi_3123(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:specificationLink'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","specification link")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","deployment number %s specification link" % deployment_number)
         return total, score, comments
 
-    def kpi_3124(self, instance):
+    def kpi_3124(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:uncertaintyEvalProc'
-        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["UncertaintyEstimateProcedure"],"uncertainty estimated procedure")
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["UncertaintyEstimateProcedure"],"deployment number %s uncertainty estimated procedure" % deployment_number)
         return total, score, comments
 
-    def kpi_3125(self, instance):
+    def kpi_3125(self, instance, deployment_number):
         #check observation only, if not total = 0?
         total = 5
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
-        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"frequency use")
+        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
         #how is this used? in 1.0 it's frequency with uom link, not frequencyUnit
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
         score2, comments2, value2 = [0, [], None]
         xpath3 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:transmissionMode'
-        score3, comments3, value3 = get_href_and_validate(instance,xpath3,self.namespaces,self.codelists["TransmissionMode"],"transmission mode")
+        score3, comments3, value3 = get_href_and_validate(instance,xpath3,self.namespaces,self.codelists["TransmissionMode"],"deployment number %s transmission mode" % deployment_number)
         #how is this used? in 1.0 it's bandwidth with uom link, not bandwidthUnit
         xpath4 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
         score4, comments4, value4 =  [0, [], None]
         xpath5 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:polarization'
-        score5, comments5, value5 = get_href_and_validate(instance,xpath5,self.namespaces,self.codelists["Polarization"],"polarization")
+        score5, comments5, value5 = get_href_and_validate(instance,xpath5,self.namespaces,self.codelists["Polarization"],"deployment number %s polarization" % deployment_number)
         score = score1 + score2 + score3 + score4 + score5
         comments = comments1 + comments2 + comments3 + comments4 + comments5
         return total, score, comments
 
-    def kpi_3126(self, instance):
+    def kpi_3126(self, instance, deployment_number):
         #check telecomms only, if not total = 0?
         total = 3
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
-        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"frequency use")
+        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
         #how is this used? in 1.0 it's frequency with uom link, not frequencyUnit
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
         score2, comments2, value2 = [0, [], None]
@@ -1360,7 +1362,7 @@ class WMDRKeyPerformanceIndicators:
         comments = comments1 + comments2 + comments3
         return total, score, comments
 
-    def kpi_3127(self, instance):
+    def kpi_3127(self, instance, deployment_number):
         total = 1
         score = 0
         comments = []
@@ -1368,12 +1370,12 @@ class WMDRKeyPerformanceIndicators:
         matches = instance.xpath(xpath, namespaces=self.namespaces)
 
         if not len(matches):
-            LOGGER.debug("data generation not found")
-            comments.append("data generation not found")
+            LOGGER.debug("deployment number %s data generation not found" % deployment_number)
+            comments.append("deploymentnumber %s data generation not found" % deployment_number)
         else:
             score += 1
-            LOGGER.debug(f'data generation specified')
-            comments.append(f'data generation specified')
+            LOGGER.debug(f'deployment number %s data generation specified' % deployment_number)
+            comments.append(f'deployment number %s data generation specified' % deployment_number)
 
         return total, score, comments
 
@@ -1755,6 +1757,8 @@ class WMDRKeyPerformanceIndicators:
                 'comments': result[3],
                 'percentage': percentage
             }
+            if len(result) >= 5:
+                results[kpi]["number_of_deployments"] = result[4]
             LOGGER.debug(f'{kpi}: {result[1]} / {result[2]} = {percentage}')
 
         # the summary only if more than one KPI was evaluated

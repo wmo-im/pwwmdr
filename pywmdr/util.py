@@ -25,6 +25,8 @@ import validators
 import pytz
 from tzwhere import tzwhere
 tzwhere = tzwhere.tzwhere()
+from pywmdr.timezone_codelist import makeCodelist, timezone_to_offset
+tz_codelist = makeCodelist()
 
 from lxml import etree
 
@@ -136,8 +138,8 @@ def get_codelists_from_rdf():
             codelists[key].append(concept.get(nspath_eval('rdf:about')))
             codelists[key].append(concept.find(nspath_eval('skos:notation')).text)
 
-    # add time zones from pytz package
-        codelists["TimeZone"] = pytz.all_timezones
+    # add time zones from timezone_codelist package
+        codelists["TimeZone"] = list(tz_codelist["name"]) # pytz.all_timezones
 
     return codelists
 
@@ -248,8 +250,10 @@ def get_userdir() -> str:
 
     :returns: user's home directory
     """
-
-    return f'{os.path.expanduser("~")}{os.sep}.pywmdr'
+    if "SUDO_USER" in os.environ:
+        return "%s%s.pywmdr" % (os.path.expanduser(f'~{os.environ["SUDO_USER"]}'), os.sep)
+    else:
+        return f'{os.path.expanduser("~")}{os.sep}.pywmdr'
 
 
 def nspath_eval(xpath: str) -> str:
@@ -483,28 +487,52 @@ def get_region(lon,lat,getNotation=False):
 #     else:
 #         raise ValueError('coordinates dont match timezone')
 
-def is_within_timezone(lon,lat,tzid):
-    
-    if tzid not in pytz.all_timezones:
+def tz_lookup(tzid):
+    codes = list(tz_codelist["name"])
+    if tzid in codes: # codelists["TimeZone"] # pytz.all_timezones:
+        pass
+        # LOGGER.debug("tzid OK")
+    elif tzid in [re.sub("^UTC","",i) for i in codes]:
+        # LOGGER.debug("tzid missing UTC, fixing")
+        my_index = [re.sub("^UTC","",i) for i in codes].index(tzid)
+        tzid = codes[my_index] # "UTC%s" % tzid
+    elif tzid in [re.sub("^UTC\+?\±?","",i) for i in codes]:
+        # LOGGER.debug("tzid missing UTC+sign, fixing")
+        my_index = [re.sub("^UTC\+?\±?","",i) for i in codes].index(tzid)
+        tzid = codes[my_index] # "UTC%s" % tzid
+    elif tzid in [re.sub("^UTC\+?\±?","+",i) for i in codes]:
+        # LOGGER.debug("tzid missing UTC+sign, fixing")
+        my_index = [re.sub("^UTC\+?\±?","+",i) for i in codes].index(tzid)
+        tzid = codes[my_index] # "UTC%s" % tzid
+    elif tzid in [re.sub("\±","+",i) for i in codes]:
+        # LOGGER.debug("tzid has + instead of ± sign, fixing")
+        my_index = [re.sub("\±","+",i) for i in codes].index(tzid)
+        tzid = codes[my_index] # "UTC%s" % tzid
+    else:
         raise ValueError('timezone not found in code list')
-    
+    return tzid    
+
+def is_within_timezone(lon,lat,tzid):
+    tzid = tz_lookup(tzid)
     timezone_str = tzwhere.tzNameAt(lat, lon)
-    if timezone_str != tzid:
+    if timezone_str is None:
+        raise ValueError('coordinates don\'t match a known timezone')
+    offset_name = "UTC%s" % timezone_to_offset(timezone_str)
+    if offset_name != tzid:
         raise ValueError('coordinates don\'t match timezone')
-    
     return True
     # timezone = pytz.timezone(timezone_str)
     # dt = datetime.datetime.now()
     # timezone.utcoffset(dt)
 
-def timezone_to_offset(tz_string):
-    timezone = pytz.timezone(tz_string)
-    offset = timezone.utcoffset(datetime.utcnow())
-    total_seconds = offset.total_seconds()
-    sign = lambda x: ("+", "-")[x<0]
-    hours, remainder = divmod(abs(total_seconds), 3600)
-    minutes, seconds = divmod(remainder, 60)
-    return '%s%02d:%02d' % (sign(total_seconds), int(hours), int(minutes))
+# def timezone_to_offset(tz_string):
+#     timezone = pytz.timezone(tz_string)
+#     offset = timezone.utcoffset(datetime.utcnow())
+#     total_seconds = offset.total_seconds()
+#     sign = lambda x: ("+", "-")[x<0]
+#     hours, remainder = divmod(abs(total_seconds), 3600)
+#     minutes, seconds = divmod(remainder, 60)
+#     return '%s%02d:%02d' % (sign(total_seconds), int(hours), int(minutes))
 
 def validate_url(url):
     return validators.url(url)

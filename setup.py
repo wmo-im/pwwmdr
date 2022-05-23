@@ -79,66 +79,69 @@ print(f'Downloading WMO WMDR XML Schemas and Codelists.xml to {USERDIR}')
 
 if not os.path.exists(USERDIR):
     os.mkdir(USERDIR)
+if not os.path.exists(f'{USERDIR}{os.sep}schema'):
     os.mkdir(f'{USERDIR}{os.sep}schema')
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}xsd'):
     os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd')
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0'):
     os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0')
-    FILE_URL = 'https://raw.githubusercontent.com/wmo-im/wmdr/master/xsd/wmdr.xsd'
-    xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0{os.sep}wmdr.xsd'
-    with open(xsd_filename,'wb') as f:
-        f.write(urlopen_(FILE_URL).read())
-
+FILE_URL = 'https://raw.githubusercontent.com/wmo-im/wmdr/master/xsd/wmdr.xsd'
+xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0{os.sep}wmdr.xsd'
+with open(xsd_filename,'wb') as f:
+    f.write(urlopen_(FILE_URL).read())
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9'):
     os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9')
-    FILE_URL = 'https://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd'
-    xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9{os.sep}wmdr.xsd'
-    with open(xsd_filename,'wb') as f:
+FILE_URL = 'https://schemas.wmo.int/wmdr/1.0RC9/wmdr.xsd'
+xsd_filename = f'{USERDIR}{os.sep}schema{os.sep}xsd{os.sep}1.0RC9{os.sep}wmdr.xsd'
+with open(xsd_filename,'wb') as f:
+    f.write(urlopen_(FILE_URL).read())
+
+
+CODELIST_URL = 'https://wis.wmo.int/2012/codelists/WMOCodeLists.xml'  # do we have this for wigos?
+
+schema_filename = f'{USERDIR}{os.sep}WMOCodeLists.xml'
+
+with open(schema_filename, 'wb') as f:
+    f.write(urlopen_(CODELIST_URL).read())
+
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources'):
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist'):
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps'):
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
+for codelist in codelist_names:
+    print(f'Downloading {codelist} to {USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist{os.sep}{codelist}.rdf')
+    FILE_URL = f'http://codes.wmo.int/wmdr/{codelist}?_format=rdf'
+    rdf_filename = f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist{os.sep}{codelist}.rdf'
+    with open(rdf_filename,'wb') as f:
         f.write(urlopen_(FILE_URL).read())
+script_dirname = os.path.dirname(__file__)
+codelist_filenames = os.path.join(script_dirname, 'resources/Codelist/*.rdf')
+for file in glob.glob(codelist_filenames):
+    shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
+map_filenames = os.path.join(script_dirname, 'resources/maps/*.json')
+for file in glob.glob(map_filenames):
+    shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
 
+# because some ISO instances ref both gmd and gmx, create a
+# stub xsd in order to validate
+# SCHEMA = etree.Element('schema',
+#                        elementFormDefault='qualified',
+#                        version='1.0.0',
+#                        nsmap={None: 'http://www.w3.org/2001/XMLSchema'})
 
-    CODELIST_URL = 'https://wis.wmo.int/2012/codelists/WMOCodeLists.xml'  # do we have this for wigos?
+# schema_wrapper_filename = f'{USERDIR}{os.sep}iso-all.xsd'
 
-    schema_filename = f'{USERDIR}{os.sep}WMOCodeLists.xml'
+# with open(schema_wrapper_filename, 'wb') as f:
+#     for uri in ['gmd', 'gmx']:
+#         namespace = f'http://www.isotc211.org/2005/{uri}'
+#         schema_location = f'schema/{uri}/{uri}.xsd'
 
-    with open(schema_filename, 'wb') as f:
-        f.write(urlopen_(CODELIST_URL).read())
-
-    if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources'):
-        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
-        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
-        os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
-        for codelist in codelist_names:
-            FILE_URL = f'http://codes.wmo.int/wmdr/{codelist}?_format=rdf'
-            rdf_filename = f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist{os.sep}{codelist}.rdf'
-            with open(rdf_filename,'wb') as f:
-                f.write(urlopen_(FILE_URL).read())
-        script_dirname = os.path.dirname(__file__)
-        codelist_filenames = os.path.join(script_dirname, 'resources/Codelist/*.rdf')
-        for file in glob.glob(codelist_filenames):
-            shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
-        map_filenames = os.path.join(script_dirname, 'resources/maps/*.json')
-        for file in glob.glob(map_filenames):
-            shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
-
-    # because some ISO instances ref both gmd and gmx, create a
-    # stub xsd in order to validate
-    # SCHEMA = etree.Element('schema',
-    #                        elementFormDefault='qualified',
-    #                        version='1.0.0',
-    #                        nsmap={None: 'http://www.w3.org/2001/XMLSchema'})
-
-    # schema_wrapper_filename = f'{USERDIR}{os.sep}iso-all.xsd'
-
-    # with open(schema_wrapper_filename, 'wb') as f:
-    #     for uri in ['gmd', 'gmx']:
-    #         namespace = f'http://www.isotc211.org/2005/{uri}'
-    #         schema_location = f'schema/{uri}/{uri}.xsd'
-
-    #         etree.SubElement(SCHEMA, 'import',
-    #                          namespace=namespace,
-    #                          schemaLocation=schema_location)
-    #     f.write(etree.tostring(SCHEMA, pretty_print=True))
-else:
-    print(f'Directory {USERDIR} exists')
-
+#         etree.SubElement(SCHEMA, 'import',
+#                          namespace=namespace,
+#                          schemaLocation=schema_location)
+#     f.write(etree.tostring(SCHEMA, pretty_print=True))
 
 setup(
     name='pywmdr',
