@@ -69,7 +69,7 @@ KEYWORDS = [
 
 DESCRIPTION = 'A Python implementation of the test suite for WMO WIGOS Metadata Representation'  # noqa
 
-codelist_names = ["AltitudeOrDepth","SurfaceCoverIGBP","ApplicationArea","SurfaceCoverLAI","ClimateZone","SurfaceCoverLCCS","EventAtFacility","SurfaceCoverNPP","GeopositioningMethod","SurfaceCoverPFT","LocalTopography","SurfaceCoverUMD","ProgramAffiliation","SurfaceRoughnessDavenport","RelativeElevation","TerritoryName","SurfaceCoverClassification","TopographicContext","SurfaceCoverGlob2009","WMORegion","SourceOfObservation","ReferenceSurfaceType","Exposure","Representativeness","DataCommunicationMethod"]
+codelist_names = ["AltitudeOrDepth","SurfaceCoverIGBP","ApplicationArea","SurfaceCoverLAI","ClimateZone","SurfaceCoverLCCS","EventAtFacility","SurfaceCoverNPP","GeopositioningMethod","SurfaceCoverPFT","LocalTopography","SurfaceCoverUMD","ProgramAffiliation","SurfaceRoughnessDavenport","RelativeElevation","TerritoryName","SurfaceCoverClassification","TopographicContext","SurfaceCoverGlob2009","WMORegion","SourceOfObservation","ReferenceSurfaceType","Exposure","Representativeness","DataCommunicationMethod","SamplingStrategy"]
 
 # ensure a fresh MANIFEST file is generated
 if (os.path.exists('MANIFEST')):

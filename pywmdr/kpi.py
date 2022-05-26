@@ -1378,6 +1378,451 @@ class WMDRKeyPerformanceIndicators:
             comments.append(f'deployment number %s data generation specified' % deployment_number)
 
         return total, score, comments
+    
+    def kpi_33(self) -> tuple:
+        """
+        Implements KPI-3-3 Data generation
+        
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+        total = 0
+        score = 0
+        comments = []
+        name = 'KPI-3-3: Data generation'
+        LOGGER.info(f'Running {name}')
+        
+        # get dataGenerations
+        dataGenerations = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation/om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:dataGeneration/wmdr:DataGeneration',namespaces=self.namespaces)
+        if not len(dataGenerations):
+            comments.append("dataGeneration not found")
+            total = 25
+        else:
+        # compute kpi for each dataGeneration instance
+            number_of_data_generations = len(dataGenerations)
+            i = 0
+            for instance in dataGenerations:
+                i += 1
+                # LOGGER.debug(instance)
+                el_total = 0
+                el_score = 0
+                # Rule 3-3-00: Sampling strategy
+                stotal, sscore, scomments = self.kpi_3300(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-01: Sampling interval 
+                stotal, sscore, scomments = self.kpi_3301(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+                
+                # Rule 3-3-02: Sampling period
+                stotal, sscore, scomments = self.kpi_3302(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-03: Spatial sampling resolution 
+                stotal, sscore, scomments = self.kpi_3303(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-04: Sampling procedure
+                stotal, sscore, scomments = self.kpi_3304(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-05: Sample treatment
+                stotal, sscore, scomments = self.kpi_3305(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-3-06: Aggregation period
+                stotal, sscore, scomments = self.kpi_3306(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-07: Data processing method 
+                stotal, sscore, scomments = self.kpi_3307(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+                
+                # Rule 3-3-08: Software/processor and version
+                stotal, sscore, scomments = self.kpi_3308(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-09: Software/source code repository URL 
+                stotal, sscore, scomments = self.kpi_3309(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-3-10: Processing/analysis centre
+                stotal, sscore, scomments = self.kpi_3310(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Reporting
+
+                # Rule 3-3-11: Diurnal base time 
+                stotal, sscore, scomments = self.kpi_3311(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-3-12: Number of observations in reporting period
+                stotal, sscore, scomments = self.kpi_3312(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-13: Measurement unit 
+                stotal, sscore, scomments = self.kpi_3313(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-3-14: Data policy
+                stotal, sscore, scomments = self.kpi_3314(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-15: Spatial reporting interval 
+                stotal, sscore, scomments = self.kpi_3315(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-16: Timeliness (Latency of reporting)
+                stotal, sscore, scomments = self.kpi_3316(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-17: Numerical resolution 
+                stotal, sscore, scomments = self.kpi_3317(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-18: Level of data
+                stotal, sscore, scomments = self.kpi_3318(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-19: Data format 
+                stotal, sscore, scomments = self.kpi_3319(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments
+
+                # Rule 3-3-20: Data format version
+                stotal, sscore, scomments = self.kpi_3320(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-21: Reference datum 
+                stotal, sscore, scomments = self.kpi_3321(instance,i)
+                el_total  += stotal
+                el_score  += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-22: Reference time source
+                stotal, sscore, scomments = self.kpi_3322(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-23: 
+                # stotal, sscore, scomments = self.kpi_3323(instance,i)
+                # el_total  += stotal
+                # el_score  += sscore
+                # comments = comments + scomments 
+
+                # Rule 3-3-24: 
+                # stotal, sscore, scomments = self.kpi_3324(instance,i)
+                # el_total += stotal
+                # el_score += sscore
+                # comments = comments + scomments 
+
+                # Rule 3-3-25:  
+                # stotal, sscore, scomments = self.kpi_3325(instance,i)
+                # el_total  += stotal
+                # el_score  += sscore
+                # comments = comments + scomments 
+
+                # Rule 3-3-26: Meaning of timestamp in data reports
+                stotal, sscore, scomments = self.kpi_3326(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+
+                # Rule 3-3-27: Attribution
+                stotal, sscore, scomments = self.kpi_3327(instance,i)
+                el_total += stotal
+                el_score += sscore
+                comments = comments + scomments 
+                
+                LOGGER.debug("data generation number %s, total: %s, score: %s" % (i, el_total, el_score))
+                total += el_total
+                score += el_score
+        total = total / len(dataGenerations)
+        score = score / len(dataGenerations)
+        return name, total, score, comments, number_of_data_generations
+
+    def kpi_3300(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:samplingStrategy'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["SamplingStrategy"],"data generation number %s sampling strategy" % data_generation_number)
+        return total, score, comments
+
+    def kpi_3301(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/temporalSamplingInterval
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:temporalSamplingInterval'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"duration","data generation number %s temporalSamplingInterval" % data_generation_number)
+        return total, score, comments
+
+    def kpi_3302(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/samplingTimePeriod
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:samplingTimePeriod'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"duration","data generation number %s samplingTimePeriod" % data_generation_number)
+        return total, score, comments
+
+    def kpi_3303(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/spatialSamplingResolution
+        # first check uom
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:spatialSamplingResolution'
+        uom_results = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["unit"],"data generation number %s spatialSamplingResolution uom" % data_generation_number,attr_name="uom")
+        # second check value
+        value_results = get_text_and_validate(instance,xpath,self.namespaces,"float","data generation number %s spatialSamplingResolution value" % data_generation_number)
+        score = 1 if uom_results[0] + value_results[0] == 2 else 0
+        comments.extend(uom_results[1])
+        comments.extend(value_results[1])
+        return total, score, comments
+
+    def kpi_3304(self, instance, data_generation_number):
+        total = 2
+        score = 0
+        comments = []
+        # rule a: Sampling procedure is specified and not "unknown".
+        # MISSING CODELIST (6-01 samplingProcedure)
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/samplingProcedure
+        # xpath = './wmdr:sampling/wmdr:Sampling/wmdr:samplingProcedure'
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        
+        # rule b: Sampling procedure description is provided
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/samplingProcedureDescription
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:samplingProcedureDescription'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s samplingProcedureDescription" % data_generation_number,min_length=50)
+        return total, score, comments
+
+    def kpi_3305(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # /WIGOSMetadataRecord/facility/ObservingFacility/observation/ObservingCapability/observation/OM_Observation/procedure/Process/deployment/Deployment/dataGeneration/DataGeneration/sampling/Sampling/sampleTreatment
+        xpath = './wmdr:sampling/wmdr:Sampling/wmdr:sampleTreatment'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["SampleTreatment"],"data generation number %s samplingTreatment" % data_generation_number)
+        return total, score, comments
+
+    def kpi_3306(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3307(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3308(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3309(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3310(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3311(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3312(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3313(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3314(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3315(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3316(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3317(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3318(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3319(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3320(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3321(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3322(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3323(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3324(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3325(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3326(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
+
+    def kpi_3327(self, instance, data_generation_number):
+        total = 1
+        score = 0
+        comments = []
+        # xpath = ''
+        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        return total, score, comments
 
     def kpi_40(self) -> tuple:
         """

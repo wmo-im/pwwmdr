@@ -27,6 +27,7 @@ from tzwhere import tzwhere
 tzwhere = tzwhere.tzwhere()
 from pywmdr.timezone_codelist import makeCodelist, timezone_to_offset
 tz_codelist = makeCodelist()
+import isodate
 
 from lxml import etree
 
@@ -138,8 +139,10 @@ def get_codelists_from_rdf():
             codelists[key].append(concept.get(nspath_eval('rdf:about')))
             codelists[key].append(concept.find(nspath_eval('skos:notation')).text)
 
-    # add time zones from timezone_codelist package
+        # add time zones from timezone_codelist package
         codelists["TimeZone"] = list(tz_codelist["name"]) # pytz.all_timezones
+        # add sample treatment codelist (copied from proposal form 6-02 : https://github.com/wmo-im/wmds/issues/112)
+        codelists["SampleTreatment"] = ['inapplicable', 'drying', 'evaporation', 'freezing', 'heating', 'homogenization', 'melting', 'milling', 'mixing', 'sieving', 'other', 'unknown', 'denuding', 'conversion', 'decomposition', 'particleRemoval', 'http://codes.wmo.int/wmdr/SamplingTreatment/inapplicable', 'http://codes.wmo.int/wmdr/SamplingTreatment/drying', 'http://codes.wmo.int/wmdr/SamplingTreatment/evaporation', 'http://codes.wmo.int/wmdr/SamplingTreatment/freezing', 'http://codes.wmo.int/wmdr/SamplingTreatment/heating', 'http://codes.wmo.int/wmdr/SamplingTreatment/homogenization', 'http://codes.wmo.int/wmdr/SamplingTreatment/melting', 'http://codes.wmo.int/wmdr/SamplingTreatment/milling', 'http://codes.wmo.int/wmdr/SamplingTreatment/mixing', 'http://codes.wmo.int/wmdr/SamplingTreatment/sieving', 'http://codes.wmo.int/wmdr/SamplingTreatment/other', 'http://codes.wmo.int/wmdr/SamplingTreatment/unknown', 'http://codes.wmo.int/wmdr/SamplingTreatment/denuding', 'http://codes.wmo.int/wmdr/SamplingTreatment/conversion', 'http://codes.wmo.int/wmdr/SamplingTreatment/decomposition', 'http://codes.wmo.int/wmdr/SamplingTreatment/particleRemoval'] # notationListFromCSV("tmp/samplingTreatment.csv","SamplingTreatment")
 
     return codelists
 
@@ -537,7 +540,7 @@ def is_within_timezone(lon,lat,tzid):
 def validate_url(url):
     return validators.url(url)
 
-def get_href_and_validate(exml,xpath,namespaces,codelist,element_name):
+def get_href_and_validate(exml,xpath,namespaces,codelist,element_name,attr_name=None,case_sensitive=False):
     # finds reference and validates against codelist
     # returns score, comments, value
     score = 0
@@ -551,14 +554,15 @@ def get_href_and_validate(exml,xpath,namespaces,codelist,element_name):
         comments.append("%s not found" % element_name)
     else:
         m = matches[0]
-        value = m.get('{http://www.w3.org/1999/xlink}href')
+        attr_name = attr_name if attr_name is not None else '{http://www.w3.org/1999/xlink}href'
+        value = m.get(attr_name)
         if not value:
             LOGGER.debug('%s href not found' % element_name)
             comments.append('%s href not found'  % element_name)
         else:
-            if value not in codelist:
-                LOGGER.debug('%s not present in codelist' % element_name)
-                comments.append('%s not present in codelist' % element_name)
+            if case_sensitive and value not in codelist or value.lower() not in [code.lower() for code in codelist]:
+                LOGGER.debug('value %s of %s not present in codelist' % (value, element_name))
+                comments.append('value %s of %s not present in codelist' % (value, element_name))
             else:
                 if value.split("/")[-1].lower() == 'unknown' or value.split("/")[-1].lower() == 'inapplicable':
                     LOGGER.debug('%s is unknown or inapplicable' % element_name)
@@ -701,8 +705,32 @@ def validate_text(text,type="integer",element_name="element",min_length=1,codeli
             else:
                 LOGGER.debug('Found %s "%s"' % (element_name, value))
                 score += 1
+    elif type == "duration":
+        try:
+            value = str(text)
+        except ValueError:
+            LOGGER.debug("%s is not a valid string" % element_name)
+            comments.append("%s is not a valid string" % element_name)
+        try:
+            parsed = isodate.parse_duration(value)
+        except isodate.ISO8601Error:
+            LOGGER.debug("%s value %s is not a valid duration" % (element_name, value))
+            comments.append("%s is not a valid date" % element_name)
+        else:
+            LOGGER.debug('Found %s "%s"' % (element_name, value))
+            score += 1
     else:
         raise RuntimeError("invalid type: %s" % type)
     
     # LOGGER.debug("%s, %s, %s" % (score, ",".join(comments), value))
     return score, comments, value
+
+def notationListFromCSV(csv_file,name):
+    from re import sub
+    from pandas import read_csv
+    df = read_csv(csv_file)
+    notations = [sub("^\(|\)$","",i) for i in df["notation"]]
+    hrefs = ["http://codes.wmo.int/wmdr/%s/%s" % (name,notation) for notation in notations]
+    notations.extend(hrefs)
+    return notations
+
