@@ -63,7 +63,7 @@ from pywmdr.util import (get_cli_common_options, get_keyword_info,
                          get_string_or_anchor_value, get_string_or_anchor_values,
                          nspath_eval, parse_time_position, parse_wmdr,
                          setup_logger, urlopen_, check_url, get_codelists_from_rdf,
-                         get_unit_notation, get_region, get_coordinates, is_within_timezone,
+                         get_region, get_coordinates, is_within_timezone,
                          validate_url, get_href_and_validate, get_text_and_validate, 
                          validate_text) # get_codelists, 
 
@@ -793,7 +793,7 @@ class WMDRKeyPerformanceIndicators:
         :returns: `tuple` of KPI name, achieved score, total score, and comments
         """
 
-        total = 5
+        total = 0
         score = 0
         comments = []
         name = 'KPI-2-1: station characteristics (OSCAR/Surface)'
@@ -811,84 +811,51 @@ class WMDRKeyPerformanceIndicators:
         # The angle of view (focal length) is specified -> 1
 
         # TODO
+        comments.append('not implemented')
 
         return name, total, score, comments
 
     def kpi_30(self) -> tuple:
         """
-        Implements KPI-3-0: 
+        Implements KPI-3-0: Observations/measurements - Basic information
 
         :returns: `tuple` of KPI name, achieved score, total score, and comments
         """
-
-        total = 0 
+        total = 0
         score = 0
+        number_of_observations = 0
         comments = []
-
         name = 'KPI-3-0: Observations/measurements - Basic information'
-
         LOGGER.info(f'Running {name}')
         
-        oms_xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation'
-
-        oms = self.exml.xpath(oms_xpath, namespaces=self.namespaces)
-        total += 2*len(oms)
-
-        LOGGER.info(f'Running ID: 3-0-00 Geometry')
-
-        LOGGER.debug(f'Rule: Geometry (code list: http://codes.wmo.int/wmdr/Geometry) is not specified as "unknown". ')
-
-        if len(oms) > 0:
-            for om in oms:
-                om_type = om.find(nspath_eval('om:type'))
-                if om_type is not None:
-                    href = om_type.get('{http://www.w3.org/1999/xlink}href')
-                    geom_code_url = href.rsplit('/',1)[0]
-                    geom_type = href.rsplit('/',1)[-1]
-                    if geom_code_url == 'http://codes.wmo.int/wmdr/Geometry':
-                        if geom_type != 'unknown':
-                            result = check_url(href, False)
-                            if result['accessible']:
-                                score += 1
-                                LOGGER.debug('Geometry type not unknown found for OM_Observation')
-                                comments.append('Geometry type %s found for OM_Observation' % geom_type)
-                            else:
-                                LOGGER.debug(f'Geometry type %s is not in code list'  % geom_type)
-                                comments.append(f'Geometry type %s is not in code list'  % geom_type)
-                        else:
-                            LOGGER.debug("Geometry type uses 'unknown' code")
-                            comments.append("Geometry type uses 'unknown' code")
-                    else:
-                        LOGGER.debug("Geometry type does not use http://codes.wmo.int/wmdr/Geometry")
-                        comments.append("Geometry type does not use http://codes.wmo.int/wmdr/Geometry")
-                else:
-                    LOGGER.debug("Geometry type not found for OM_Observation")
-                    comments.append("Geometry type not found for OM_Observation")
+        # get OM_Observations
+        OM_Observations = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation',namespaces=self.namespaces)
+        if not len(OM_Observations):
+            comments.append("OM_Observation not found")
         else:
-            LOGGER.debug("No OM_Observation found")
-
-        LOGGER.info(f'Running ID: 3-0-01 Deployments')
-
-        LOGGER.debug(f'Rule: The observation/measurement has at least one deployment.')
-
-        if len(oms) > 0:
-            for om in oms:
-                deployments = om.findall(nspath_eval('./om:procedure/wmdr:Process/wmdr:deployment'))
-                n_deployments = len(deployments)
-                if n_deployments > 0:
-                    for deployment in deployments:
-                        if deployment is not None:
-                            score += 1/n_deployments
-                            LOGGER.debug('Deployment found for OM_Observation')
-                            comments.append('Deployment found for OM_Observation')
+            number_of_observations = len(OM_Observations)
+            total = 2 * number_of_observations
+            i = 0
+            for instance in OM_Observations:
+                i += 1
+                # Rule 3-0-00: Geometry: Geometry (code list: http://codes.wmo.int/wmdr/Geometry) is not specified as "unknown".
+                xpath = './om:type'
+                sscore, scomments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["Geometry"],"observation number %s geometry" % i)
+                score += sscore
+                comments += scomments
+                # Rule 3-0-01: Deployments: The observation/measurement has at least one deployment.
+                xpath = './om:procedure/wmdr:Process/wmdr:deployment'
+                matches = self.exml.xpath(xpath, namespaces=self.namespaces)
+                if not len(matches):
+                    LOGGER.debug("observation number %s deployment not found" % i)
+                    comments.append("observation number %s deployment not found" % i)
                 else:
-                    LOGGER.debug("Deployment not found for OM_Observation")
-                    comments.append("Deployment not found for OM_Observation")
-        else:
-            LOGGER.debug("No OM_Observation found")
+                    score += 1
+                    LOGGER.debug(f'observation number %s data generation specified' % i)
 
+                LOGGER.debug("observation number %s, total: %s, score: %s" % (i, total, score))
 
-        return name, total, score, comments
+        return name, total, score, comments, number_of_observations
 
     def kpi_31(self) -> tuple:
         """
@@ -1269,43 +1236,31 @@ class WMDRKeyPerformanceIndicators:
         return total, score, comments
 
     def kpi_3120(self, instance, deployment_number):
-        #this is in principle just a string but it should contain one MeasurementUnitType.
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:observableRange'
-        value_words = str(get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s observable Range" % deployment_number)[2]).split()
-        units = get_unit_notation()
-        has_units = False
-        for value in value_words:
-            #remove initial numbers from strings as well as ending punctuation
-            #this is done in order to isolate possible units
-            value_stripped = value.lstrip('0123456789').rstrip(',;.')
-            if value in units or value_stripped in units:
-                has_units = True
-        if has_units:
-            score += 1
-        else:
-            comments.append('deployment number %s valid unit is not specified for observable range' % deployment_number)
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s observable range" % deployment_number)
         return total, score, comments
 
     def kpi_3121(self, instance, deployment_number):
-        #this is in principle just a string, so a value is difficult to assess.
         total = 2
         score = 0
         comments = []
         xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:specifiedRelativeUncertainty'
+        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","deployment number %s specified relative uncertainty" % deployment_number)
         xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:specifiedAbsoluteUncertainty'
-
+        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"string","deployment number %s specified absolute uncertainty" % deployment_number)
+        score = score1 + score2
+        comments = comments1 + comments2
         return total, score, comments
 
     def kpi_3122(self, instance, deployment_number):
-        #allow only a number value
         total = 1
         score = 0
         comments = []
         xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:driftPerUnitTime'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"integer","deployment number %s drift per unit time" % deployment_number)
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","deployment number %s drift per unit time" % deployment_number)
         return total, score, comments
 
     def kpi_3123(self, instance, deployment_number):
@@ -1325,41 +1280,72 @@ class WMDRKeyPerformanceIndicators:
         return total, score, comments
 
     def kpi_3125(self, instance, deployment_number):
-        #check observation only, if not total = 0?
         total = 5
         score = 0
         comments = []
-        xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
-        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
-        #how is this used? in 1.0 it's frequency with uom link, not frequencyUnit
-        xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
-        score2, comments2, value2 = [0, [], None]
-        xpath3 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:transmissionMode'
-        score3, comments3, value3 = get_href_and_validate(instance,xpath3,self.namespaces,self.codelists["TransmissionMode"],"deployment number %s transmission mode" % deployment_number)
-        #how is this used? in 1.0 it's bandwidth with uom link, not bandwidthUnit
-        xpath4 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
-        score4, comments4, value4 =  [0, [], None]
-        xpath5 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:polarization'
-        score5, comments5, value5 = get_href_and_validate(instance,xpath5,self.namespaces,self.codelists["Polarization"],"deployment number %s polarization" % deployment_number)
-        score = score1 + score2 + score3 + score4 + score5
-        comments = comments1 + comments2 + comments3 + comments4 + comments5
+        # check observation only
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:purposeOfFrequencyUse'
+        value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["PurposeOfFrequencyUse"],"deployment number %s purpose of frequency use" % deployment_number)[2]
+        if value == 'observation':
+            xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
+            score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
+            xpath2a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequency'
+            score2a, comments2a, value2a = get_text_and_validate(instance,xpath2a,self.namespaces,"string","deployment number %s frequency" % deployment_number)
+            xpath2b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
+            score2b, comments2b, value2b = get_text_and_validate(instance,xpath2b,self.namespaces,"string","deployment number %s frequency unit" % deployment_number)
+            if score2a == 1 and score2b == 1:
+                score2 = 1
+            else:
+                score2 = 0
+            comment2 = comment2a + commen2b
+            xpath3a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidth'
+            score3a, comments3a, value3a = get_text_and_validate(instance,xpath3a,self.namespaces,"string","deployment number %s band width" % deployment_number)
+            xpath3b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
+            score3b, comments3b, value3b = get_text_and_validate(instance,xpath3b,self.namespaces,"string","deployment number %s band width unit" % deployment_number)
+            if score3a == 1 and score3b == 1:
+                score3 = 1
+            else:
+                score3 = 0
+            comment3 = comment3a + commen3b
+            xpath4 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:transmissionMode'
+            score4, comments4, value4 = get_href_and_validate(instance,xpath4,self.namespaces,self.codelists["TransmissionMode"],"deployment number %s transmission mode" % deployment_number)
+            xpath5 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:polarization'
+            score5, comments5, value5 = get_href_and_validate(instance,xpath5,self.namespaces,self.codelists["Polarization"],"deployment number %s polarization" % deployment_number)
+
+            score = score1 + score2 + score3 + score4 + score5
+            comments = comments1 + comments2 + comments3 + comments4 + comments5
         return total, score, comments
 
     def kpi_3126(self, instance, deployment_number):
-        #check telecomms only, if not total = 0?
         total = 3
         score = 0
         comments = []
-        xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
-        score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
-        #how is this used? in 1.0 it's frequency with uom link, not frequencyUnit
-        xpath2 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
-        score2, comments2, value2 = [0, [], None]
-        #how is this used? in 1.0 it's bandwidth with uom link, not bandwidthUnit
-        xpath3 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
-        score3, comments3, value3 =  [0, [], None]
-        score = score1 + score2 + score3
-        comments = comments1 + comments2 + comments3
+        # check telecomms only
+        xpath = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:purposeOfFrequencyUse'
+        value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["PurposeOfFrequencyUse"],"deployment number %s purpose of frequency use" % deployment_number)[2]
+        if value == 'telecomms':
+            xpath1 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUse'
+            score1, comments1, value1 = get_href_and_validate(instance,xpath1,self.namespaces,self.codelists["FrequencyUse"],"deployment number %s frequency use" % deployment_number)
+            xpath2a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidth'
+            score2a, comments2a, value2a = get_text_and_validate(instance,xpath2a,self.namespaces,"string","deployment number %s band width" % deployment_number)
+            xpath2b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
+            score2b, comments2b, value2b = get_text_and_validate(instance,xpath2b,self.namespaces,"string","deployment number %s band width unit" % deployment_number)
+            if score2a == 1 and score2b == 1:
+                score2 = 1
+            else:
+                score2 = 0
+            comment2 = comment2a + commen2b
+            xpath3a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequency'
+            score3a, comments3a, value3a = get_text_and_validate(instance,xpath3a,self.namespaces,"string","deployment number %s frequency" % deployment_number)
+            xpath3b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
+            score3b, comments3b, value3b = get_text_and_validate(instance,xpath3b,self.namespaces,"string","deployment number %s frequency unit" % deployment_number)
+            if score3a == 1 and score3b == 1:
+                score3 = 1
+            else:
+                score3 = 0
+            comment3 = comment3a + commen3b
+            score = score1 + score2 + score3
+            comments = comments1 + comments2 + comments3
         return total, score, comments
 
     def kpi_3127(self, instance, deployment_number):
@@ -1379,6 +1365,24 @@ class WMDRKeyPerformanceIndicators:
 
         return total, score, comments
     
+    def kpi_32(self) -> tuple:
+        """
+        Implements KPI-3-1: Deployment (OSCAR/Surface)
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 0
+        score = 0
+        comments = []
+        name = 'KPI-3-2: Deployment (OSCAR/Surface)'
+        LOGGER.info(f'Running {name}')
+
+        # TODO
+        comments.append('not implemented')
+
+        return name, total, score, comments
+
     def kpi_33(self) -> tuple:
         """
         Implements KPI-3-3 Data generation
@@ -1724,64 +1728,64 @@ class WMDRKeyPerformanceIndicators:
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:spatialReportingInterval'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s spatialReportingInterval" % data_generation_number)
         return total, score, comments
 
     def kpi_3316(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:timeliness'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"duration","data generation number %s timeliness" % data_generation_number)
         return total, score, comments
 
     def kpi_3317(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:numericalResolution'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"integer","data generation number %s numericalResolution" % data_generation_number)
         return total, score, comments
 
     def kpi_3318(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:levelOfData'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["LevelOfData"],"data generation number %s levelOfData " % data_generation_number)
         return total, score, comments
 
     def kpi_3319(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:dataFormat'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["DataFormat"],"data generation number %s dataFormat " % data_generation_number)
         return total, score, comments
 
     def kpi_3320(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:dataFormatVersion'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s dataFormatVersion" % data_generation_number)
         return total, score, comments
 
     def kpi_3321(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:referenceDatum/gml:VerticalDatum/gml:remarks'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s referenceDatum" % data_generation_number)
         return total, score, comments
 
     def kpi_3322(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:referenceTimeSource'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["ReferenceTime"],"data generation number %s referenceTimeSource " % data_generation_number)
         return total, score, comments
 
     def kpi_3323(self, instance, data_generation_number):
@@ -1812,17 +1816,43 @@ class WMDRKeyPerformanceIndicators:
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:timeStampMeaning'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["TimeStampMeaning"],"data generation number %s timeStampMeaning " % data_generation_number)
         return total, score, comments
 
     def kpi_3327(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath1 = './wmdr:reporting/wmdr:Reporting/wmdr:dataPolicy/wmdr:DataPolicy/wmdr:attribution/wmdr:Attribution/wmdr:title'
+        score1, comments1, value1 = get_text_and_validate(instance,xpath1,self.namespaces,"string","data generation number %s attribution title" % data_generation_number)
+        xpath2 = './wmdr:reporting/wmdr:Reporting/wmdr:dataPolicy/wmdr:DataPolicy/wmdr:attribution/wmdr:Attribution/wmdr:originatorURL/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
+        score2, comments2, value2 = get_text_and_validate(instance,xpath2,self.namespaces,"url","data generation number %s originatorURL" % data_generation_number)
+        xpath3 = './wmdr:reporting/wmdr:Reporting/wmdr:dataPolicy/wmdr:DataPolicy/wmdr:attribution/wmdr:Attribution/wmdr:originator/gmd:CI_ResponsibleParty/gmd:organizationName/gco:CharacterString'
+        score3, comments3, value3 = get_text_and_validate(instance,xpath3,self.namespaces,"string","data generation number %s originator" % data_generation_number)
+        xpath4 = './wmdr:reporting/wmdr:Reporting/wmdr:dataPolicy/wmdr:DataPolicy/wmdr:attribution/wmdr:Attribution/wmdr:source/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
+        score4, comments4, value4 = get_text_and_validate(instance,xpath4,self.namespaces,"url","data generation number %s originator" % data_generation_number)
+        score = score1 + score2 + score3 + score4
+        comments = comments1 + comments2 + comments3 + comments4
         return total, score, comments
+
+    def kpi_34(self) -> tuple:
+        """
+        Implements KPI-3-4: Data generation (OSCAR/Surface)
+
+        :returns: `tuple` of KPI name, achieved score, total score, and comments
+        """
+
+        total = 0
+        score = 0
+        comments = []
+        name = 'KPI-3-4: Data generation (OSCAR/Surface)'
+        LOGGER.info(f'Running {name}')
+
+        # TODO
+        comments.append('not implemented')
+
+        return name, total, score, comments
 
     def kpi_40(self) -> tuple:
         """
@@ -1838,11 +1868,9 @@ class WMDRKeyPerformanceIndicators:
 
         LOGGER.info(f'Running {name}')
 
+        # Rule: Station has at least on contact person.
+
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty'
-
-        LOGGER.info(f'Running ID: 4-0-00 Number of station contacts')
-
-        LOGGER.debug(f'Rule: Station has at least on contact person.')
 
         matches = self.exml.xpath(xpath, namespaces=self.namespaces)
 
@@ -1851,8 +1879,6 @@ class WMDRKeyPerformanceIndicators:
             comments.append("responsibleParty not found")
         else:
             score += 1
-            LOGGER.debug(f'responsibleParty specified')
-            comments.append(f'responsibleParty specified')
 
         return name, total, score, comments
 
@@ -1878,6 +1904,7 @@ class WMDRKeyPerformanceIndicators:
             total = 5
         else:
         # compute kpi for each wmdr:responsibleParty instance
+            number_of_responsible_parties = len(responsibleParties)
             i = 0
             for instance in responsibleParties:
                 i += 1
@@ -1885,82 +1912,82 @@ class WMDRKeyPerformanceIndicators:
                 el_total = 0
                 el_score = 0
                 # Rule 4-1-00: delivery point
-                stotal, sscore, scomments = self.kpi_4100(instance)
+                stotal, sscore, scomments = self.kpi_4100(instance,i)
                 el_total += stotal
                 el_score += sscore
                 comments = comments + scomments
 
                 # Rule 4-1-01: postal code
-                stotal, sscore, scomments = self.kpi_4101(instance)
+                stotal, sscore, scomments = self.kpi_4101(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 4-1-02: country
-                stotal, sscore, scomments = self.kpi_4102(instance)
+                stotal, sscore, scomments = self.kpi_4102(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 4-1-03: telephone
-                stotal, sscore, scomments = self.kpi_4103(instance)
+                stotal, sscore, scomments = self.kpi_4103(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
                 # Rule 4-1-04: online resource
-                stotal, sscore, scomments = self.kpi_4104(instance)
+                stotal, sscore, scomments = self.kpi_4104(instance,i)
                 el_total  += stotal
                 el_score  += sscore
                 comments = comments + scomments
 
-                LOGGER.debug("instance %s, total: %s, score: %s" % (i, el_total, el_score))
+                LOGGER.debug("responsible party number %s, total: %s, score: %s" % (i, el_total, el_score))
                 total += el_total
                 score += el_score
 
             total = total / len(responsibleParties)
             score = score / len(responsibleParties)
 
-        return name, total, score, comments
+        return name, total, score, comments, number_of_responsible_parties
 
-    def kpi_4100(self, instance):
+    def kpi_4100(self, instance, number_of_responsible_parties):
         total = 1
         score = 0
         comments = []
         xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","delivery point")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","responsible party %s delivery point" % number_of_responsible_parties)
         return total, score, comments
 
-    def kpi_4101(self, instance):
+    def kpi_4101(self, instance, number_of_responsible_parties):
         total = 1
         score = 0
         comments = []
         xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","postal code")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","responsible party %s postal code" % number_of_responsible_parties)
         return total, score, comments
 
-    def kpi_4102(self, instance):
+    def kpi_4102(self, instance, number_of_responsible_parties):
         total = 1
         score = 0
         comments = []
         xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","state or province")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","responsible party %s state or province" % number_of_responsible_parties)
         return total, score, comments
 
-    def kpi_4103(self, instance):
+    def kpi_4103(self, instance, number_of_responsible_parties):
         total = 1
         score = 0
         comments = []
         xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","phone (main or other)")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","responsible party %s phone (main or other)" % number_of_responsible_parties)
         return total, score, comments
 
-    def kpi_4104(self, instance):
+    def kpi_4104(self, instance, number_of_responsible_parties):
         total = 1
         score = 0
         comments = []
         xpath = './wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL'
-        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","contact URL")
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","responsible party %s contact URL" % number_of_responsible_parties)
         return total, score, comments
 
     def kpi_50(self) -> tuple:
@@ -1970,7 +1997,7 @@ class WMDRKeyPerformanceIndicators:
         :returns: `tuple` of KPI name, achieved score, total score, and comments
         """
 
-        total = 2
+        total = 0
         score = 0
         comments = []
         name = 'KPI-5-0: Bibliographic references and Documents (OSCAR/Surface)'
@@ -1983,6 +2010,7 @@ class WMDRKeyPerformanceIndicators:
         # Rule 5-0-01 5-0-01 Source. Reference contains a valid URL or DOI or a document.
 
         # TODO
+        comments.append('not implemented')
 
         return name, total, score, comments
 
@@ -2163,10 +2191,15 @@ class WMDRKeyPerformanceIndicators:
         known_kpis = [
             'kpi_10',
             'kpi_20',
+            'kpi_21',
             'kpi_30',
             'kpi_31',
+            'kpi_32',
+            'kpi_33',
+            'kpi_34',
             'kpi_40',
             'kpi_41',
+            'kpi_50',
             'kpi_60'
         ]
 
@@ -2203,7 +2236,7 @@ class WMDRKeyPerformanceIndicators:
                 'percentage': percentage
             }
             if len(result) >= 5:
-                results[kpi]["number_of_deployments"] = result[4]
+                results[kpi]["number_of_instances"] = result[4]
             LOGGER.debug(f'{kpi}: {result[1]} / {result[2]} = {percentage}')
 
         # the summary only if more than one KPI was evaluated
