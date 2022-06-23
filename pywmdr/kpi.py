@@ -1656,47 +1656,48 @@ class WMDRKeyPerformanceIndicators:
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:processing/wmdr:Processing/wmdr:aggregationPeriod'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"duration","data generation number %s processing aggregationPeriod" % data_generation_number)
         return total, score, comments
 
     def kpi_3307(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:processing/wmdr:Processing/wmdr:dataProcessing'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s dataProcessing" % data_generation_number,50)
         return total, score, comments
 
     def kpi_3308(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:processing/wmdr:Processing/wmdr:softwareDetails'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s softwareDetails" % data_generation_number)
         return total, score, comments
 
     def kpi_3309(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:processing/wmdr:Processing/wmdr:softwareURL'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"url","data generation number %s softwareURL" % data_generation_number)
         return total, score, comments
 
     def kpi_3310(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:processing/wmdr:Processing/wmdr:processingCentre'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"string","data generation number %s processingCentre" % data_generation_number)
         return total, score, comments
 
     def kpi_3311(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
+        # diurnalBaseTime is not a property of ReportingType (wmdr1.0) 
+        # xpath = './wmdr:reporting/wmdr:reporting/wmdr:diurnalBaseTime'
         # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
         return total, score, comments
 
@@ -1704,24 +1705,24 @@ class WMDRKeyPerformanceIndicators:
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:numberOfObservationsInReportingInterval'
+        score, comments, value = get_text_and_validate(instance,xpath,self.namespaces,"integer","data generation number %s numberOfObservationsInReportingInterval" % data_generation_number)
         return total, score, comments
 
     def kpi_3313(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:uom'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["unit"],"data generation number %s reporting uom" % data_generation_number)
         return total, score, comments
 
     def kpi_3314(self, instance, data_generation_number):
         total = 1
         score = 0
         comments = []
-        # xpath = ''
-        # score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists[""],"data generation number %s " % data_generation_number)
+        xpath = './wmdr:reporting/wmdr:Reporting/wmdr:dataPolicy/wmdr:DataPolicy/wmdr:dataPolicy'
+        score, comments, value = get_href_and_validate(instance,xpath,self.namespaces,self.codelists["DataPolicy"],"data generation number %s DataPolicy" % data_generation_number)
         return total, score, comments
 
     def kpi_3315(self, instance, data_generation_number):

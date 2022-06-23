@@ -637,8 +637,13 @@ def validate_text(text,type="integer",element_name="element",min_length=1,codeli
                             LOGGER.debug('Found %s "%s"' % (element_name, value))
                             score += 1
                 else:
-                    LOGGER.debug('Found %s "%s"' % (element_name, value))
-                    score += 1
+                    if value.lower() == 'unknown' or value.lower() == 'inapplicable':
+                        LOGGER.debug('%s is unknown or inapplicable' % element_name)
+                        comments.append('%s is unknown or inapplicable' % element_name)
+                        value = None
+                    else:
+                        LOGGER.debug('Found %s "%s"' % (element_name, value))
+                        score += 1
     elif type == "url":
         try:
             value = str(text)

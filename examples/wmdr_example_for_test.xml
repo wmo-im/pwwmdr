@@ -503,11 +503,26 @@
                                                             <wmdr:spatialSamplingResolution uom="http://codes.wmo.int/wmdr/unit/mm">1</wmdr:spatialSamplingResolution>
 														</wmdr:Sampling>
 													</wmdr:sampling>
+													<wmdr:processing>
+														<wmdr:Processing>
+															<wmdr:processingCentre>7-02 Center at which the observation is processed. Although this is a free text string, it is expected that in practice this value should be from a controlled list of known centers.</wmdr:processingCentre>
+															<wmdr:aggregationPeriod>PT10S</wmdr:aggregationPeriod>
+															<wmdr:dataProcessing>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</wmdr:dataProcessing>
+															<wmdr:softwareDetails>Excepteur sint occaecat</wmdr:softwareDetails>
+															<wmdr:softwareURL>https://github.com</wmdr:softwareURL>
+														</wmdr:Processing>
+													</wmdr:processing>
 													<wmdr:reporting>
 														<wmdr:Reporting>
 															<wmdr:internationalExchange>false</wmdr:internationalExchange>
 															<wmdr:uom xlink:href="http://codes.wmo.int/wmdr/unit/t_ha-1"/>
 															<wmdr:temporalReportingInterval>PT600S</wmdr:temporalReportingInterval>
+															<wmdr:dataPolicy>
+																<wmdr:DataPolicy>
+																	<wmdr:dataPolicy xlink:href="http://codes.wmo.int/wmdr/DataPolicy/noLimitation" />
+																</wmdr:DataPolicy>
+															</wmdr:dataPolicy>
+															<wmdr:numberOfObservationsInReportingInterval>60</wmdr:numberOfObservationsInReportingInterval>
 														</wmdr:Reporting>
 													</wmdr:reporting>
 												</wmdr:DataGeneration>
