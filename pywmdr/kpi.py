@@ -845,17 +845,17 @@ class WMDRKeyPerformanceIndicators:
                 comments += scomments
                 # Rule 3-0-01: Deployments: The observation/measurement has at least one deployment.
                 xpath = './om:procedure/wmdr:Process/wmdr:deployment'
-                matches = self.exml.xpath(xpath, namespaces=self.namespaces)
+                matches = instance.xpath(xpath, namespaces=self.namespaces) # self.exml.xpath(xpath, namespaces=self.namespaces)
                 if not len(matches):
                     LOGGER.debug("observation number %s deployment not found" % i)
                     comments.append("observation number %s deployment not found" % i)
                 else:
                     score += 1
-                    LOGGER.debug(f'observation number %s data generation specified' % i)
+                    LOGGER.debug(f'observation number %s deployment found' % i)
 
                 LOGGER.debug("observation number %s, total: %s, score: %s" % (i, total, score))
 
-        return name, total, score, comments, number_of_observations
+        return name, total, score, comments, number_of_observations # name, total / number_of_observations, score / number_of_observations, comments, number_of_observations
 
     def kpi_31(self) -> tuple:
         """
@@ -1297,7 +1297,7 @@ class WMDRKeyPerformanceIndicators:
                 score2 = 1
             else:
                 score2 = 0
-            comment2 = comment2a + commen2b
+            comments2 = comments2a + comments2b
             xpath3a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidth'
             score3a, comments3a, value3a = get_text_and_validate(instance,xpath3a,self.namespaces,"string","deployment number %s band width" % deployment_number)
             xpath3b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:bandwidthUnit'
@@ -1306,7 +1306,7 @@ class WMDRKeyPerformanceIndicators:
                 score3 = 1
             else:
                 score3 = 0
-            comment3 = comment3a + commen3b
+            comments3 = comments3a + comments3b
             xpath4 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:transmissionMode'
             score4, comments4, value4 = get_href_and_validate(instance,xpath4,self.namespaces,self.codelists["TransmissionMode"],"deployment number %s transmission mode" % deployment_number)
             xpath5 = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:polarization'
@@ -1334,7 +1334,7 @@ class WMDRKeyPerformanceIndicators:
                 score2 = 1
             else:
                 score2 = 0
-            comment2 = comment2a + commen2b
+            comments2 = comments2a + comments2b
             xpath3a = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequency'
             score3a, comments3a, value3a = get_text_and_validate(instance,xpath3a,self.namespaces,"string","deployment number %s frequency" % deployment_number)
             xpath3b = './om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:deployedEquipment/wmdr:Equipment/wmdr:frequency/wmdr:Frequencies/wmdr:frequencyUnit'
@@ -1343,7 +1343,7 @@ class WMDRKeyPerformanceIndicators:
                 score3 = 1
             else:
                 score3 = 0
-            comment3 = comment3a + commen3b
+            comments3 = comments3a + comments3b
             score = score1 + score2 + score3
             comments = comments1 + comments2 + comments3
         return total, score, comments
@@ -1400,6 +1400,7 @@ class WMDRKeyPerformanceIndicators:
         if not len(dataGenerations):
             comments.append("dataGeneration not found")
             total = 25
+            return name, total, 0, comments, 0
         else:
         # compute kpi for each dataGeneration instance
             number_of_data_generations = len(dataGenerations)

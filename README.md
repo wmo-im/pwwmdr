@@ -49,7 +49,7 @@ pywmdr kpi validate --url http://example.org/path/to/file.xml --verbosity DEBUG 
 pywmdr kpi validate --url http://example.org/path/to/file.xml --verbosity DEBUG --group
 
 # selected key performance indicator
-pywmdr kpi validate --kpi 2000 -f /path/to/file.xml -v INFO
+pywmdr kpi validate --kpi 20 -f /path/to/file.xml -v INFO
 ```
 Using the API:
 ```pycon
