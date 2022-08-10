@@ -1,12 +1,9 @@
-# %%
 import requests
 from lxml import etree
 import json
 import os
 import shutil
 
-
-# %%
 
 def getMetadataFormats(output,endpoint="https://oscar.wmo.int:443/oai/provider"):
     response = requests.get(endpoint, params = { "verb": "ListMetadataFormats"})
@@ -209,12 +206,4 @@ if __name__ == "__main__":
     else:
         print("ERROR: invalid action")
         exit(1)
-#     getMetadataFormats("examples/metadataFormats.xml")
-#     metadata_prefix = "wmdr"
-#     identifiers, resumption_token, complete_list_size, cursor = getIdentifiersFirstPage("examples/identifiers.xml")
-#     record = getRecord(identifiers[0],output_dir="examples",metadata_prefix="wmdr",endpoint="https://oscar.wmo.int:443/oai/provider")
-#   identifiers = harvest_oai.getIdentifiers("data/oscar/identifiers/identifiers_landFixed.xml","data/oscar/identifiers/identifiers_landFixed.json","data/oscar/identifiers",set_spec="landFixed")
-
-# %%
-
 

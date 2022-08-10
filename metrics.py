@@ -1,19 +1,10 @@
-# %%
-# test a file on disk
 from lxml import etree
 import os
-os.chdir("%s/git_clones/pywmdr-first-draft" % os.environ["HOME"])
-# from pywmdr.ats import WMDRTestSuite
 from pywmdr.kpi import WMDRKeyPerformanceIndicators
 import glob
 import json
 import re
 
-import logging
-logging.basicConfig(level=logging.INFO)
-
-
-# %%
 def parseAndEvaluate(filename,output=None,selected_kpi : int=None):
     exml = etree.parse(filename)
     try:
@@ -31,8 +22,6 @@ def parseAndEvaluate(filename,output=None,selected_kpi : int=None):
         f.close()
     return result
 
-
-# %%
 def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None):
     files = glob.glob(file_pattern)
     if not len(files):
@@ -53,8 +42,6 @@ def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None):
             f.close()
     return results
 
-
-# %%
 def getPercentiles(values : list,perc = [5,10,25,50,75,95]):
     values_ = [0 if x is None else x for x in values]
     values_.sort()
@@ -151,7 +138,6 @@ def getMetrics(results):
         }
 
 
-# %%
 def readResults(file_pattern):
     results = []
     files = glob.glob(file_pattern)
