@@ -7,3 +7,4 @@ geopandas
 validators
 tzwhere
 isodate
+jsonschema

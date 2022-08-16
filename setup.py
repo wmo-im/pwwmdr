@@ -106,6 +106,8 @@ with open(schema_filename, 'wb') as f:
 
 if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources'):
     os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources')
+if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}json'):
+    os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}json')
 if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist'):
     os.mkdir(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}Codelist')
 if not os.path.exists(f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps'):
@@ -123,6 +125,9 @@ for file in glob.glob(codelist_filenames):
 map_filenames = os.path.join(script_dirname, 'resources/maps/*.json')
 for file in glob.glob(map_filenames):
     shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}resources{os.sep}maps')
+jsonschema_filenames = os.path.join(script_dirname, 'resources/schemas/*.json')
+for file in glob.glob(jsonschema_filenames):
+    shutil.copy(file,f'{USERDIR}{os.sep}schema{os.sep}json{os.sep}')
 
 # because some ISO instances ref both gmd and gmx, create a
 # stub xsd in order to validate

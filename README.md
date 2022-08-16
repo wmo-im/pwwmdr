@@ -84,3 +84,64 @@ Using the API:
 ```
 
 KPI definitions being developed on this branch: https://github.com/wmo-im/wmdr/tree/issue42
+
+## Additional tools
+
+### metrics.py
+
+This program evaluates (all or selected) KPIS for all files matching a given path (accepts bash wildcards), saves the results as .json files and optionally computes statistics from the resulting scores, including percentiles and mean for each KPI and final score.
+
+    $ python3 metrics.py --help
+    usage: metrics.py [-h] [-o OUTPUT_DIR] [-m METRICS] [-k KPI] {evaluate,metrics} path
+
+    Bulk evaluate WMDR KPIs. Compute metrics
+
+    positional arguments:
+    {evaluate,metrics}    action to perform: evaluate, metrics
+    path                  path where to read wmdr files
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                            optional. Save the results onto this location
+    -m METRICS, --metrics METRICS
+                            optional. Compute metrics and save the results onto this file
+    -k KPI, --kpi KPI     optional. Compute selected kpi only
+
+example:
+
+    python3 metrics.py evaluate "data/records/*.xml" -o data/evaluations
+    python3 metrics.py metrics "data/evaluations/*.json" -m metrics.json
+
+### harvest_oai.py
+
+This programs can be used to bulk download wmdr metadata records from a OAI REST endpoint (defaults to OSCAR)
+
+    $ python3 harvest_oai.py --help
+    usage: harvest_oai.py [-h] [-s SET_SPEC] [-e ENDPOINT] [-i IDENTIFIER]
+                        {identifiers,records,record} output
+
+    Bulk download WMDR records from OAI web service
+
+    positional arguments:
+    {identifiers,records,record}
+                            action to perform.
+                            - identifiers: request
+                            record identifiers.
+                            - records: request records.
+                            - record: request record by identifier
+    output                directory where to save results
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    -s SET_SPEC, --set_spec SET_SPEC
+                            optional. Retrieve only records with the specified setSpec attribute
+    -e ENDPOINT, --endpoint ENDPOINT
+                            optional. OAI web service endpoint
+    -i IDENTIFIER, --identifier IDENTIFIER
+                            Record identifier. Valid only for action=record
+
+Examples:
+
+    python3 harvest_oai.py records data/records -s airFixed
+    python3 harvest_oai.py record data/records -i 0-20000-0-15118

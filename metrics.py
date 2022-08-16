@@ -1,9 +1,11 @@
 from lxml import etree
 import os
 from pywmdr.kpi import WMDRKeyPerformanceIndicators
+import pywmdr.util as util
 import glob
 import json
 import re
+import jsonschema
 
 def parseAndEvaluate(filename,output=None,selected_kpi : int=None):
     exml = etree.parse(filename)
@@ -137,29 +139,49 @@ def getMetrics(results):
             "kpi": kpi_stats 
         }
 
-
 def readResults(file_pattern):
     results = []
     files = glob.glob(file_pattern)
     for file in files:
         f = open(file)
-        results.append(json.load(f))
+        content = json.load(f)
+        isValid = util.validate_kpi_evaluation_result(content)
+        if isValid:
+            results.append(content)
         f.close()
+    print("readResults found %i files." % len(results))
     return results
+
+def readEvaluationsAndGetMetrics(file_pattern):
+    results = readResults(file_pattern)
+    return getMetrics(results)
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Bulk evaluate WMDR KPIs. Compute metrics')
-    parser.add_argument('path', type=str, help='path where to read wmdr files')
+    parser.add_argument('action', type=str, help='action to  perform: evaluate, metrics',default="evaluate",choices=["evaluate","metrics"])
+    parser.add_argument('path', type=str, help='path where to read wmdr files. Accepts bash wildcards (must use double quotes to avoid expansion)')
     parser.add_argument('-o','--output_dir',type=str,help="optional. Save the results onto this location")
     parser.add_argument('-m','--metrics',type=str,help="optional. Compute metrics and save the results onto this file")
     parser.add_argument('-k','--kpi',type=int,help="optional. Compute selected kpi only")
     
     args = parser.parse_args()
-    print("kpi type:%s" % str(type(args.kpi)))
-    results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi)
-    if args.metrics and results is not None:
-        metrics = getMetrics(results)
-        f = open(args.metrics,"w")
-        json.dump(metrics,f,indent=2)
-        f.close()
+    # print("kpi type:%s" % str(type(args.kpi)))
+    if args.action == "evaluate":
+        results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi)
+        if args.metrics and results is not None:
+            metrics = getMetrics(results)
+            f = open(args.metrics,"w")
+            json.dump(metrics,f,indent=2)
+            f.close()
+    elif args.action == "metrics":
+            metrics = readEvaluationsAndGetMetrics(args.path)
+            if args.metrics:
+                f = open(args.metrics,"w")
+                json.dump(metrics,f,indent=2)
+                f.close()
+            else:
+                print(json.dumps(metrics,indent=2))
+    else:
+        print("Bad action. choices: evaluate, metrics")
+        exit(1)

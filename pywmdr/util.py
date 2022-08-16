@@ -28,7 +28,9 @@ tzwhere = tzwhere.tzwhere()
 from pywmdr.timezone_codelist import makeCodelist, timezone_to_offset
 tz_codelist = makeCodelist()
 import isodate
-
+import json
+import jsonschema
+from jsonschema import validate
 from lxml import etree
 
 LOGGER = logging.getLogger(__name__)
@@ -382,6 +384,33 @@ def validate_wmdr_xml(xml,version="1.0"):
     LOGGER.debug(f'Validating {xml} against schema {xsd}')
     schema = etree.XMLSchema(etree.parse(xsd))
     schema.assertValid(xml)
+
+def validate_kpi_evaluation_result(json_data):
+    """
+    Peform JSON Schema validation of KPI evaluation result
+    
+    :param json_data: object or JSON string
+    
+    :returns: `bool` of whether JSON validates KPIEvaluation schema
+    """
+
+    userdir = get_userdir()
+    if not os.path.exists(userdir):
+        raise IOError(f'{userdir} does not exist')
+    if isinstance(json_data, str):
+        json_data = json.loads(json_data)
+    schema_location = os.path.join(userdir, "schema","json", 'KPIEvaluation.json')
+    # LOGGER.debug(f'Validating {json_data} against schema {schema}')
+    f = open(schema_location)
+    schema = json.load(f)
+    f.close()
+    try:
+        validate(instance=json_data, schema=schema)
+    except jsonschema.exceptions.ValidationError as err:
+        # print(err)
+        print("Given JSON data is invalid KPIEvaluation")
+        return False
+    return True
 
 
 def parse_wmdr(content):

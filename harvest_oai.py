@@ -175,7 +175,7 @@ def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provide
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Bulk download WMDR records from OAI web service')
-    parser.add_argument('action', type=str, help='action to perform',choices=["identifiers","records","record"])
+    parser.add_argument('action', type=str, help='action to perform. identifiers: request record identifiers. records: request records. record: request record by identifier',choices=["identifiers","records","record"])
     parser.add_argument('output', type=str, help='directory where to save results')
     parser.add_argument('-s','--set_spec',type=str,help="optional. Retrieve only records with the specified setSpec attribute")
     parser.add_argument('-e','--endpoint',type=str,default="https://oscar.wmo.int:443/oai/provider",help="optional. OAI web service endpoint")

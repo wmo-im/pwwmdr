@@ -1,0 +1,116 @@
+{
+  "$id": "http://localhost:3005/schemas/kpi_evaluation.json",
+  "schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evaluation",
+  "type": "object",
+  "properties": {
+    "kpi_10": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_20": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_21": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_30": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_31": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_32": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_33": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_34": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_40": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_41": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_50": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "kpi_60": {
+      "$ref": "#/$defs/KPIEvaluation"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "number"
+        },
+        "score": {
+          "type": "number"
+        },
+        "comments": {
+          "type": "object"
+        },
+        "percentage": {
+          "type": "number"
+        },
+        "identifier": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "grade": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
+        }
+      },
+      "required": [
+        "total",
+        "score",
+        "comments",
+        "percentage",
+        "identifier",
+        "grade"
+      ],
+      "additionaProperties": false
+    }
+  },
+  "required": ["summary"],
+  "additionalProperties": false,
+  "$defs": {
+    "KPIEvaluation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "total": {
+          "type": ["number", "null"]
+        },
+        "score": {
+          "type": ["number", "null"]
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "percentage": {
+          "type": ["number", "null"]
+        }
+      },
+      "required": [
+        "name",
+        "total",
+        "score",
+        "comments",
+        "percentage"
+      ],
+      "additionaProperties": false
+    }
+  }
+}
