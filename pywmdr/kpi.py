@@ -874,7 +874,7 @@ class WMDRKeyPerformanceIndicators:
         OM_Observations = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation',namespaces=self.namespaces)
         if not len(OM_Observations):
             comments.append("OM_Observation not found")
-            total = 27
+            total = 33
         else:
         # compute kpi for each OM_Observation instance
             number_of_deployments = len(OM_Observations)
@@ -1399,7 +1399,7 @@ class WMDRKeyPerformanceIndicators:
         dataGenerations = self.exml.xpath('./wmdr:facility/wmdr:ObservingFacility/wmdr:observation/wmdr:ObservingCapability/wmdr:observation/om:OM_Observation/om:procedure/wmdr:Process/wmdr:deployment/wmdr:Deployment/wmdr:dataGeneration/wmdr:DataGeneration',namespaces=self.namespaces)
         if not len(dataGenerations):
             comments.append("dataGeneration not found")
-            total = 25
+            total = 24
             return name, total, 0, comments, 0
         else:
         # compute kpi for each dataGeneration instance
@@ -1694,7 +1694,7 @@ class WMDRKeyPerformanceIndicators:
         return total, score, comments
 
     def kpi_3311(self, instance, data_generation_number):
-        total = 1
+        total = 0
         score = 0
         comments = []
         # diurnalBaseTime is not a property of ReportingType (wmdr1.0) 
@@ -1870,7 +1870,7 @@ class WMDRKeyPerformanceIndicators:
 
         LOGGER.info(f'Running {name}')
 
-        # Rule: Station has at least on contact person.
+        # Rule: Station has at least one contact person.
 
         xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty'
 
@@ -2183,7 +2183,7 @@ class WMDRKeyPerformanceIndicators:
 
     #### END OF KPIS ####
 
-    def evaluate(self, kpi: int = 0) -> dict:
+    def evaluate(self, kpi: int = 0,skip_schema_eval=False) -> dict:
         """
         Convenience function to run all tests
 
@@ -2206,6 +2206,9 @@ class WMDRKeyPerformanceIndicators:
         ]
 
         kpis_to_run = known_kpis
+
+        if skip_schema_eval:
+            kpis_to_run.remove('kpi_10')
 
         if kpi != 0:
             selected_kpi = f'kpi_{kpi:02}'
@@ -2248,7 +2251,7 @@ class WMDRKeyPerformanceIndicators:
             # this total summary needs extra elements
             results['summary']['identifier'] = self.identifier,
             overall_grade = 'F'
-            if results['kpi_10']['percentage'] != 100:
+            if not skip_schema_eval and results['kpi_10']['percentage'] != 100:
                 overall_grade = 'U'
             else:
                 overall_grade = calculate_grade(results['summary']['percentage'])

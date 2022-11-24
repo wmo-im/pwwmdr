@@ -7,7 +7,7 @@ import json
 import re
 import jsonschema
 
-def parseAndEvaluate(filename,output=None,selected_kpi : int=None):
+def parseAndEvaluate(filename,output=None,selected_kpi : int=None,skip_schema_eval=False):
     exml = etree.parse(filename)
     try:
         kpi = WMDRKeyPerformanceIndicators(exml)
@@ -17,14 +17,14 @@ def parseAndEvaluate(filename,output=None,selected_kpi : int=None):
     if selected_kpi is not None:
         result = kpi.evaluate(selected_kpi)
     else:
-        result = kpi.evaluate()
+        result = kpi.evaluate(0,skip_schema_eval)
     if output is not None:
         f = open(output,"w")
         json.dump(result,f,indent=2)
         f.close()
     return result
 
-def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None):
+def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None,skip_schema_eval=False):
     files = glob.glob(file_pattern)
     if not len(files):
         print("Error: no files matched the pattern")
@@ -32,7 +32,7 @@ def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None):
     results = []
     for file in files:
         try:
-            result = parseAndEvaluate(file,selected_kpi=selected_kpi)
+            result = parseAndEvaluate(file,selected_kpi=selected_kpi,skip_schema_eval=skip_schema_eval)
         except Exception as e:
             print("Error: kpi evaluation failed: %s" % str(e))
             continue
@@ -162,13 +162,14 @@ if __name__ == "__main__":
     parser.add_argument('action', type=str, help='action to  perform: evaluate, metrics',default="evaluate",choices=["evaluate","metrics"])
     parser.add_argument('path', type=str, help='path where to read wmdr files. Accepts bash wildcards (must use double quotes to avoid expansion)')
     parser.add_argument('-o','--output_dir',type=str,help="optional. Save the results onto this location")
-    parser.add_argument('-m','--metrics',type=str,help="optional. Compute metrics and save the results onto this file")
-    parser.add_argument('-k','--kpi',type=int,help="optional. Compute selected kpi only")
+    parser.add_argument('-m','--metrics',type=str,help="Compute metrics and save the results onto this file")
+    parser.add_argument('-k','--kpi',type=int,help="Compute selected kpi only")
+    parser.add_argument('-s','--skip_schema_eval',action="store_true",help="skip evaluation of schema (kpi 1-01)")
     
     args = parser.parse_args()
     # print("kpi type:%s" % str(type(args.kpi)))
     if args.action == "evaluate":
-        results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi)
+        results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi,skip_schema_eval=args.skip_schema_eval)
         if args.metrics and results is not None:
             metrics = getMetrics(results)
             f = open(args.metrics,"w")
