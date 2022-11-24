@@ -161,7 +161,7 @@ def getRecordsNextPage(output,resumption_token,endpoint="https://oscar.wmo.int:4
     new_token = list_records.find("{http://www.openarchives.org/OAI/2.0/}resumptionToken").text
     return records, cursor, new_token
 
-def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provider",max_pages=500,metadata_prefix="wmdr",set_spec=None):
+def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provider",max_pages=500,metadata_prefix="wmdr",set_spec=None,return_records=False):
     records, resumption_token, completeListSize, cursor = getRecordsFirstPage(output,endpoint=endpoint,metadata_prefix=metadata_prefix,set_spec=set_spec,output_dir=output_dir)
     page = 0
     if resumption_token is None:
@@ -170,8 +170,12 @@ def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provide
         page = page + 1
         more_records, cursor, resumption_token = getRecordsNextPage(output,resumption_token,endpoint=endpoint,output_dir=output_dir)
         print("cursor: %i, page: %i, completeListSize: %i" % (cursor, page, completeListSize))
-        records.extend(more_records)
-    return records
+        if return_records:
+            records.extend(more_records)
+    if return_records:
+        return records
+    else:
+        return
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Bulk download WMDR records from OAI web service')
@@ -195,9 +199,9 @@ if __name__ == "__main__":
     elif args.action == "records":
         filename = "%s/records.xml" % args.output
         if args.set_spec is not None:
-            records = getRecords(filename,args.output,endpoint=args.endpoint,set_spec=args.set_spec)
+            getRecords(filename,args.output,endpoint=args.endpoint,set_spec=args.set_spec)
         else:
-            records = getRecords(filename,args.output,endpoint=args.endpoint)
+            getRecords(filename,args.output,endpoint=args.endpoint)
     elif args.action == "record":
         if args.identifier is None:
             print("ERROR: missing -i, --identifier")
