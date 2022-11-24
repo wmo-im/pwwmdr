@@ -6,13 +6,15 @@ import glob
 import json
 import re
 import jsonschema
+import traceback
 
 def parseAndEvaluate(filename,output=None,selected_kpi : int=None,skip_schema_eval=False):
     exml = etree.parse(filename)
     try:
         kpi = WMDRKeyPerformanceIndicators(exml)
-    except Exception as e:
-        print("warning: invalid wmdr document: %s" % str(e))
+    except Exception:
+        print("warning: invalid wmdr document:")
+        traceback.print_exc()
         return None
     if selected_kpi is not None:
         result = kpi.evaluate(selected_kpi)
@@ -33,8 +35,9 @@ def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None,s
     for file in files:
         try:
             result = parseAndEvaluate(file,selected_kpi=selected_kpi,skip_schema_eval=skip_schema_eval)
-        except Exception as e:
-            print("Error: kpi evaluation failed: %s" % str(e))
+        except Exception:
+            print("Error: kpi evaluation failed:")
+            traceback.print_exc()
             continue
         results.append(result)
         if output_dir is not None:
