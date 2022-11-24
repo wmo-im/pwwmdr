@@ -197,7 +197,7 @@ if __name__ == "__main__":
         if args.set_spec is not None:
             records = getRecords(filename,args.output,endpoint=args.endpoint,set_spec=args.set_spec)
         else:
-            records = getIdentifiers(filename,args.output,endpoint=args.endpoint)
+            records = getRecords(filename,args.output,endpoint=args.endpoint)
     elif args.action == "record":
         if args.identifier is None:
             print("ERROR: missing -i, --identifier")
