@@ -67,7 +67,7 @@ from pywmdr.util import (get_cli_common_options, get_keyword_info,
                          validate_url, get_href_and_validate, get_text_and_validate, 
                          validate_text) # get_codelists, 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARNING) # DEBUG)
 LOGGER = logging.getLogger(__name__)
 
 # round percentages to x decimal places
@@ -1904,6 +1904,7 @@ class WMDRKeyPerformanceIndicators:
         if not len(responsibleParties):
             comments.append("responsibleParty not found")
             total = 5
+            number_of_responsible_parties = 0
         else:
         # compute kpi for each wmdr:responsibleParty instance
             number_of_responsible_parties = len(responsibleParties)
