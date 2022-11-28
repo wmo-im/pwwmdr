@@ -56,10 +56,16 @@
           "type": "number"
         },
         "identifier": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
+        },
+        "organisation": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
         },
         "grade": {
           "type": "string",
@@ -75,7 +81,7 @@
         "identifier",
         "grade"
       ],
-      "additionaProperties": false
+      "additionalProperties": false
     }
   },
   "required": ["summary"],
@@ -101,6 +107,9 @@
         },
         "percentage": {
           "type": ["number", "null"]
+        },
+        "number_of_instances": {
+          "type": "number"
         }
       },
       "required": [
@@ -110,7 +119,7 @@
         "comments",
         "percentage"
       ],
-      "additionaProperties": false
+      "additionalProperties": false
     }
   }
 }

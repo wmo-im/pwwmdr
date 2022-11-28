@@ -140,6 +140,9 @@ def getRecordsNextPage(output,resumption_token,endpoint="https://oscar.wmo.int:4
     root = tree.getroot()
     root.tag
     list_records = root.find("{http://www.openarchives.org/OAI/2.0/}ListRecords")
+    if list_records is None:
+        print("Element ListRecords not found")
+        return None, None, None
     cursor = int(list_records.find("{http://www.openarchives.org/OAI/2.0/}resumptionToken").attrib["cursor"])
     filename ="%s/records_%i.xml" % (output_dir,cursor)
     if output_dir is not None:
@@ -169,6 +172,8 @@ def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provide
     while cursor < completeListSize and page < max_pages:
         page = page + 1
         more_records, cursor, resumption_token = getRecordsNextPage(output,resumption_token,endpoint=endpoint,output_dir=output_dir)
+        if cursor is None:
+            break
         print("cursor: %i, page: %i, completeListSize: %i" % (cursor, page, completeListSize))
         if return_records:
             records.extend(more_records)

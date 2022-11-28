@@ -138,7 +138,48 @@ class WMDRKeyPerformanceIndicators:
             return matches[0]
         else:
             return ""
+    
+    @property
+    def organisation(self):
+        """
+        Helper function to derive a metadata record organisation
 
+        :returns: metadata record organisation
+        """
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:responsibleParty/wmdr:ResponsibleParty/wmdr:responsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString'
+        sscore, scomments, value = get_text_and_validate(self.exml, xpath, self.namespaces, type="string", element_name="supervising organization")
+        if len(value):
+            return value
+        else:
+            return ""
+    
+    @property
+    def country(self):
+        """
+        Helper function to derive a metadata record country
+
+        :returns: metadata record country
+        """
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:territory/wmdr:Territory/wmdr:territoryName'
+        sscore, scomments, value = get_href_and_validate(self.exml,xpath,self.namespaces,self.codelists["TerritoryName"],"territory name")
+        if value is not None:
+            return value
+        else:
+            return ""
+    
+    @property
+    def region(self):
+        """
+        Helper function to derive a metadata record region
+
+        :returns: metadata record region
+        """
+        xpath = './wmdr:facility/wmdr:ObservingFacility/wmdr:wmoRegion'
+        sscore, scomments, wmoregion = get_href_and_validate(self.exml,xpath,self.namespaces,self.codelists["WMORegion"],"wmo region")
+        if wmoregion is not None:
+            return wmoregion
+        else:
+            return ""
     # def _check_spelling(self, text: str) -> list:
     #     """
     #     Helper function to spell check a string
@@ -2250,7 +2291,10 @@ class WMDRKeyPerformanceIndicators:
             LOGGER.debug('Calculating total results')
             results['summary'] = generate_summary(results)
             # this total summary needs extra elements
-            results['summary']['identifier'] = self.identifier,
+            results['summary']['identifier'] = self.identifier
+            results['summary']['organisation'] = self.organisation
+            results['summary']['country'] = self.country
+            results['summary']['region'] = self.region
             overall_grade = 'F'
             if not skip_schema_eval and results['kpi_10']['percentage'] != 100:
                 overall_grade = 'U'

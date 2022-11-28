@@ -26,7 +26,7 @@ def parseAndEvaluate(filename,output=None,selected_kpi : int=None,skip_schema_ev
         f.close()
     return result
 
-def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None,skip_schema_eval=False):
+def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None,skip_schema_eval=False,return_results=False):
     files = glob.glob(file_pattern)
     if not len(files):
         print("Error: no files matched the pattern")
@@ -39,13 +39,17 @@ def parseAndEvaluateFiles(file_pattern,output_dir=None,selected_kpi : int=None,s
             print("Error: kpi evaluation failed:")
             traceback.print_exc()
             continue
-        results.append(result)
+        if(return_results):
+            results.append(result)
         if output_dir is not None:
             filename = "%s/%s_eval.json" % (output_dir, file.split("/")[-1])
             f = open(filename,"w")
             json.dump(result,f,indent=2)
             f.close()
-    return results
+    if return_results:
+        return results
+    else:
+        return
 
 def getPercentiles(values : list,perc = [5,10,25,50,75,95]):
     values_ = [0 if x is None else x for x in values]
@@ -83,6 +87,10 @@ def getKPIStats(results):
 
 
 def getMetrics(results):
+    identifier = []
+    organisation = []
+    country = []
+    region = []
     totals = []
     scores = []
     comments = []
@@ -101,6 +109,10 @@ def getMetrics(results):
             # comments.append(summary["comments"])
             percentages.append(summary["percentage"])
             grades.append(summary["grade"])
+            identifier.append(summary["identifier"])
+            organisation.append(summary["organisation"])
+            country.append(summary["country"])
+            region.append(summary["region"])
         for kpi in [key for key in result if re.search("^kpi_",key) is not None]:
             if kpi not in kpis:
                 kpis[kpi] = [
@@ -124,6 +136,10 @@ def getMetrics(results):
         kpi_stats[kpi] = getKPIStats(kpis[kpi])
     if len(totals):
         return {
+            "identifier": identifier,
+            "organisation": organisation,
+            "country": country,
+            "region": region,
             "count": count,
             "totals": totals,
             "scores": scores,
@@ -172,12 +188,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
     # print("kpi type:%s" % str(type(args.kpi)))
     if args.action == "evaluate":
-        results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi,skip_schema_eval=args.skip_schema_eval)
-        if args.metrics and results is not None:
-            metrics = getMetrics(results)
-            f = open(args.metrics,"w")
-            json.dump(metrics,f,indent=2)
-            f.close()
+        if args.metrics:
+            results = parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi,skip_schema_eval=args.skip_schema_eval,return_results=True)
+            if results is not None:
+                metrics = getMetrics(results)
+                f = open(args.metrics,"w")
+                json.dump(metrics,f,indent=2)
+                f.close()
+        else:
+            parseAndEvaluateFiles(args.path,output_dir=args.output_dir,selected_kpi=args.kpi,skip_schema_eval=args.skip_schema_eval)
     elif args.action == "metrics":
             metrics = readEvaluationsAndGetMetrics(args.path)
             if args.metrics:

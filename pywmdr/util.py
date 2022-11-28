@@ -32,6 +32,7 @@ import json
 import jsonschema
 from jsonschema import validate
 from lxml import etree
+import traceback
 
 LOGGER = logging.getLogger(__name__)
 
@@ -406,9 +407,9 @@ def validate_kpi_evaluation_result(json_data):
     f.close()
     try:
         validate(instance=json_data, schema=schema)
-    except jsonschema.exceptions.ValidationError as err:
-        # print(err)
-        print("Given JSON data is invalid KPIEvaluation")
+    except jsonschema.exceptions.ValidationError:
+        LOGGER.error("Given JSON data is invalid KPIEvaluation:")
+        traceback.print_exc()        
         return False
     return True
 

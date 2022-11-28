@@ -14,6 +14,7 @@ cd pywmdr
 . bin/activate
 git clone https://github.com/wmo-im/pywmdr.git
 cd pywmdr
+python3 -m ensurepip
 pip3 install -r requirements.txt
 python3 setup.py build
 python3 setup.py install
@@ -56,7 +57,7 @@ Using the API:
 >>> # test a file on disk
 >>> from lxml import etree
 >>> from pywmdr.ats import WMDRTestSuite
->>> exml = etree.parse('examples/ndacc_0-20008-0-ARO.xml')
+>>> exml = etree.parse('examples/serafina.xml')
 >>> # test ATS
 >>> ts = WMDRTestSuite(exml)
 >>> ts.run_tests() 
