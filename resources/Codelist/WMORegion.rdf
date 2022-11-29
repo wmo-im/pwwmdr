@@ -1,0 +1,107 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/WMORegion">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/northCentralAmericaCaribbean">
+        <dct:description xml:lang="en">North America, Central America and the Caribbean</dct:description>
+        <rdfs:label>North America, Central America and the Caribbean</rdfs:label>
+        <skos:notation>northCentralAmericaCaribbean</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/southAmerica">
+        <dct:description xml:lang="en">South America</dct:description>
+        <rdfs:label>South America</rdfs:label>
+        <skos:notation>southAmerica</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/unknown">
+        <dct:description xml:lang="en">unknown</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/inapplicable">
+        <dct:description xml:lang="en">inapplicable</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/asia">
+        <dct:description xml:lang="en">Asia</dct:description>
+        <rdfs:label>Asia</rdfs:label>
+        <skos:notation>asia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/antarctica">
+        <dct:description xml:lang="en">Antarctica</dct:description>
+        <rdfs:label>Antarctica</rdfs:label>
+        <skos:notation>antarctica</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:description>Region of origin of data</dct:description>
+    <rdfs:label>Region of origin of data</rdfs:label>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:14:47.684Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/africa">
+        <dct:description xml:lang="en">Africa</dct:description>
+        <rdfs:label>Africa</rdfs:label>
+        <skos:notation>africa</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/southWestPacific">
+        <dct:description xml:lang="en">South-West Pacific</dct:description>
+        <rdfs:label>South-West Pacific</rdfs:label>
+        <skos:notation>southWestPacific</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/WMORegion/europe">
+        <dct:description xml:lang="en">Europe</dct:description>
+        <rdfs:label>Europe</rdfs:label>
+        <skos:notation>europe</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </ldp:Container>
+</rdf:RDF>

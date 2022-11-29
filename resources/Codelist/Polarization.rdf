@@ -1,0 +1,86 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <reg:Register rdf:about="http://codes.wmo.int/wmdr/Polarization">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/linear">
+        <dct:description xml:lang="en">linear polarization</dct:description>
+        <rdfs:label>linear</rdfs:label>
+        <skos:notation>linear</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >7</owl:versionInfo>
+    <rdfs:label>Polarization of electromagnetic radiation</rdfs:label>
+    <dct:description>Polarization of electromagnetic radiation</dct:description>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/lrhcp">
+        <dct:description xml:lang="en">left- and right-hand circular polarization</dct:description>
+        <rdfs:label>LHCP &amp; RHCP</rdfs:label>
+        <skos:notation>lrhcp</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2020-11-13T08:35:05.353Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/dual">
+        <dct:description xml:lang="en">dual polarization</dct:description>
+        <rdfs:label>dual</rdfs:label>
+        <skos:notation>dual</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/single">
+        <dct:description xml:lang="en">single polarization</dct:description>
+        <rdfs:label>single</rdfs:label>
+        <skos:notation>single</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/rhcp">
+        <dct:description xml:lang="en">right-hand circular polarization</dct:description>
+        <rdfs:label>RHCP</rdfs:label>
+        <skos:notation>rhcp</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/Polarization/lhcp">
+        <dct:description xml:lang="en">left-hand circular polarization</dct:description>
+        <rdfs:label>LHCP</rdfs:label>
+        <skos:notation>lhcp</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </reg:Register>
+</rdf:RDF>

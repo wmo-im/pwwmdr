@@ -1,0 +1,135 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/evergreenBroadleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Evergreen broadleaf forest</rdfs:label>
+        <skos:notation>evergreenBroadleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable in the context of this particular observation.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/evergreenNeedleleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Evergreen needleleaf forest</rdfs:label>
+        <skos:notation>evergreenNeedleleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/deciduousNeedleleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Deciduous needleleaf forest</rdfs:label>
+        <skos:notation>deciduousNeedleleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/deciduousBroadleafForest">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Deciduous broadleaf forest</rdfs:label>
+        <skos:notation>deciduousBroadleafForest</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/water">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Water</rdfs:label>
+        <skos:notation>water</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/unknown">
+        <dct:description xml:lang="en">Unknown surface cover type.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/savannas">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Savanna</rdfs:label>
+        <skos:notation>savannas</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/nonVegetated">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Non vegetated</rdfs:label>
+        <skos:notation>nonVegetated</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/broadleafCrops">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Broadleaf crops</rdfs:label>
+        <skos:notation>broadleafCrops</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/grassesCerealCrops">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Grasses/Cereal crops</rdfs:label>
+        <skos:notation>grassesCerealCrops</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Surface cover types (LAI/fPAR)</rdfs:label>
+    <dct:description>Surface cover types (LAI/fPAR)</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/shrubs">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Shrubs</rdfs:label>
+        <skos:notation>shrubs</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/SurfaceCoverLAI/urban">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>Urban</rdfs:label>
+        <skos:notation>urban</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:19:23.722Z</dct:modified>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+  </ldp:Container>
+</rdf:RDF>

@@ -1,0 +1,10 @@
+beautifulsoup4
+click
+lxml
+pyspellchecker
+python-dateutil
+geopandas
+validators
+tzwhere
+isodate
+jsonschema

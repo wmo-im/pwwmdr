@@ -1,0 +1,2718 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <ldp:Container rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSPL">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-PL</rdfs:label>
+        <skos:notation>VOSPL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSBCCR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-BCCR</rdfs:label>
+        <skos:notation>OSBCCR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEcuador">
+        <dct:description xml:lang="en">ARGO ECUADOR</dct:description>
+        <rdfs:label>ARGO ECUADOR</rdfs:label>
+        <skos:notation>argoEcuador</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPAWI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>ASAP-AWI</rdfs:label>
+        <skos:notation>ASAPAWI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/JMADB">
+        <dct:description xml:lang="en">JMA Drifting Buoy</dct:description>
+        <rdfs:label>JMA DB</rdfs:label>
+        <skos:notation>JMADB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOS3P">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-3P</rdfs:label>
+        <skos:notation>VOS3P</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MERSEA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>MERSEA</rdfs:label>
+        <skos:notation>MERSEA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NOAAGML">
+        <dct:description xml:lang="en">NOAA Global Monitoring Laboratory</dct:description>
+        <rdfs:label>NOAA-GML</rdfs:label>
+        <skos:notation>NOAAGML</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNavoceano">
+        <dct:description xml:lang="en">ARGO EQ. NAVOCEANO</dct:description>
+        <rdfs:label>ARGO EQ. NAVOCEANO</rdfs:label>
+        <skos:notation>argoEqNavoceano</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdfs:label>Programme/network affiliation</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BOMTSU">
+        <dct:description xml:lang="en">Bureau of Meteorology (BOM) Tsunameter Buoy</dct:description>
+        <rdfs:label>BOM-TSU</rdfs:label>
+        <skos:notation>BOMTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/brazilPNBOIAINPE">
+        <dct:description xml:lang="en">Programa Nacional de Boias (PNBOIA) is the brazilian contribution to the Global Ocean Observation System (GOOS). Instituto Nacional de Pesquisas Espacias (INPE)</dct:description>
+        <rdfs:label>BRAZIL PNBOIA-INPE</rdfs:label>
+        <skos:notation>brazilPNBOIAINPE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSCOM">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-CENTRE D'OCEANOLOGIE DE MARSEILLE</rdfs:label>
+        <skos:notation>OSCOM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoNewZealand">
+        <dct:description xml:lang="en">ARGO NEW ZEALAND</dct:description>
+        <rdfs:label>ARGO NEW ZEALAND</rdfs:label>
+        <skos:notation>argoNewZealand</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoJMA">
+        <dct:description xml:lang="en">ARGO JMA</dct:description>
+        <rdfs:label>ARGO JMA</rdfs:label>
+        <skos:notation>argoJMA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoIFMGeomar">
+        <dct:description xml:lang="en">ARGO IFM-GEOMAR</dct:description>
+        <rdfs:label>ARGO IFM-GEOMAR</rdfs:label>
+        <skos:notation>argoIFMGeomar</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAEU">
+        <dct:description xml:lang="en">Monitoring the Oceans and Climate Change with Argo – EU</dct:description>
+        <rdfs:label>MOCCA-EU</rdfs:label>
+        <skos:notation>MOCCAEU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoMexCoUS">
+        <dct:description xml:lang="en">ARGO MEX-CO-US</dct:description>
+        <rdfs:label>ARGO MEX-CO-US</rdfs:label>
+        <skos:notation>argoMexCoUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GRUAN">
+        <dct:description xml:lang="en">GCOS Reference Upper-Air Network</dct:description>
+        <rdfs:label>GRUAN</rdfs:label>
+        <skos:notation>GRUAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NewZealandDB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NEW ZEALAND DB</rdfs:label>
+        <skos:notation>NewZealandDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSSE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-SE</rdfs:label>
+        <skos:notation>VOSSE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSES">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-ES</rdfs:label>
+        <skos:notation>VOSES</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmar">
+        <dct:description xml:lang="en">EUMETNET Composite Observing System (EUCOS)Surface Marine Programme</dct:description>
+        <rdfs:label>E-SURFMAR</rdfs:label>
+        <skos:notation>eSurfmar</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSBIOS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-BIOS</rdfs:label>
+        <skos:notation>OSBIOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFrontalis">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-FRONTALIS</rdfs:label>
+        <skos:notation>coriolisFrontalis</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSHAV">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-HAV</rdfs:label>
+        <skos:notation>OSHAV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIONTU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-IO-NTU</rdfs:label>
+        <skos:notation>OSIONTU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/greeceMB">
+        <dct:description xml:lang="en">Moored buoys in the Greek Poseiden Network</dct:description>
+        <rdfs:label>GREECE MB</rdfs:label>
+        <skos:notation>greeceMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABPEC">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>IABP-EC</rdfs:label>
+        <skos:notation>IABPEC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqFERHRI">
+        <dct:description xml:lang="en">ARGO EQ. FERHRI</dct:description>
+        <rdfs:label>ARGO EQ. FERHRI</rdfs:label>
+        <skos:notation>argoEqFERHRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABP">
+        <dct:description xml:lang="en">International Arctic Buoy Programme (IABP)</dct:description>
+        <rdfs:label>IABP</rdfs:label>
+        <skos:notation>IABP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2021-05-19T15:51:00.804Z</dct:modified>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EARLINET">
+        <dct:description xml:lang="en">European Aerosol Research Lidar Network</dct:description>
+        <rdfs:label>EARLINET</rdfs:label>
+        <skos:notation>EARLINET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCANETH">
+        <dct:description xml:lang="en">Monitoring the Oceans and Climate Change with Argo – Netherlands</dct:description>
+        <rdfs:label>MOCCA-NETH</rdfs:label>
+        <skos:notation>MOCCANETH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/JAMSTECDB">
+        <dct:description xml:lang="en">Japan Agency for Marine-Earth Science and Technology Drifting Buoy</dct:description>
+        <rdfs:label>JAMSTECDB</rdfs:label>
+        <skos:notation>JAMSTECDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GALION">
+        <dct:description xml:lang="en">GAW Aerosol Lidar Observation Network</dct:description>
+        <rdfs:label>GALION</rdfs:label>
+        <skos:notation>GALION</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EUROARGO">
+        <dct:description xml:lang="en">European contribution to Argo program</dct:description>
+        <rdfs:label>EUROARGO</rdfs:label>
+        <skos:notation>EUROARGO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >38</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisDrake">
+        <dct:description xml:lang="en">ARGO South West Atlantic</dct:description>
+        <rdfs:label>CORIOLIS-DRAKE</rdfs:label>
+        <skos:notation>coriolisDrake</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/FERHRITSU">
+        <dct:description xml:lang="en">Far Eastern Regional Hydrometeorological Research Institute Tsunameter Buoys</dct:description>
+        <rdfs:label>FERHRI-TSU</rdfs:label>
+        <skos:notation>FERHRITSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSOGS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-OGS</rdfs:label>
+        <skos:notation>OSOGS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqORI">
+        <dct:description xml:lang="en">ARGO EQ. ORI</dct:description>
+        <rdfs:label>ARGO EQ. ORI</rdfs:label>
+        <skos:notation>argoEqORI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSCNRS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-CNRS</rdfs:label>
+        <skos:notation>OSCNRS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UKMODB">
+        <dct:description xml:lang="en">UK MetOffice Iridium Drifters</dct:description>
+        <rdfs:label>UK-MO DB</rdfs:label>
+        <skos:notation>UKMODB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIOwarnemuende">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-IO-WARNEMUENDE</rdfs:label>
+        <skos:notation>OSIOwarnemuende</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarUKFRMB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>E-SURFMAR-UK/FR MB</rdfs:label>
+        <skos:notation>eSurfmarUKFRMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSWHOI-SIO-OSU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-WHOI/SIO/OSU</rdfs:label>
+        <skos:notation>OSWHOI-SIO-OSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoCostaRica">
+        <dct:description xml:lang="en">ARGO COSTA RICA</dct:description>
+        <rdfs:label>ARGO COSTA RICA</rdfs:label>
+        <skos:notation>argoCostaRica</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/italyDB">
+        <dct:description xml:lang="en">Italian Drifting Buoys (EXPARGOS)</dct:description>
+        <rdfs:label>ITALY DB</rdfs:label>
+        <skos:notation>italyDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/HKOBSDB">
+        <dct:description xml:lang="en">Hong Kong Observatory Drifter Buoy</dct:description>
+        <rdfs:label>HK-OBS-DB</rdfs:label>
+        <skos:notation>HKOBSDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/petrobras">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>PETROBRAS</rdfs:label>
+        <skos:notation>petrobras</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoJamstec">
+        <dct:description xml:lang="en">ARGO JAMSTEC</dct:description>
+        <rdfs:label>ARGO JAMSTEC</rdfs:label>
+        <skos:notation>argoJamstec</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSCAL">
+        <dct:description xml:lang="en">GLOSCAL is a French Project sponsored by ESA , which aims to calibrate and validate sea surface salinity (SSS) measurements carried out by satellite (e.g. SMOS and Aquarius).</dct:description>
+        <rdfs:label>GLOSCAL</rdfs:label>
+        <skos:notation>GLOSCAL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGONIMSKMA">
+        <dct:description xml:lang="en">National Institute of Meteorological Science/Korean Meteorological Administration Argo programme</dct:description>
+        <rdfs:label>Argo NIMS/KMA</rdfs:label>
+        <skos:notation>ARGONIMSKMA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/PHOTONS">
+        <dct:description xml:lang="en">PHOTONS, federated to AERONET</dct:description>
+        <rdfs:label>PHOTONS</rdfs:label>
+        <skos:notation>PHOTONS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWglobal">
+        <dct:description xml:lang="en">Global GAW station</dct:description>
+        <rdfs:label>GAW Global</rdfs:label>
+        <skos:notation>GAWglobal</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IBPIO">
+        <dct:description xml:lang="en">International Buoy Programme for the Indian Ocean (IBPIO)</dct:description>
+        <rdfs:label>IBPIO</rdfs:label>
+        <skos:notation>IBPIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceMB">
+        <dct:description xml:lang="en">MF Drifters Atlantic and Indian Ocean</dct:description>
+        <rdfs:label>METEO FRANCE MB</rdfs:label>
+        <skos:notation>MeteoFranceMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATct">
+        <dct:description xml:lang="en">Station for which monthly climatological means of both surface and upper- air elements are transmitted</dct:description>
+        <rdfs:label>CLIMAT(CT)</rdfs:label>
+        <skos:notation>CLIMATct</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EANET">
+        <dct:description xml:lang="en">EANET</dct:description>
+        <rdfs:label>EANET</rdfs:label>
+        <skos:notation>EANET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ECIABP">
+        <dct:description xml:lang="en">International Arctic Buoy Program</dct:description>
+        <rdfs:label>EC-IABP</rdfs:label>
+        <skos:notation>ECIABP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/KMAMB">
+        <dct:description xml:lang="en">Korea Meteorological Department Moored Buoy programme</dct:description>
+        <rdfs:label>KMA MB</rdfs:label>
+        <skos:notation>KMAMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/INOCARTSU">
+        <dct:description xml:lang="en">Instituto Oceanografico de la Armada Tsunameter buoys</dct:description>
+        <rdfs:label>INOCAR-TSU</rdfs:label>
+        <skos:notation>INOCARTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NorwayIMR">
+        <dct:description xml:lang="en">Institute of Marine Research Drifting Buoy Program</dct:description>
+        <rdfs:label>NORWAY-IMR</rdfs:label>
+        <skos:notation>NorwayIMR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:description>Programme/network affiliation</dct:description>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSAWI">
+        <dct:description xml:lang="en">AWI OceanSITES program</dct:description>
+        <rdfs:label>OS-AWI</rdfs:label>
+        <skos:notation>OSAWI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqPomme">
+        <dct:description xml:lang="en">ARGO EQ. POMME</dct:description>
+        <rdfs:label>ARGO EQ. POMME</rdfs:label>
+        <skos:notation>argoEqPomme</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BULARGO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>BULARGO</rdfs:label>
+        <skos:notation>BULARGO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ACTRIS">
+        <dct:description xml:lang="en">Aerosol,Clouds and Trace Gases Research Infrastructure, www.actris.eu</dct:description>
+        <rdfs:label>ACTRIS</rdfs:label>
+        <skos:notation>ACTRIS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSDFO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-DFO</rdfs:label>
+        <skos:notation>OSDFO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/taoAtlas">
+        <dct:description xml:lang="en">TAO Array of ATLAS buoys in the Equatorial Ocean</dct:description>
+        <rdfs:label>TAO ATLAS</rdfs:label>
+        <skos:notation>taoAtlas</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceDB">
+        <dct:description xml:lang="en">MF Drifters Atlantic and Indian Ocean</dct:description>
+        <rdfs:label>METEO FRANCE DB</rdfs:label>
+        <skos:notation>MeteoFranceDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NICIABP">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NIC-IABP</rdfs:label>
+        <skos:notation>NICIABP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisSpice">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-SPICE</rdfs:label>
+        <skos:notation>coriolisSpice</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWSoccomEq">
+        <dct:description xml:lang="en">ARGO UW-SOCCOM EQ.</dct:description>
+        <rdfs:label>ARGO UW-SOCCOM EQ.</rdfs:label>
+        <skos:notation>argoUWSoccomEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoMexico">
+        <dct:description xml:lang="en">ARGO MEXICO</dct:description>
+        <rdfs:label>ARGO MEXICO</rdfs:label>
+        <skos:notation>argoMexico</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-IS</rdfs:label>
+        <skos:notation>VOSIS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoAustraliaEq">
+        <dct:description xml:lang="en">ARGO AUSTRALIA EQ.</dct:description>
+        <rdfs:label>ARGO AUSTRALIA EQ.</rdfs:label>
+        <skos:notation>argoAustraliaEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GCWcontributing">
+        <dct:description xml:lang="en">A GCW station which provides useful measurements of the cryosphere but does not meet all requirements for a CryoNet Station.</dct:description>
+        <rdfs:label>GCW Contributing station</rdfs:label>
+        <skos:notation>GCWcontributing</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoIndia">
+        <dct:description xml:lang="en">ARGO INDIA</dct:description>
+        <rdfs:label>ARGO INDIA</rdfs:label>
+        <skos:notation>argoIndia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoCanada">
+        <dct:description xml:lang="en">ARGO CANADA</dct:description>
+        <rdfs:label>ARGO CANADA</rdfs:label>
+        <skos:notation>argoCanada</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/JMATSU">
+        <dct:description xml:lang="en">JMA Tsunameter buoys</dct:description>
+        <rdfs:label>JMA-TSU</rdfs:label>
+        <skos:notation>JMATSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/INDIANIO">
+        <dct:description xml:lang="en">Collection of METOCEAN data in India Ocean</dct:description>
+        <rdfs:label>INDIA NIO</rdfs:label>
+        <skos:notation>INDIANIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CIS-LiNet">
+        <dct:description xml:lang="en">Atmosphere aerosol and ozone monitoring in CIS regions through lidar stations network</dct:description>
+        <rdfs:label>CIS-LiNet</rdfs:label>
+        <skos:notation>CIS-LiNet</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AFIRS">
+        <dct:description xml:lang="en">Automated Flight Information &amp; Reporting System (Commercial/FLYHT). Not currently open to GTS, contract with Panasonic and airline and/or NMHS</dct:description>
+        <rdfs:label>AFIRS</rdfs:label>
+        <skos:notation>AFIRS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CASTNET">
+        <dct:description xml:lang="en">Clean Air Status and Trends Network</dct:description>
+        <rdfs:label>CASTNET</rdfs:label>
+        <skos:notation>CASTNET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoLebanon">
+        <dct:description xml:lang="en">ARGO LEBANON</dct:description>
+        <rdfs:label>ARGO LEBANON</rdfs:label>
+        <skos:notation>argoLebanon</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSUNmiami">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-UN_MIAMI</rdfs:label>
+        <skos:notation>OSUNmiami</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNIPR">
+        <dct:description xml:lang="en">ARGO EQ. NIPR</dct:description>
+        <rdfs:label>ARGO EQ. NIPR</rdfs:label>
+        <skos:notation>argoEqNIPR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSFR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-FR</rdfs:label>
+        <skos:notation>VOSFR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IAGOS">
+        <dct:description xml:lang="en">In-service Aircraft for a Global Observing System</dct:description>
+        <rdfs:label>IAGOS</rdfs:label>
+        <skos:notation>IAGOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MEDARGO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>MEDARGO</rdfs:label>
+        <skos:notation>MEDARGO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTU">
+        <dct:description xml:lang="en">ARGO EQ. TU</dct:description>
+        <rdfs:label>ARGO EQ. TU</rdfs:label>
+        <skos:notation>argoEqTU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqOKMC">
+        <dct:description xml:lang="en">ARGO SIO EQ. (OKMC)</dct:description>
+        <rdfs:label>ARGO SIO EQ. (OKMC)</rdfs:label>
+        <skos:notation>argoSIOEqOKMC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOMorocco">
+        <dct:description xml:lang="en">Morocco Argo programme</dct:description>
+        <rdfs:label>Argo Morocco</rdfs:label>
+        <skos:notation>ARGOMorocco</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIOZ">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-ROYAL NETHERLANDS INSTITUTE FOR SEA RESEARCH (NIOZ)</rdfs:label>
+        <skos:notation>OSNIOZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSBAS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-BAS</rdfs:label>
+        <skos:notation>OSBAS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoPMEL">
+        <dct:description xml:lang="en">ARGO PMEL</dct:description>
+        <rdfs:label>ARGO PMEL</rdfs:label>
+        <skos:notation>argoPMEL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoNorway">
+        <dct:description xml:lang="en">ARGO NORWAY</dct:description>
+        <rdfs:label>ARGO NORWAY</rdfs:label>
+        <skos:notation>argoNorway</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/skynet">
+        <dct:description xml:lang="en">Aerosol-cloud-radiation interaction in the atmosphere project</dct:description>
+        <rdfs:label>SKYNET</rdfs:label>
+        <skos:notation>skynet</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIFREMER">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-IFREMER</rdfs:label>
+        <skos:notation>OSIFREMER</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIMARPE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-IMARPE</rdfs:label>
+        <skos:notation>OSIMARPE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BSHMB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>BSH-MB</rdfs:label>
+        <skos:notation>BSHMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWlocal">
+        <dct:description xml:lang="en">Local GAW station</dct:description>
+        <rdfs:label>GAW Local</rdfs:label>
+        <skos:notation>GAWlocal</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ceilometers">
+        <dct:description xml:lang="en">Elastic lidar (ceilometer) networks</dct:description>
+        <rdfs:label>Ceilometers</rdfs:label>
+        <skos:notation>ceilometers</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ADNet">
+        <dct:description xml:lang="en">AD-Net Asian Dust and Lidar Observation Network</dct:description>
+        <rdfs:label>ADNet</rdfs:label>
+        <skos:notation>ADNet</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUW">
+        <dct:description xml:lang="en">ARGO UW</dct:description>
+        <rdfs:label>ARGO UW</rdfs:label>
+        <skos:notation>argoUW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOMB">
+        <dct:description xml:lang="en">United Kingdom Met Office Moored Buoys</dct:description>
+        <rdfs:label>UK-MO MB</rdfs:label>
+        <skos:notation>UKMOMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqPMEL">
+        <dct:description xml:lang="en">ARGO EQ. PMEL</dct:description>
+        <rdfs:label>ARGO EQ. PMEL</rdfs:label>
+        <skos:notation>argoEqPMEL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSaudiArabia">
+        <dct:description xml:lang="en">ARGO SAUDI ARABIA</dct:description>
+        <rdfs:label>ARGO SAUDI ARABIA</rdfs:label>
+        <skos:notation>argoSaudiArabia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BSHDWDMB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>BSH-DWD-MB</rdfs:label>
+        <skos:notation>BSHDWDMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoKiost">
+        <dct:description xml:lang="en">ARGO KIOST</dct:description>
+        <rdfs:label>ARGO KIOST</rdfs:label>
+        <skos:notation>argoKiost</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSUSP">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-USP</rdfs:label>
+        <skos:notation>OSUSP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSSNU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-SNU</rdfs:label>
+        <skos:notation>OSSNU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ANTONt">
+        <dct:description xml:lang="en">Antarctic Observing Network upper-air station (TEMP)</dct:description>
+        <rdfs:label>ANTON(T)</rdfs:label>
+        <skos:notation>ANTONt</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoChinaSOA">
+        <dct:description xml:lang="en">ARGO CHINA SOA</dct:description>
+        <rdfs:label>ARGO CHINA SOA</rdfs:label>
+        <skos:notation>argoChinaSOA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIFM2">
+        <dct:description xml:lang="en">ARGO EQ. IFM2</dct:description>
+        <rdfs:label>ARGO EQ. IFM2</rdfs:label>
+        <skos:notation>argoEqIFM2</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UCSDscripps">
+        <dct:description xml:lang="en">SIO/CICESE Sea of Cortez Drifters</dct:description>
+        <rdfs:label>UCSD-SCRIPPS</rdfs:label>
+        <skos:notation>UCSDscripps</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/DEKOSIM">
+        <dct:description xml:lang="en">DEKOSIM is an interdisciplinary research project funded by the Turkish Ministry of Development</dct:description>
+        <rdfs:label>DEKOSIM</rdfs:label>
+        <skos:notation>DEKOSIM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSKR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-KR</rdfs:label>
+        <skos:notation>VOSKR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWUAEq">
+        <dct:description xml:lang="en">ARGO UW-UA EQ.</dct:description>
+        <rdfs:label>ARGO UW-UA EQ.</rdfs:label>
+        <skos:notation>argoUWUAEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/LALINET">
+        <dct:description xml:lang="en">LALINET Latin America Lidar Network</dct:description>
+        <rdfs:label>LALINET</rdfs:label>
+        <skos:notation>LALINET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCTSU">
+        <dct:description xml:lang="en">NDBC Tsunameter buoys</dct:description>
+        <rdfs:label>NDBC-TSU</rdfs:label>
+        <skos:notation>NDBCTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIFM">
+        <dct:description xml:lang="en">ARGO EQ. IFM</dct:description>
+        <rdfs:label>ARGO EQ. IFM</rdfs:label>
+        <skos:notation>argoEqIFM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AtlantOSH2020">
+        <dct:description xml:lang="en">Atlantic Ocean Observing System Horizon 2020 Argo project</dct:description>
+        <rdfs:label>AtlantOS_H2020</rdfs:label>
+        <skos:notation>AtlantOSH2020</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoIreland">
+        <dct:description xml:lang="en">ARGO IRELAND</dct:description>
+        <rdfs:label>ARGO IRELAND</rdfs:label>
+        <skos:notation>argoIreland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNL">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-NL</rdfs:label>
+        <skos:notation>VOSNL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisProsat">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-PROSAT</rdfs:label>
+        <skos:notation>coriolisProsat</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWEq">
+        <dct:description xml:lang="en">ARGO UW EQ.</dct:description>
+        <rdfs:label>ARGO UW EQ.</rdfs:label>
+        <skos:notation>argoUWEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWAplEq">
+        <dct:description xml:lang="en">ARGO UW-APL EQ.</dct:description>
+        <rdfs:label>ARGO UW-APL EQ.</rdfs:label>
+        <skos:notation>argoUWAplEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoMauritius">
+        <dct:description xml:lang="en">ARGO MAURITIUS</dct:description>
+        <rdfs:label>ARGO MAURITIUS</rdfs:label>
+        <skos:notation>argoMauritius</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MPLNET">
+        <dct:description xml:lang="en">Micro-Pulse Lidar Network</dct:description>
+        <rdfs:label>MPLNET</rdfs:label>
+        <skos:notation>MPLNET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSSHIPMASK">
+        <dct:description xml:lang="en">Program created for platforms transmitting under 'SHIP' GTS identifier</dct:description>
+        <rdfs:label>VOS-SHIP-MASK</rdfs:label>
+        <skos:notation>VOSSHIPMASK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoAustralia">
+        <dct:description xml:lang="en">ARGO AUSTRALIA</dct:description>
+        <rdfs:label>ARGO AUSTRALIA</rdfs:label>
+        <skos:notation>argoAustralia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTSK">
+        <dct:description xml:lang="en">ARGO EQ. TSK</dct:description>
+        <rdfs:label>ARGO EQ. TSK</rdfs:label>
+        <skos:notation>argoEqTSK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoGreece">
+        <dct:description xml:lang="en">ARGO GREECE</dct:description>
+        <rdfs:label>ARGO GREECE</rdfs:label>
+        <skos:notation>argoGreece</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UKjerseyMB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>UK-JERSEY MB</rdfs:label>
+        <skos:notation>UKjerseyMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSHK">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-HK</rdfs:label>
+        <skos:notation>VOSHK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCMBARI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-MBARI</rdfs:label>
+        <skos:notation>NDBCMBARI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoBSH">
+        <dct:description xml:lang="en">ARGO BSH</dct:description>
+        <rdfs:label>ARGO BSH</rdfs:label>
+        <skos:notation>argoBSH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CAPMoN">
+        <dct:description xml:lang="en">Canadian Air and Precipitation Monitoring Network</dct:description>
+        <rdfs:label>CAPMoN</rdfs:label>
+        <skos:notation>CAPMoN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWregional">
+        <dct:description xml:lang="en">Regional GAW station</dct:description>
+        <rdfs:label>GAW Regional</rdfs:label>
+        <skos:notation>GAWregional</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDWCTSU">
+        <dct:description xml:lang="en">National Disaster Warning Center Tsunameter buoys</dct:description>
+        <rdfs:label>NDWC-TSU</rdfs:label>
+        <skos:notation>NDWCTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAPOL">
+        <dct:description xml:lang="en">Monitoring the Oceans and Climate Change with Argo – Poland</dct:description>
+        <rdfs:label>MOCCA-POL</rdfs:label>
+        <skos:notation>MOCCAPOL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/indiaNIOT">
+        <dct:description xml:lang="en">Indian Ocean Observing Program</dct:description>
+        <rdfs:label>INDIA-NIOT</rdfs:label>
+        <skos:notation>indiaNIOT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOWHOIloopcurrentEQ">
+        <dct:description xml:lang="en">'Woods Hole Oceanographic Institution - Loop Current, Gulf of Mexico Argo equivalent programme'</dct:description>
+        <rdfs:label>Argo WHOI-Loop Current eq.</rdfs:label>
+        <skos:notation>ARGOWHOIloopcurrentEQ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EMEP">
+        <dct:description xml:lang="en">European Monitoring and Evaluation Programme</dct:description>
+        <rdfs:label>EMEP</rdfs:label>
+        <skos:notation>EMEP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFlops">
+        <dct:description xml:lang="en">CORIOLIS project for FLOtteurs du Pacifique Sud-es</dct:description>
+        <rdfs:label>CORIOLIS-FLOPS</rdfs:label>
+        <skos:notation>coriolisFlops</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSouthAfrica">
+        <dct:description xml:lang="en">ARGO SOUTH AFRICA</dct:description>
+        <rdfs:label>ARGO SOUTH AFRICA</rdfs:label>
+        <skos:notation>argoSouthAfrica</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLMFDB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>AOML-MF DB</rdfs:label>
+        <skos:notation>AOMLMFDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ANTONs">
+        <dct:description xml:lang="en">Antarctic Observing Network surface station</dct:description>
+        <rdfs:label>ANTON(S)</rdfs:label>
+        <skos:notation>ANTONs</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSUNhawaiiManoa">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-UN_HAWAII_MANOA</rdfs:label>
+        <skos:notation>OSUNhawaiiManoa</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoBrazilNavy">
+        <dct:description xml:lang="en">ARGO BRAZIL NAVY</dct:description>
+        <rdfs:label>ARGO BRAZIL NAVY</rdfs:label>
+        <skos:notation>argoBrazilNavy</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIO">
+        <dct:description xml:lang="en">ARGO SIO</dct:description>
+        <rdfs:label>ARGO SIO</rdfs:label>
+        <skos:notation>argoSIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GOship">
+        <dct:description xml:lang="en">Global Ocean Ship-Based Hydrographic Investigations Programme</dct:description>
+        <rdfs:label>GO-SHIP</rdfs:label>
+        <skos:notation>GOship</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/DFODB">
+        <dct:description xml:lang="en">Department of Fisheries and Oceans Drifter Buoys</dct:description>
+        <rdfs:label>DFO DB</rdfs:label>
+        <skos:notation>DFODB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisGoodHope">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-GOOD HOPE</rdfs:label>
+        <skos:notation>coriolisGoodHope</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIRD">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-IRD</rdfs:label>
+        <skos:notation>OSIRD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CTBTO">
+        <dct:description xml:lang="en">Comprehensive Nuclear-Test Ban Treaty Organization International Monitoring System Network monitoring station</dct:description>
+        <rdfs:label>CTBTO</rdfs:label>
+        <skos:notation>CTBTO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUMOSU">
+        <dct:description xml:lang="en">ARGO EQ. UM-OSU</dct:description>
+        <rdfs:label>ARGO EQ. UM-OSU</rdfs:label>
+        <skos:notation>argoEqUMOSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/saildrone">
+        <dct:description xml:lang="en">Autonomous Surface Vehicles deployed by NOAA as pilot</dct:description>
+        <rdfs:label>SAILDRONE</rdfs:label>
+        <skos:notation>saildrone</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolis">
+        <dct:description xml:lang="en">CORIOLIS</dct:description>
+        <rdfs:label>CORIOLIS</rdfs:label>
+        <skos:notation>coriolis</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABPUS">
+        <dct:description xml:lang="en">Coordination/data management of the Intl Arctic Buoy program</dct:description>
+        <rdfs:label>IABP US</rdfs:label>
+        <skos:notation>IABPUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSHCMR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-HELLENIC CENTRE FOR MARINE RESEARCH</rdfs:label>
+        <skos:notation>OSHCMR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTNFRI">
+        <dct:description xml:lang="en">ARGO EQ. TNFRI</dct:description>
+        <rdfs:label>ARGO EQ. TNFRI</rdfs:label>
+        <skos:notation>argoEqTNFRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CANDHIS">
+        <dct:description xml:lang="en">CANDHIS Wave buoys (CETMEF/Meteo France - (Centre d'Archivage National de Données de Houle In-Situ) )</dct:description>
+        <rdfs:label>CANDHIS</rdfs:label>
+        <skos:notation>CANDHIS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSEU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-EU</rdfs:label>
+        <skos:notation>VOSEU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ECMB">
+        <dct:description xml:lang="en">Canadian Moored Buoy Programme (MSC)</dct:description>
+        <rdfs:label>EC MB</rdfs:label>
+        <skos:notation>ECMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFlostral">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-FLOSTRAL</rdfs:label>
+        <skos:notation>coriolisFlostral</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarGDP">
+        <dct:description xml:lang="en">Global Drifter Program drifters with E-SURFMAR barometer upgrades</dct:description>
+        <rdfs:label>E-SURFMAR GDP</rdfs:label>
+        <skos:notation>eSurfmarGDP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSCSIRO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-CSIRO</rdfs:label>
+        <skos:notation>OSCSIRO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqJamstec">
+        <dct:description xml:lang="en">ARGO EQ. JAMSTEC</dct:description>
+        <rdfs:label>ARGO EQ. JAMSTEC</rdfs:label>
+        <skos:notation>argoEqJamstec</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SAWSDB">
+        <dct:description xml:lang="en">South African Weather Service Drifting Buoys programme</dct:description>
+        <rdfs:label>SAWS DB</rdfs:label>
+        <skos:notation>SAWSDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOIEqIR">
+        <dct:description xml:lang="en">ARGO WHOI EQ. IR</dct:description>
+        <rdfs:label>ARGO WHOI EQ. IR</rdfs:label>
+        <skos:notation>argoWHOIEqIR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/copernicusHRSSTFRM">
+        <dct:description xml:lang="en">COPERNICUS High Resolution SST Framework</dct:description>
+        <rdfs:label>COPERNICUS-HRSST-FRM</rdfs:label>
+        <skos:notation>copernicusHRSSTFRM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ICOS">
+        <dct:description xml:lang="en">Integrated Carbon Observation System, www.icos-cp.eu</dct:description>
+        <rdfs:label>ICOS</rdfs:label>
+        <skos:notation>ICOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisEqypt">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-EGYPT</rdfs:label>
+        <skos:notation>coriolisEqypt</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATt">
+        <dct:description xml:lang="en">Station for which monthly climatological means of upper-air elements are transmitted</dct:description>
+        <rdfs:label>CLIMAT(T)</rdfs:label>
+        <skos:notation>CLIMATt</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoItaly">
+        <dct:description xml:lang="en">ARGO ITALY</dct:description>
+        <rdfs:label>ARGO ITALY</rdfs:label>
+        <skos:notation>argoItaly</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarNOAA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>E-SURFMAR-NOAA</rdfs:label>
+        <skos:notation>eSurfmarNOAA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/WHYCOS">
+        <dct:description xml:lang="en">World Hydrological Cycle Observing System</dct:description>
+        <rdfs:label>WHYCOS</rdfs:label>
+        <skos:notation>WHYCOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUHH">
+        <dct:description xml:lang="en">ARGO EQ. UHH</dct:description>
+        <rdfs:label>ARGO EQ. UHH</rdfs:label>
+        <skos:notation>argoEqUHH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWSpursEq">
+        <dct:description xml:lang="en">ARGO UW-SPURS EQ.</dct:description>
+        <rdfs:label>ARGO UW-SPURS EQ.</rdfs:label>
+        <skos:notation>argoUWSpursEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAA-PMEL">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NOAA/PMEL</rdfs:label>
+        <skos:notation>OSNOAA-PMEL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BOMDB">
+        <dct:description xml:lang="en">Bureau of Meteorology (BOM) Drifting Buoy program</dct:description>
+        <rdfs:label>BOM DB</rdfs:label>
+        <skos:notation>BOMDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NOAACBIBS">
+        <dct:description xml:lang="en">The National Oceanic and Atmospheric Administration's (NOAA) Chesapeake Bay Interpretive Buoy System (CBIBS) is a network of observing platforms (buoys) that collect meteorological, oceanographic, and water-quality data and relay that information using wireless technology to a variety of users.</dct:description>
+        <rdfs:label>NOAA-CBIBS</rdfs:label>
+        <skos:notation>NOAACBIBS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CORMPNC">
+        <dct:description xml:lang="en">Coastal Ocean Research and Monitoring Program -NC</dct:description>
+        <rdfs:label>CORMP-NC</rdfs:label>
+        <skos:notation>CORMPNC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUKBIO">
+        <dct:description xml:lang="en">ARGO UK BIO</dct:description>
+        <rdfs:label>ARGO UK BIO</rdfs:label>
+        <skos:notation>argoUKBIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoKenya">
+        <dct:description xml:lang="en">ARGO KENYA</dct:description>
+        <rdfs:label>ARGO KENYA</rdfs:label>
+        <skos:notation>argoKenya</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CARIOCA">
+        <dct:description xml:lang="en">CARIOCA SOUTHERN OCEAN</dct:description>
+        <rdfs:label>CARIOCA</rdfs:label>
+        <skos:notation>CARIOCA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIL">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-IL</rdfs:label>
+        <skos:notation>VOSIL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/taoTriton">
+        <dct:description xml:lang="en">Triton buoy network</dct:description>
+        <rdfs:label>TAO TRITON</rdfs:label>
+        <skos:notation>taoTriton</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqFSU">
+        <dct:description xml:lang="en">ARGO EQ. FSU</dct:description>
+        <rdfs:label>ARGO EQ. FSU</rdfs:label>
+        <skos:notation>argoEqFSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/LOCEAN">
+        <dct:description xml:lang="en">Laboratory of Oceanography and Climate: Experiments and Digital Approaches</dct:description>
+        <rdfs:label>LOCEAN</rdfs:label>
+        <skos:notation>LOCEAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqJMA">
+        <dct:description xml:lang="en">ARGO EQ. JMA</dct:description>
+        <rdfs:label>ARGO EQ. JMA</rdfs:label>
+        <skos:notation>argoEqJMA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqWHOI">
+        <dct:description xml:lang="en">ARGO EQ. WHOI</dct:description>
+        <rdfs:label>ARGO EQ. WHOI</rdfs:label>
+        <skos:notation>argoEqWHOI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ITPWHOI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>ITP-WHOI</rdfs:label>
+        <skos:notation>ITPWHOI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSAU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-AU</rdfs:label>
+        <skos:notation>VOSAU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/germanAODnetwork">
+        <dct:description xml:lang="en">German Aerosol Optical Depth Network</dct:description>
+        <rdfs:label>German AOD network</rdfs:label>
+        <skos:notation>germanAODnetwork</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqHNFRI">
+        <dct:description xml:lang="en">ARGO EQ. HNFRI</dct:description>
+        <rdfs:label>ARGO EQ. HNFRI</rdfs:label>
+        <skos:notation>argoEqHNFRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceWB">
+        <dct:description xml:lang="en">Meteo-France waverider (operational)</dct:description>
+        <rdfs:label>METEO FRANCE WB</rdfs:label>
+        <skos:notation>MeteoFranceWB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CDIP">
+        <dct:description xml:lang="en">Coastal Data Information Program (CDIP)</dct:description>
+        <rdfs:label>CDIP</rdfs:label>
+        <skos:notation>CDIP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/INCOISTSU">
+        <dct:description xml:lang="en">Indian National Centre for Ocean Information Services Tsunameter buoys</dct:description>
+        <rdfs:label>INCOIS-TSU</rdfs:label>
+        <skos:notation>INCOISTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GNSSradioOccultation">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>GNSS radio-occultation system</rdfs:label>
+        <skos:notation>GNSSradioOccultation</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/shoaTSU">
+        <dct:description xml:lang="en">Chilean Navy Hydrographic And Oceanographic Service Tsunameter buoys</dct:description>
+        <rdfs:label>SHOA-TSU</rdfs:label>
+        <skos:notation>shoaTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSJAMSTEC">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-JAMSTEC</rdfs:label>
+        <skos:notation>OSJAMSTEC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/stratus">
+        <dct:description xml:lang="en">Woodshole IO OceanSITES</dct:description>
+        <rdfs:label>STRATUS</rdfs:label>
+        <skos:notation>stratus</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUKEq">
+        <dct:description xml:lang="en">ARGO UK EQ.</dct:description>
+        <rdfs:label>ARGO UK EQ.</rdfs:label>
+        <skos:notation>argoUKEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AGAGE">
+        <dct:description xml:lang="en">AGAGE/SOGE/NIES</dct:description>
+        <rdfs:label>AGAGE</rdfs:label>
+        <skos:notation>AGAGE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSRU">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-RU</rdfs:label>
+        <skos:notation>VOSRU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSGR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-GR</rdfs:label>
+        <skos:notation>VOSGR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSSOA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-SOA</rdfs:label>
+        <skos:notation>OSSOA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoTWREng">
+        <dct:description xml:lang="en">ARGO TWR ENGINEERING</dct:description>
+        <rdfs:label>ARGO TWR ENGINEERING</rdfs:label>
+        <skos:notation>argoTWREng</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/WRO">
+        <dct:description xml:lang="en">GOS Weather Radar</dct:description>
+        <rdfs:label>WRO</rdfs:label>
+        <skos:notation>WRO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BPINC">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>BP INC</rdfs:label>
+        <skos:notation>BPINC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoArgentina">
+        <dct:description xml:lang="en">ARGO ARGENTINA</dct:description>
+        <rdfs:label>ARGO ARGENTINA</rdfs:label>
+        <skos:notation>argoArgentina</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ADSC">
+        <dct:description xml:lang="en">Automatic Data Surveillance (ICAO). These are transmitted at selected points of the flightpath.</dct:description>
+        <rdfs:label>ADS-C</rdfs:label>
+        <skos:notation>ADSC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOWHOISODAEQ">
+        <dct:description xml:lang="en">Woods Hole Oceanographic Institution - Stratified Ocean Dynamics of the Arctic Argo equivalent programme</dct:description>
+        <rdfs:label>Argo WHOI-SODA eq.</rdfs:label>
+        <skos:notation>ARGOWHOISODAEQ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NAOSfrance">
+        <dct:description xml:lang="en">Novel Argo Ocean Observing System (NOAS) France project</dct:description>
+        <rdfs:label>NAOS-FRANCE</rdfs:label>
+        <skos:notation>NAOSfrance</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NCCOOS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NCCOOS</rdfs:label>
+        <skos:notation>NCCOOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/taoPirata">
+        <dct:description xml:lang="en">Prediction and Research Moored Array in the Atlantic</dct:description>
+        <rdfs:label>TAO PIRATA</rdfs:label>
+        <skos:notation>taoPirata</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCNASA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-NASA</rdfs:label>
+        <skos:notation>NDBCNASA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCUSCG">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-USCG</rdfs:label>
+        <skos:notation>NDBCUSCG</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/nonAffiliated">
+        <dct:description xml:lang="en">Observing elements that are not affiliated with WIGOS or any of the co-sponsored programs</dct:description>
+        <rdfs:label>Non-affiliated</rdfs:label>
+        <skos:notation>nonAffiliated</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AEROCAN">
+        <dct:description xml:lang="en">AEROCAN, federated to AERONET</dct:description>
+        <rdfs:label>AEROCAN</rdfs:label>
+        <skos:notation>AEROCAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/italyOGS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>ITALY-OGS</rdfs:label>
+        <skos:notation>italyOGS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoMIMRKMA">
+        <dct:description xml:lang="en">ARGO NIMR/KMA</dct:description>
+        <rdfs:label>ARGO NIMR/KMA</rdfs:label>
+        <skos:notation>argoMIMRKMA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ECDB">
+        <dct:description xml:lang="en">Canada Drifting Buoys</dct:description>
+        <rdfs:label>EC DB</rdfs:label>
+        <skos:notation>ECDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSSIO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-SIO</rdfs:label>
+        <skos:notation>OSSIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSDML">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-DML</rdfs:label>
+        <skos:notation>OSDML</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqChina">
+        <dct:description xml:lang="en">ARGO EQ. CHINA</dct:description>
+        <rdfs:label>ARGO EQ. CHINA</rdfs:label>
+        <skos:notation>argoEqChina</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAIT">
+        <dct:description xml:lang="en">Monitoring the Oceans and Climate Change with Argo – Italy</dct:description>
+        <rdfs:label>MOCCA-IT</rdfs:label>
+        <skos:notation>MOCCAIT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NWSNDBCMB">
+        <dct:description xml:lang="en">NWS NDBC Moored buoy</dct:description>
+        <rdfs:label>NWS-NDBC-MB</rdfs:label>
+        <skos:notation>NWSNDBCMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWSOCCOM">
+        <dct:description xml:lang="en">University of Washington - Southern Ocean Carbon and Climate Observations and Modelling Argo programme</dct:description>
+        <rdfs:label>Argo UW-SOCCOM</rdfs:label>
+        <skos:notation>ARGOUWSOCCOM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoFinland">
+        <dct:description xml:lang="en">ARGO FINLAND</dct:description>
+        <rdfs:label>ARGO FINLAND</rdfs:label>
+        <skos:notation>argoFinland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSGEOMAR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-GEOMAR</rdfs:label>
+        <skos:notation>OSGEOMAR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABPcanada">
+        <dct:description xml:lang="en">ICE FLOE DRIFT</dct:description>
+        <rdfs:label>IABP CANADA</rdfs:label>
+        <skos:notation>IABPcanada</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisCongas">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-CONGAS</rdfs:label>
+        <skos:notation>coriolisCongas</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoChile">
+        <dct:description xml:lang="en">ARGO CHILE</dct:description>
+        <rdfs:label>ARGO CHILE</rdfs:label>
+        <skos:notation>argoChile</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CARICOOS">
+        <dct:description xml:lang="en">CarICOOS is the observing arm of the Caribbean Regional Association for Integrated Coastal Ocean Observing (CaRA)</dct:description>
+        <rdfs:label>CARICOOS</rdfs:label>
+        <skos:notation>CARICOOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWMBARI">
+        <dct:description xml:lang="en">University of Washington – Monterey Bay Aquarium Research Institute Argo programme</dct:description>
+        <rdfs:label>Argo UW-MBARI</rdfs:label>
+        <skos:notation>ARGOUWMBARI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisOvide">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-OVIDE</rdfs:label>
+        <skos:notation>coriolisOvide</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AWIDB">
+        <dct:description xml:lang="en">Alfred Wagner Institute Drifter Buoy program</dct:description>
+        <rdfs:label>AWI-DB</rdfs:label>
+        <skos:notation>AWIDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ADD">
+        <dct:description xml:lang="en">Aircraft Derived Data (Mode-S/ADS-B)</dct:description>
+        <rdfs:label>ADD</rdfs:label>
+        <skos:notation>ADD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOIMRVEq">
+        <dct:description xml:lang="en">ARGO WHOI-MRV EQ.</dct:description>
+        <rdfs:label>ARGO WHOI-MRV EQ.</rdfs:label>
+        <skos:notation>argoWHOIMRVEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSUS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-US</rdfs:label>
+        <skos:notation>VOSUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCCOE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-COE</rdfs:label>
+        <skos:notation>NDBCCOE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCMB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-MB</rdfs:label>
+        <skos:notation>NDBCMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSKIOST">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-KIOST</rdfs:label>
+        <skos:notation>OSKIOST</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNRIFS">
+        <dct:description xml:lang="en">ARGO EQ. NRIFS</dct:description>
+        <rdfs:label>ARGO EQ. NRIFS</rdfs:label>
+        <skos:notation>argoEqNRIFS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSpain">
+        <dct:description xml:lang="en">ARGO SPAIN</dct:description>
+        <rdfs:label>ARGO SPAIN</rdfs:label>
+        <skos:notation>argoSpain</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/shell">
+        <dct:description xml:lang="en">SHELL Beaufort sea ice movement</dct:description>
+        <rdfs:label>SHELL</rdfs:label>
+        <skos:notation>shell</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLeSurfmar">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>AOML-E-SURFMAR</rdfs:label>
+        <skos:notation>AOMLeSurfmar</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GDPMF">
+        <dct:description xml:lang="en">Global Drifter Program drifters with Meteo-France barometer upgrades</dct:description>
+        <rdfs:label>GDPMF</rdfs:label>
+        <skos:notation>GDPMF</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSIMR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-INSTITUTE OF MARINE RESEARCH</rdfs:label>
+        <skos:notation>OSIMR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqASIRI">
+        <dct:description xml:lang="en">ARGO SIO EQ (ASIRI)</dct:description>
+        <rdfs:label>ARGO SIO EQ (ASIRI)</rdfs:label>
+        <skos:notation>argoSIOEqASIRI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqVocals">
+        <dct:description xml:lang="en">ARGO EQ. VOCALS</dct:description>
+        <rdfs:label>ARGO EQ. VOCALS</rdfs:label>
+        <skos:notation>argoEqVocals</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSUW">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-UW</rdfs:label>
+        <skos:notation>OSUW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eASAP">
+        <dct:description xml:lang="en">European - Automated Shipboard Aerological Program</dct:description>
+        <rdfs:label>E-ASAP</rdfs:label>
+        <skos:notation>eASAP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqESPOMZ">
+        <dct:description xml:lang="en">ARGO EQ. ESP-OMZ</dct:description>
+        <rdfs:label>ARGO EQ. ESP-OMZ</rdfs:label>
+        <skos:notation>argoEqESPOMZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisEGEE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-EGEE</rdfs:label>
+        <skos:notation>coriolisEGEE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ITPdamocles">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>ITP-DAMOCLES</rdfs:label>
+        <skos:notation>ITPdamocles</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSMY">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-MY</rdfs:label>
+        <skos:notation>VOSMY</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/germanyMB">
+        <dct:description xml:lang="en">KIEL GEK BUOY</dct:description>
+        <rdfs:label>GERMANY MB</rdfs:label>
+        <skos:notation>germanyMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoSriLanka">
+        <dct:description xml:lang="en">ARGO SRI LANKA</dct:description>
+        <rdfs:label>ARGO SRI LANKA</rdfs:label>
+        <skos:notation>argoSriLanka</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/TAMDAR">
+        <dct:description xml:lang="en">Tropospheric Aircraft Meteorological Data Relay (Commercial/Panasonic). Not currently open to GTS, contract with Panasonic and airline and/or NMHS</dct:description>
+        <rdfs:label>TAMDAR</rdfs:label>
+        <skos:notation>TAMDAR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/INDAAF">
+        <dct:description xml:lang="en">'International Network to study Deposition and Atmospheric composition in Africa</dct:description>
+        <rdfs:label>INDAAF</rdfs:label>
+        <skos:notation>INDAAF</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOI">
+        <dct:description xml:lang="en">ARGO WHOI</dct:description>
+        <rdfs:label>ARGO WHOI</rdfs:label>
+        <skos:notation>argoWHOI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GCWCryoNet">
+        <dct:description xml:lang="en">A GCW station measuring at least one variable of one cryosphere component, and meeting a set of defined requirements.</dct:description>
+        <rdfs:label>GCW CryoNet station</rdfs:label>
+        <skos:notation>GCWCryoNet</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqAOML">
+        <dct:description xml:lang="en">ARGO EQ. AOML</dct:description>
+        <rdfs:label>ARGO EQ. AOML</rdfs:label>
+        <skos:notation>argoEqAOML</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOFPAIIGMMC">
+        <dct:description xml:lang="en">Fondation Prince Albert II de Monaco - Groupe Mission Mercator Coriolis Argo programme</dct:description>
+        <rdfs:label>Argo FPAII-GMMC</rdfs:label>
+        <skos:notation>ARGOFPAIIGMMC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqOIST">
+        <dct:description xml:lang="en">ARGO EQ. OIST</dct:description>
+        <rdfs:label>ARGO EQ. OIST</rdfs:label>
+        <skos:notation>argoEqOIST</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoBrazil">
+        <dct:description xml:lang="en">ARGO BRAZIL</dct:description>
+        <rdfs:label>ARGO BRAZIL</rdfs:label>
+        <skos:notation>argoBrazil</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BSHDWDfixed">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>BSH-DWD-FIXED</rdfs:label>
+        <skos:notation>BSHDWDfixed</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoRussia">
+        <dct:description xml:lang="en">ARGO RUSSIA</dct:description>
+        <rdfs:label>ARGO RUSSIA</rdfs:label>
+        <skos:notation>argoRussia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATc">
+        <dct:description xml:lang="en">Station for which monthly climatological means of surface elements are transmitted</dct:description>
+        <rdfs:label>CLIMAT(C)</rdfs:label>
+        <skos:notation>CLIMATc</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOLV">
+        <dct:description xml:lang="en">UK Metoffice Light Vessel</dct:description>
+        <rdfs:label>UK-MO LV</rdfs:label>
+        <skos:notation>UKMOLV</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/indiaNIOTSU">
+        <dct:description xml:lang="en">NIO Tsunameter buoys</dct:description>
+        <rdfs:label>INDIA NIO-TSU</rdfs:label>
+        <skos:notation>indiaNIOTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOfixed">
+        <dct:description xml:lang="en">UK Metoffice Fixed station</dct:description>
+        <rdfs:label>UK-MO FIXED</rdfs:label>
+        <skos:notation>UKMOfixed</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SIODB">
+        <dct:description xml:lang="en">Scripps Institution of Oceanography Drifter Buoy</dct:description>
+        <rdfs:label>SIO-DB</rdfs:label>
+        <skos:notation>SIODB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPBOM">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>SOOP-BOM</rdfs:label>
+        <skos:notation>SOOPBOM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABPNIC">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>IABP NIC</rdfs:label>
+        <skos:notation>IABPNIC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AOML">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>AOML</rdfs:label>
+        <skos:notation>AOML</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSDE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-DE</rdfs:label>
+        <skos:notation>VOSDE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/taoRamaUSindia">
+        <dct:description xml:lang="en">Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction</dct:description>
+        <rdfs:label>TAO RAMA US-INDIA</rdfs:label>
+        <skos:notation>taoRamaUSindia</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/marlinDB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>MARLIN-DB</rdfs:label>
+        <skos:notation>marlinDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/pacIOOS">
+        <dct:description xml:lang="en">Pacific Islands Ocean Observing System Stations</dct:description>
+        <rdfs:label>PACIOOS</rdfs:label>
+        <skos:notation>pacIOOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisRemocean">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-REMOCEAN</rdfs:label>
+        <skos:notation>coriolisRemocean</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AMDAR">
+        <dct:description xml:lang="en">Aircraft Meteorological DAta Relay</dct:description>
+        <rdfs:label>AMDAR</rdfs:label>
+        <skos:notation>AMDAR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoDenmark">
+        <dct:description xml:lang="en">ARGO DENMARK</dct:description>
+        <rdfs:label>ARGO DENMARK</rdfs:label>
+        <skos:notation>argoDenmark</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSJP">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-JP</rdfs:label>
+        <skos:notation>VOSJP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/PMELMB">
+        <dct:description xml:lang="en">PMEL Moored Buoys</dct:description>
+        <rdfs:label>PMEL MB</rdfs:label>
+        <skos:notation>PMELMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NADP">
+        <dct:description xml:lang="en">National Atmospheric Deposition Program</dct:description>
+        <rdfs:label>NADP</rdfs:label>
+        <skos:notation>NADP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/taoPirataUS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>TAO PIRATA US</rdfs:label>
+        <skos:notation>taoPirataUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCNOAANWS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-NOAA-NWS</rdfs:label>
+        <skos:notation>NDBCNOAANWS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIE">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-IE</rdfs:label>
+        <skos:notation>VOSIE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/sibRad">
+        <dct:description xml:lang="en">SibRad</dct:description>
+        <rdfs:label>SibRad</rdfs:label>
+        <skos:notation>sibRad</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIN">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-IN</rdfs:label>
+        <skos:notation>VOSIN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWPFR">
+        <dct:description xml:lang="en">GAW Precision Filter Radiometer Network</dct:description>
+        <rdfs:label>GAW-PFR</rdfs:label>
+        <skos:notation>GAWPFR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqBSH">
+        <dct:description xml:lang="en">ARGO EQ. BSH</dct:description>
+        <rdfs:label>ARGO EQ. BSH</rdfs:label>
+        <skos:notation>argoEqBSH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GUAN">
+        <dct:description xml:lang="en">GCOS Upper-Air Network</dct:description>
+        <rdfs:label>GUAN</rdfs:label>
+        <skos:notation>GUAN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SOOP">
+        <dct:description xml:lang="en">Ship Of Opportunity Programme</dct:description>
+        <rdfs:label>SOOP</rdfs:label>
+        <skos:notation>SOOP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GSN">
+        <dct:description xml:lang="en">GCOS Surface Network</dct:description>
+        <rdfs:label>GSN</rdfs:label>
+        <skos:notation>GSN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GTOS">
+        <dct:description xml:lang="en">Global Terrestrial Observing System</dct:description>
+        <rdfs:label>GTOS</rdfs:label>
+        <skos:notation>GTOS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoPoland">
+        <dct:description xml:lang="en">ARGO POLAND</dct:description>
+        <rdfs:label>ARGO POLAND</rdfs:label>
+        <skos:notation>argoPoland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GCWaffiliated">
+        <dct:description xml:lang="en">A station of an GCW affiliated network measuring at least one cryospheric variable, contributing to GCW in addition to CryoNet and GCW contributing stations.</dct:description>
+        <rdfs:label>GCW affiliated station</rdfs:label>
+        <skos:notation>GCWaffiliated</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-NO</rdfs:label>
+        <skos:notation>VOSNO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSWHOI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-WHOI</rdfs:label>
+        <skos:notation>OSWHOI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AIREP">
+        <dct:description xml:lang="en">Aircraft Report (Manual). These are transmitted by the aircraft when a weather event encountered e.g. severe turbulence or icing.</dct:description>
+        <rdfs:label>AIREP</rdfs:label>
+        <skos:notation>AIREP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOPeru">
+        <dct:description xml:lang="en">Argo project - Peru</dct:description>
+        <rdfs:label>Argo PERU</rdfs:label>
+        <skos:notation>ARGOPeru</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoNetherlands">
+        <dct:description xml:lang="en">ARGO NETHERLANDS</dct:description>
+        <rdfs:label>ARGO NETHERLANDS</rdfs:label>
+        <skos:notation>argoNetherlands</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/scripps">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>SCRIPPS</rdfs:label>
+        <skos:notation>scripps</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/colombiaTSU">
+        <dct:description xml:lang="en">Colombia Tsunameter buoy</dct:description>
+        <rdfs:label>COLOMBIA-TSU</rdfs:label>
+        <skos:notation>colombiaTSU</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/RBON">
+        <dct:description xml:lang="en">Regional Basic Observing Network</dct:description>
+        <rdfs:label>RBON</rdfs:label>
+        <skos:notation>RBON</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisRemoceanEq">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-REMOCEAN EQ.</rdfs:label>
+        <skos:notation>coriolisRemoceanEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/centennialObservingstations">
+        <dct:description xml:lang="en">Long-term meteorological observations are unique sources of past information about atmospheric parameters, thus are references for climate variability and change assessments. To highlight this importance, WMO has a mechanism to recognize centennial observing stations. By so doing, the Organization promotes sustainable observational standards and best practices that facilitate the generation of high-quality time series data.</dct:description>
+        <rdfs:label>Centennial Observing Stations</rdfs:label>
+        <skos:notation>centennialObservingstations</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisPrevimer">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-PREVIMER</rdfs:label>
+        <skos:notation>coriolisPrevimer</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/CLN">
+        <dct:description xml:lang="en">The NOAA Cooperative Remote Sensing Science and Technology (CREST) Lidar network</dct:description>
+        <rdfs:label>CLN</rdfs:label>
+        <skos:notation>CLN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GAWnonAffiliated">
+        <dct:description xml:lang="en">Observing elements that are not affiliated with GAW or any of the co-sponsored programs</dct:description>
+        <rdfs:label>Non-affiliated</rdfs:label>
+        <skos:notation>GAWnonAffiliated</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisBioargo">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-BIOARGO</rdfs:label>
+        <skos:notation>coriolisBioargo</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNDBC">
+        <dct:description xml:lang="en">ARGO EQ. NDBC</dct:description>
+        <rdfs:label>ARGO EQ. NDBC</rdfs:label>
+        <skos:notation>argoEqNDBC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIOT">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NIOT</rdfs:label>
+        <skos:notation>OSNIOT</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/APLUW">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>APL-UW</rdfs:label>
+        <skos:notation>APLUW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFNOBJCOMMOPS">
+        <dct:description xml:lang="en">CORIOLIS project under JCOMMOPS initiative, within a larger cooperation between the Fundacio Navegacio Oceanica Barcelona (FNOB)</dct:description>
+        <rdfs:label>CORIOLIS-FNOB-JCOMMOPS</rdfs:label>
+        <skos:notation>coriolisFNOBJCOMMOPS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCBP">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-BP</rdfs:label>
+        <skos:notation>NDBCBP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SHADOZ">
+        <dct:description xml:lang="en">Southern Hemisphere ADditional Ozonesondes</dct:description>
+        <rdfs:label>SHADOZ</rdfs:label>
+        <skos:notation>SHADOZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NIO</rdfs:label>
+        <skos:notation>OSNIO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/PortugalMB">
+        <dct:description xml:lang="en">Portugal - Instituto Hidrografico (IH)</dct:description>
+        <rdfs:label>PORTUGAL-MB</rdfs:label>
+        <skos:notation>PortugalMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSCA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-CA</rdfs:label>
+        <skos:notation>VOSCA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/USCGDB">
+        <dct:description xml:lang="en">USCG Drift Buoys</dct:description>
+        <rdfs:label>US-CG DB</rdfs:label>
+        <skos:notation>USCGDB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/BSRN">
+        <dct:description xml:lang="en">Baseline Surface Radiation Network</dct:description>
+        <rdfs:label>BSRN</rdfs:label>
+        <skos:notation>BSRN</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/unknown">
+        <dct:description xml:lang="en">The affiliation/programme is unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/gyroscope">
+        <dct:description xml:lang="en">GyroScope project is aimed to develop a European component of a global in situ observing system of ocean variability in the North Atlantic, as a contribution to the Argo project.</dct:description>
+        <rdfs:label>GYROSCOPE</rdfs:label>
+        <skos:notation>gyroscope</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoChina">
+        <dct:description xml:lang="en">ARGO CHINA</dct:description>
+        <rdfs:label>ARGO CHINA</rdfs:label>
+        <skos:notation>argoChina</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/DBCPothers">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>DBCP others</rdfs:label>
+        <skos:notation>DBCPothers</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOC">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NOC</rdfs:label>
+        <skos:notation>OSNOC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarUKMB">
+        <dct:description xml:lang="en">UKMO moored buoy programme</dct:description>
+        <rdfs:label>E-SURFMAR-UK MB</rdfs:label>
+        <skos:notation>eSurfmarUKMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSCNR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-CNR</rdfs:label>
+        <skos:notation>OSCNR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCTABS">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-TABS</rdfs:label>
+        <skos:notation>NDBCTABS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EuroARGORISE">
+        <dct:description xml:lang="en">Euro-Argo Research Infrastructure Sustainability and Enhancement project</dct:description>
+        <rdfs:label>Euro-Argo RISE</rdfs:label>
+        <skos:notation>EuroARGORISE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNZ">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-NZ</rdfs:label>
+        <skos:notation>VOSNZ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIreland">
+        <dct:description xml:lang="en">ARGO EQ. IRELAND</dct:description>
+        <rdfs:label>ARGO EQ. IRELAND</rdfs:label>
+        <skos:notation>argoEqIreland</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NAVOCEANODBCP">
+        <dct:description xml:lang="en">Naval Oceanographic Office DBCP programme</dct:description>
+        <rdfs:label>Navoceano DBCP</rdfs:label>
+        <skos:notation>NAVOCEANODBCP</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IPABUS">
+        <dct:description xml:lang="en">International Programme for Antarctic Buoys - US</dct:description>
+        <rdfs:label>IPABUS</rdfs:label>
+        <skos:notation>IPABUS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSMBARI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-MBARI</rdfs:label>
+        <skos:notation>OSMBARI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSGB">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-GB</rdfs:label>
+        <skos:notation>VOSGB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSMARUM">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-MARUM</rdfs:label>
+        <skos:notation>OSMARUM</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisPirata">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-PIRATA</rdfs:label>
+        <skos:notation>coriolisPirata</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAGER">
+        <dct:description xml:lang="en">Monitoring the Oceans and Climate Change with Argo – Germany</dct:description>
+        <rdfs:label>MOCCA-GER</rdfs:label>
+        <skos:notation>MOCCAGER</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/lightningDetection">
+        <dct:description xml:lang="en">Surface-based lightning detection system</dct:description>
+        <rdfs:label>Lightning detection system</rdfs:label>
+        <skos:notation>lightningDetection</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IMPROVE">
+        <dct:description xml:lang="en">IMPROVE Optical Aerosol</dct:description>
+        <rdfs:label>IMPROVE</rdfs:label>
+        <skos:notation>IMPROVE</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisCanoa">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-CANOA</rdfs:label>
+        <skos:notation>coriolisCanoa</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWMbariEq">
+        <dct:description xml:lang="en">ARGO UW-MBARI EQ.</dct:description>
+        <rdfs:label>ARGO UW-MBARI EQ.</rdfs:label>
+        <skos:notation>argoUWMbariEq</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarIrishIMI">
+        <dct:description xml:lang="en">EUMETNET Composite Observing System (EUCOS)Surface Marine Programme and IRISH MARINE INSTITUTE (EUROPEAN CONTRIBUTION)</dct:description>
+        <rdfs:label>E-SURFMAR-IRISH IMI</rdfs:label>
+        <skos:notation>eSurfmarIrishIMI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/polarAOD">
+        <dct:description xml:lang="en">Polar Aerosol Optical Depth Measurement Network Project</dct:description>
+        <rdfs:label>PolarAOD</rdfs:label>
+        <skos:notation>polarAOD</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/eAIMS">
+        <dct:description xml:lang="en">Euro-Argo Improvements for the GMES Marine Service</dct:description>
+        <rdfs:label>E-AIMS</rdfs:label>
+        <skos:notation>eAIMS</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWTPOSEQ">
+        <dct:description xml:lang="en">University of Washington – Tropical Pacific Observing System Argo equivalent programme</dct:description>
+        <rdfs:label>Argo UW-TPOS eq.</rdfs:label>
+        <skos:notation>ARGOUWTPOSEQ</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/TCCON">
+        <dct:description xml:lang="en">Total Carbon Column Observing Network</dct:description>
+        <rdfs:label>TCCON</rdfs:label>
+        <skos:notation>TCCON</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/windProfiler">
+        <dct:description xml:lang="en">Wind profilers for upper-air wind observations</dct:description>
+        <rdfs:label>Wind Profilers</rdfs:label>
+        <skos:notation>windProfiler</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSCL">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-CL</rdfs:label>
+        <skos:notation>VOSCL</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/meridianGoodHope">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>MERIDIAN GOODHOPE</rdfs:label>
+        <skos:notation>meridianGoodHope</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisTrack">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>CORIOLIS-TRACK</rdfs:label>
+        <skos:notation>coriolisTrack</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoUK">
+        <dct:description xml:lang="en">ARGO UK</dct:description>
+        <rdfs:label>ARGO UK</rdfs:label>
+        <skos:notation>argoUK</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OShamburgUniversity">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-HAMBURG UNIVERSITY</rdfs:label>
+        <skos:notation>OShamburgUniversity</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSLDEO">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-LDEO</rdfs:label>
+        <skos:notation>OSLDEO</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqSage">
+        <dct:description xml:lang="en">ARGO EQ. SAGE</dct:description>
+        <rdfs:label>ARGO EQ. SAGE</rdfs:label>
+        <skos:notation>argoEqSage</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSEUTHOR">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-EU-THOR</rdfs:label>
+        <skos:notation>OSEUTHOR</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUH">
+        <dct:description xml:lang="en">ARGO EQ. UH</dct:description>
+        <rdfs:label>ARGO EQ. UH</rdfs:label>
+        <skos:notation>argoEqUH</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NWSNDBCWB">
+        <dct:description xml:lang="en">NWS NDBC Wave buoy</dct:description>
+        <rdfs:label>NWS-NDBC-WB</rdfs:label>
+        <skos:notation>NWSNDBCWB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/GBON">
+        <dct:description xml:lang="en">Global Basic Observing Network</dct:description>
+        <rdfs:label>GBON</rdfs:label>
+        <skos:notation>GBON</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPZA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>ASAP-ZA</rdfs:label>
+        <skos:notation>ASAPZA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/IABPUW">
+        <dct:description xml:lang="en">Intl Arctic Buoy Program (IABP) University of Washington (UW)</dct:description>
+        <rdfs:label>IABP-UW</rdfs:label>
+        <skos:notation>IABPUW</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/VOSZA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>VOS-ZA</rdfs:label>
+        <skos:notation>VOSZA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqAWI">
+        <dct:description xml:lang="en">ARGO EQ. AWI</dct:description>
+        <rdfs:label>ARGO EQ. AWI</rdfs:label>
+        <skos:notation>argoEqAWI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCCSI">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>NDBC-CSI</rdfs:label>
+        <skos:notation>NDBCCSI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/EurositesPlanier">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>EUROSITES PLANIER</rdfs:label>
+        <skos:notation>EurositesPlanier</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/spainPDEMB">
+        <dct:description xml:lang="en">Puertos del EStado Spain Moored buoy</dct:description>
+        <rdfs:label>SPAIN-PDE MB</rdfs:label>
+        <skos:notation>spainPDEMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoGabon">
+        <dct:description xml:lang="en">ARGO GABON</dct:description>
+        <rdfs:label>ARGO GABON</rdfs:label>
+        <skos:notation>argoGabon</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/NDACC">
+        <dct:description xml:lang="en">Network for the Detection of Atmospheric Composition Change</dct:description>
+        <rdfs:label>NDACC</rdfs:label>
+        <skos:notation>NDACC</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoGermany">
+        <dct:description xml:lang="en">ARGO GERMANY</dct:description>
+        <rdfs:label>ARGO GERMANY</rdfs:label>
+        <skos:notation>argoGermany</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/AERONET">
+        <dct:description xml:lang="en">AErosol RObotic NETwork</dct:description>
+        <rdfs:label>AERONET</rdfs:label>
+        <skos:notation>AERONET</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAA-AOML">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NOAA/AOML</rdfs:label>
+        <skos:notation>OSNOAA-AOML</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/argoAWI">
+        <dct:description xml:lang="en">ARGO AWI</dct:description>
+        <rdfs:label>ARGO AWI</rdfs:label>
+        <skos:notation>argoAWI</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIWA">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-NIWA</rdfs:label>
+        <skos:notation>OSNIWA</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/SpainIEOMB">
+        <dct:description xml:lang="en">Moored Buoys Managed by Spanish Institute of Oceanography of the Ministry of Science and Technology</dct:description>
+        <rdfs:label>SPAIN-IEO-MB</rdfs:label>
+        <skos:notation>SpainIEOMB</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/ProgramAffiliation/OSICCMCanarias">
+        <dct:description xml:lang="en">NA</dct:description>
+        <rdfs:label>OS-ICCM - ACIISI - GOBIERNO DE CANARIAS</rdfs:label>
+        <skos:notation>OSICCMCanarias</skos:notation>
+      </skos:Concept>
+    </skos:member>
+  </ldp:Container>
+</rdf:RDF>

@@ -1,0 +1,135 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:qudt-dimension="http://qudt.org/vocab/dimension#"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:bufr4-core="http://codes.wmo.int/bufr4/schema/core/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:common-unit="http://codes.wmo.int/common/schema/unit/"
+    xmlns:common-core="http://codes.wmo.int/common/schema/core/"
+    xmlns:qudt="http://qudt.org/schema/qudt#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:grib2-parameter="http://codes.wmo.int/grib2/schema/parameter/"
+    xmlns:qudt-unit="http://qudt.org/vocab/unit#"
+    xmlns:qudt-quantity="http://qudt.org/vocab/quantity#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:grib2-core="http://codes.wmo.int/grib2/schema/core/">
+  <reg:Register rdf:about="http://codes.wmo.int/wmdr/TopographicContext">
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/basins">
+        <dct:description xml:lang="en">A depression of the sea floor more or less equidimensional in form and of very variable extent</dct:description>
+        <rdfs:label>within basins</rdfs:label>
+        <skos:notation>basins</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/plains">
+        <dct:description xml:lang="en">Very low relief  (differences &lt;30 m within 5-10 km range) on land</dct:description>
+        <rdfs:label>within plains</rdfs:label>
+        <skos:notation>plains</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/unknown">
+        <dct:description xml:lang="en">The topographic context is unknown.</dct:description>
+        <rdfs:label>unknown</rdfs:label>
+        <skos:notation>unknown</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >2</owl:versionInfo>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/hollows">
+        <dct:description xml:lang="en">Low relief  (differences 30-250 m within 5-10 km range) on land, tending to convergent form</dct:description>
+        <rdfs:label>within hollows</rdfs:label>
+        <skos:notation>hollows</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/rises">
+        <dct:description xml:lang="en">Low relief (differences 30-250 m within 5-10 km range) on land, tending to divergent form</dct:description>
+        <rdfs:label>within rises</rdfs:label>
+        <skos:notation>rises</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/guyots">
+        <dct:description xml:lang="en">An undersea mountain having a comparatively smooth flat top. Also called a table mount</dct:description>
+        <rdfs:label>within guyots</rdfs:label>
+        <skos:notation>guyots</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/mountains">
+        <dct:description xml:lang="en">High relief (differences &gt; 1000 m within 5-10 km range) on land</dct:description>
+        <rdfs:label>within mountains</rdfs:label>
+        <skos:notation>mountains</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/seaMounts">
+        <dct:description xml:lang="en">An isolated or comparatively isolated elevation rising 1 000 meters or more from the sea floor and of limited extent across the summit</dct:description>
+        <rdfs:label>within sea mounts</rdfs:label>
+        <skos:notation>seaMounts</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/inapplicable">
+        <dct:description xml:lang="en">None of the codes in the table are applicable in the context of this particular station/platform.</dct:description>
+        <rdfs:label>inapplicable</rdfs:label>
+        <skos:notation>inapplicable</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2019-11-21T09:22:27.711Z</dct:modified>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+    <rdfs:label>Topographic context</rdfs:label>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/trenches">
+        <dct:description xml:lang="en">A long, narrow and deep depression of the sea floor with relatively steep sides</dct:description>
+        <rdfs:label>within trenches</rdfs:label>
+        <skos:notation>trenches</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <ldp:hasMemberRelation rdf:resource="http://www.w3.org/2004/02/skos/core#member"/>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/valleys">
+        <dct:description xml:lang="en">Medium relief (differences 250-1000 m within 5-10 km range) on land, tending to convergent form</dct:description>
+        <rdfs:label>within valleys</rdfs:label>
+        <skos:notation>valleys</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/ridges">
+        <dct:description xml:lang="en">A long, narrow elevation with steep sides; or: A long, narrow elevation often separating ocean basins; or: The major oceanic mountain systems of global extent</dct:description>
+        <rdfs:label>within ridges</rdfs:label>
+        <skos:notation>ridges</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <skos:member>
+      <skos:Concept rdf:about="http://codes.wmo.int/wmdr/TopographicContext/hills">
+        <dct:description xml:lang="en">Medium relief  (differences 250-1000 m within 5-10 km range) on land, tending to divergent form</dct:description>
+        <rdfs:label>within hills</rdfs:label>
+        <skos:notation>hills</skos:notation>
+      </skos:Concept>
+    </skos:member>
+    <dct:description>Topographic context</dct:description>
+  </reg:Register>
+</rdf:RDF>
