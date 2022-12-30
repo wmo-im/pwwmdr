@@ -67,7 +67,7 @@ from pywmdr.util import (get_cli_common_options, get_keyword_info,
                          validate_url, get_href_and_validate, get_text_and_validate, 
                          validate_text) # get_codelists, 
 
-logging.basicConfig(level=logging.WARNING) # DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
 # round percentages to x decimal places
@@ -90,11 +90,15 @@ class WMDRKeyPerformanceIndicators:
         # serialized already
         rtag = exml.getroot().tag
         if rtag != "{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord":
+            LOGGER.debug("0.rtag: %s" % rtag)
             wigosmetadatarecord = exml.getroot().find('.//{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord')
             if wigosmetadatarecord is None:
+                LOGGER.debug("http://def.wmo.int/wmdr/1.0 tag not found")
                 if rtag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
+                    LOGGER.debug("root tag not http://def.wmo.int/wmdr/2017")
                     wigosmetadatarecord = exml.getroot().find('{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord')
                     if wigosmetadatarecord is None:
+                        LOGGER.debug("tag http://def.wmo.int/wmdr/2017 not found")
                         raise RuntimeError('Does not look like a WMDR document!')
                     else:
                         exml._setroot(wigosmetadatarecord)
@@ -103,6 +107,8 @@ class WMDRKeyPerformanceIndicators:
             else:
                 exml._setroot(wigosmetadatarecord)
                 self.version = "1.0"
+        else:
+            self.version = "1.0"
         self.exml = exml
         self.namespaces = self.exml.getroot().nsmap
         # remove empty (default) namespace to avoid exceptions in exml.xpath
@@ -120,6 +126,12 @@ class WMDRKeyPerformanceIndicators:
         if 'gmx' not in self.namespaces:
             self.namespaces['gmx'] = 'http://www.isotc211.org/2005/gmx'
 
+        # set wmdr namespace prefix
+        if self.version == '1.0RC9':
+            self.namespaces["wmdr"] = "http://def.wmo.int/wmdr/2017"
+        else:
+            self.namespaces["wmdr"] = "http://def.wmo.int/wmdr/1.0"
+        
         # generate dict of codelists
         self.codelists = get_codelists_from_rdf()
 

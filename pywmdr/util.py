@@ -431,9 +431,29 @@ def parse_wmdr(content):
 
     root_tag = exml.getroot().tag
 
-    if root_tag != '{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord' and root_tag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
-        raise RuntimeError('Does not look like a WMDR document!')
-
+#    if root_tag != '{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord' and root_tag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
+#        raise RuntimeError('Does not look like a WMDR document!')
+    if root_tag != "{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord":
+        LOGGER.debug("0.rtag: %s" % root_tag)
+        wigosmetadatarecord = exml.getroot().find('.//{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord')
+        if wigosmetadatarecord is None:
+            LOGGER.debug("http://def.wmo.int/wmdr/1.0 tag not found")
+            if root_tag != '{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord':
+                LOGGER.debug("root tag not http://def.wmo.int/wmdr/2017")
+                wigosmetadatarecord = exml.getroot().find('{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord')
+                if wigosmetadatarecord is None:
+                    LOGGER.debug("tag http://def.wmo.int/wmdr/2017 not found")
+                    raise RuntimeError('Does not look like a WMDR document!')
+                else:
+                    exml._setroot(wigosmetadatarecord)
+            LOGGER.debug("Warning: document is wmdr/2017 (1.0RC9)!")
+            #self.version = "1.0RC9"
+        else:
+            exml._setroot(wigosmetadatarecord)
+            #self.version = "1.0"
+    #else:
+        #self.version = "1.0"
+        
     return exml
 
 def get_coordinates(self):

@@ -84,6 +84,8 @@ class WMDRTestSuite:
             else:
                 exml._setroot(wigosmetadatarecord)
                 self.version = "1.0"
+        else:
+            self.version = "1.0"
         self.exml = exml
         self.namespaces = self.exml.getroot().nsmap
 
