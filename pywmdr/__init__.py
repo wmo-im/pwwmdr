@@ -13,6 +13,8 @@ import click
 
 from pywmdr.ats import ats
 from pywmdr.kpi import kpi
+from pywmdr.harvest import harvest
+from pywmdr.metrics import metrics
 
 __version__ = '0.1.dev0'
 
@@ -25,3 +27,5 @@ def cli():
 
 cli.add_command(ats)
 cli.add_command(kpi)
+cli.add_command(harvest)
+cli.add_command(metrics)

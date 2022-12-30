@@ -88,61 +88,52 @@ KPI definitions being developed on this branch: https://github.com/wmo-im/wmdr/t
 
 ## Additional tools
 
-### metrics.py
+### metrics
 
 This program evaluates (all or selected) KPIS for all files matching a given path (accepts bash wildcards), saves the results as .json files and optionally computes statistics from the resulting scores, including percentiles and mean for each KPI and final score.
 
-    $ python3 metrics.py --help
-    usage: metrics.py [-h] [-o OUTPUT_DIR] [-m METRICS] [-k KPI] {evaluate,metrics} path
+    $ pywmdr metrics --help
+    Usage: pywmdr metrics [OPTIONS] {evaluate|metrics} PATH
 
-    Bulk evaluate WMDR KPIs. Compute metrics
-
-    positional arguments:
-    {evaluate,metrics}    action to perform: evaluate, metrics
-    path                  path where to read wmdr files
-
-    optional arguments:
-    -h, --help            show this help message and exit
-    -o OUTPUT_DIR, --output_dir OUTPUT_DIR
-                            optional. Save the results onto this location
-    -m METRICS, --metrics METRICS
-                            optional. Compute metrics and save the results onto this file
-    -k KPI, --kpi KPI     optional. Compute selected kpi only
-
+    Options:
+        -o, --output_dir PATH       Save the results onto this location
+        -m, --compute_metrics PATH  Compute metrics and save the results onto this
+                                    file
+        -k, --kpi INTEGER           Compute selected kpi only
+        -s, --skip_schema_eval      skip evaluation of schema (kpi 1-01)
+        --help                      Show this message and exit.
 example:
 
-    python3 metrics.py evaluate "data/records/*.xml" -o data/evaluations
-    python3 metrics.py metrics "data/evaluations/*.json" -m metrics.json
+    pywmdr metrics evaluate "data/records/*.xml" -o data/evaluations
+    pywmdr metrics metrics "data/evaluations/*.json" -m metrics.json
 
-### harvest_oai.py
+### harvest
 
 This programs can be used to bulk download wmdr metadata records from a OAI REST endpoint (defaults to OSCAR)
 
-    $ python3 harvest_oai.py --help
-    usage: harvest_oai.py [-h] [-s SET_SPEC] [-e ENDPOINT] [-i IDENTIFIER]
-                        {identifiers,records,record} output
+    $ pywmdr harvest --help
+    Usage: pywmdr harvest [OPTIONS] {identifiers|records|record} OUTPUT
 
     Bulk download WMDR records from OAI web service
 
-    positional arguments:
-    {identifiers,records,record}
-                            action to perform.
-                            - identifiers: request
-                            record identifiers.
-                            - records: request records.
-                            - record: request record by identifier
-    output                directory where to save results
+    ACTION is the action to perform. Options are
 
-    optional arguments:
-    -h, --help            show this help message and exit
-    -s SET_SPEC, --set_spec SET_SPEC
-                            optional. Retrieve only records with the specified setSpec attribute
-    -e ENDPOINT, --endpoint ENDPOINT
-                            optional. OAI web service endpoint
-    -i IDENTIFIER, --identifier IDENTIFIER
-                            Record identifier. Valid only for action=record
+        - identifiers: request record identifiers.
 
+        - records: request records.
+
+        - record: request record by identifier"
+
+    OUTPUT is the directory where to save results
+
+    Options:
+    -s, --set_spec TEXT         Retrieve only records with the specified setSpec
+                                attribute
+    -e, --endpoint TEXT         OAI web service endpoint
+    -i, --identifier TEXT       Record identifier. Valid only for action=record
+    -p, --metadata_prefix TEXT  Metadata prefix. Defaults to wmdr
+    --help                      Show this message and exit.
 Examples:
 
-    python3 harvest_oai.py records data/records -s airFixed
-    python3 harvest_oai.py record data/records -i 0-20000-0-15118
+    pywmdr harvest records data/records -s airFixed
+    pywmdr harvest record data/records -i 0-20000-0-15118
