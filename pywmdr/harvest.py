@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import click
+import glob
 
 def getMetadataFormats(output,endpoint="https://oscar.wmo.int:443/oai/provider"):
     response = requests.get(endpoint, params = { "verb": "ListMetadataFormats"})
@@ -149,10 +150,17 @@ def getRecordsNextPage(output,resumption_token,endpoint="https://oscar.wmo.int:4
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)
         shutil.copyfile(output,filename)
+    records = parseListRecords(list_records,output_dir) # []
+    new_token = list_records.find("{http://www.openarchives.org/OAI/2.0/}resumptionToken").text
+    return records, cursor, new_token
+
+def parseListRecords(list_records,output_dir):
     records = []
     for record in list_records.iter("{http://www.openarchives.org/OAI/2.0/}record"):
         identifier = record.find("{http://www.openarchives.org/OAI/2.0/}header/{http://www.openarchives.org/OAI/2.0/}identifier").text
-        metadata = record.find("{http://www.openarchives.org/OAI/2.0/}metadata/{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord")
+        metadata = record.find("{http://www.openarchives.org/OAI/2.0/}metadata/{http://def.wmo.int/wmdr/1.0}WIGOSMetadataRecord")
+        if metadata is None:
+            metadata = record.find("{http://www.openarchives.org/OAI/2.0/}metadata/{http://def.wmo.int/wmdr/2017}WIGOSMetadataRecord")
         records.append({
             "identifier": identifier,
             "metadata" : metadata
@@ -161,10 +169,31 @@ def getRecordsNextPage(output,resumption_token,endpoint="https://oscar.wmo.int:4
             record_filename = "%s/%s.xml" % (output_dir,identifier)
             et = etree.ElementTree(metadata)
             et.write(record_filename, pretty_print=True)
-    new_token = list_records.find("{http://www.openarchives.org/OAI/2.0/}resumptionToken").text
-    return records, cursor, new_token
+    return records
 
-def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provider",max_pages=500,metadata_prefix="wmdr",set_spec=None,return_records=False):
+def parseRecordsFiles(file_pattern:str,output_dir):
+    files = glob.glob(file_pattern)
+    if not len(files):
+        print("Error: no files matched the pattern")
+        return
+    for file in files:
+        try:
+            tree = etree.parse(file)
+        except Exception as e:
+            print("Error: %s" % (str(e)))
+            continue
+        root = tree.getroot()
+        list_records = root.find("{http://www.openarchives.org/OAI/2.0/}ListRecords")
+        if list_records is None:
+            print("Element ListRecords not found")
+            continue
+        try:
+            records = parseListRecords(list_records,output_dir)
+        except Exception as e:
+            print("Error: %s" % (str(e)))
+            continue
+
+def getRecords(output,output_dir,endpoint="https://oscar.wmo.int:443/oai/provider",max_pages=10000,metadata_prefix="wmdr",set_spec=None,return_records=False):
     records, resumption_token, completeListSize, cursor = getRecordsFirstPage(output,endpoint=endpoint,metadata_prefix=metadata_prefix,set_spec=set_spec,output_dir=output_dir)
     page = 0
     if resumption_token is None:
@@ -190,7 +219,7 @@ def kpi():
 @click.command()
 @click.pass_context
 @click.argument('action',
-            type=click.Choice(["identifiers","records","record"]))
+            type=click.Choice(["identifiers","records","record","parse_files"]))
 @click.argument('output',
               type=str)
 @click.option('--set_spec', '-s', type=str,
@@ -199,7 +228,8 @@ def kpi():
               help='OAI web service endpoint')
 @click.option('--identifier', '-i', type=str, help='Record identifier. Valid only for action=record')
 @click.option('--metadata_prefix', '-p', default="wmdr", help='Metadata prefix. Defaults to wmdr')
-def harvest(self,action,output,set_spec,endpoint,identifier,metadata_prefix):
+@click.option('--file_pattern', '-f', help='File pattern corresponding to the record files')
+def harvest(self,action,output,set_spec,endpoint,identifier,metadata_prefix,file_pattern):
     """
     Bulk download WMDR records from OAI web service
 
@@ -210,6 +240,8 @@ def harvest(self,action,output,set_spec,endpoint,identifier,metadata_prefix):
       - records: request records. 
     
       - record: request record by identifier"
+
+      - parse_files: parse downloaded record lists into individual record files
     
     OUTPUT is the directory where to save results
     """
@@ -234,6 +266,14 @@ def harvest(self,action,output,set_spec,endpoint,identifier,metadata_prefix):
             print("ERROR: missing -i, --identifier")
             exit(1)
         getRecord(identifier,output_dir=output, endpoint=endpoint,metadata_prefix=metadata_prefix)
+    elif action == "parse_files":
+        if file_pattern is None:
+            print("ERROR: missing -f, --file_pattern")
+            exit(1)
+        if output is None:
+            print("ERROR: missing OUTPUT")
+            exit(1)
+        parseRecordsFiles(file_pattern,output)
     else:
         print("ERROR: invalid action")
         exit(1)
