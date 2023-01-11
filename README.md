@@ -90,7 +90,7 @@ KPI definitions being developed on this branch: https://github.com/wmo-im/wmdr/t
 
 ### metrics
 
-This program evaluates (all or selected) KPIS for all files matching a given path (accepts bash wildcards), saves the results as .json files and optionally computes statistics from the resulting scores, including percentiles and mean for each KPI and final score.
+This command evaluates (all or selected) KPIS for all files matching a given path (accepts bash wildcards), saves the results as .json files and optionally computes statistics from the resulting scores, including percentiles and mean for each KPI and final score.
 
     $ pywmdr metrics --help
     Usage: pywmdr metrics [OPTIONS] {evaluate|metrics} PATH
@@ -109,7 +109,7 @@ example:
 
 ### harvest
 
-This programs can be used to bulk download wmdr metadata records from a OAI REST endpoint (defaults to OSCAR)
+This command can be used to bulk download wmdr metadata records from a OAI REST endpoint (defaults to OSCAR)
 
     $ pywmdr harvest --help
     Usage: pywmdr harvest [OPTIONS] {identifiers|records|record} OUTPUT
